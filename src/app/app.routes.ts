@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './pages/users/users.component';
 import { LayoutComponent } from './pages/layout/layout.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
   {
@@ -13,14 +14,18 @@ export const routes: Routes = [
         component: UsersComponent
       },
       {
-        path:'users2',
+        path:'componentes',
+        component: UsersComponent
+      },
+      {
+        path:'componentes/:id',
         component: UsersComponent
       },
     ]
   },
   {
     path: 'login',
-    component: UsersComponent
+    component: LoginComponent
   },
   {path: '**',  redirectTo: ''}
 ];
