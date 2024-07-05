@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild, inject } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -7,6 +7,8 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { IColumns } from '../../interfaces/table.interface';
 import { Router, RouterLink } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +20,9 @@ import { Router, RouterLink } from '@angular/router';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    RouterLink
+    RouterLink,
+    MatIconModule,
+    MatButtonModule
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
@@ -28,6 +32,9 @@ export class TableComponent implements OnInit, AfterViewInit{
   @Input() columns: IColumns[] = [];
   @Input() dataTable: any[] = [];
 
+  @Output() addNew = new EventEmitter<boolean>();
+  @Output() edit = new EventEmitter<any>();
+
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
 
@@ -35,7 +42,7 @@ export class TableComponent implements OnInit, AfterViewInit{
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private router: Router
+    private router: Router,
   ) {
   }
 
@@ -44,16 +51,16 @@ export class TableComponent implements OnInit, AfterViewInit{
     this.dataSource = new MatTableDataSource(this.dataTable);
   }
 
-  redirectLink(rowLink: any): void {
-    console.log(rowLink.link);
-
-    this.router.navigate([rowLink.link]);
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['dataTable']){
+      this.dataSource = new MatTableDataSource(this.dataTable);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
   }
 
   ngAfterViewInit() {
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
@@ -63,5 +70,19 @@ export class TableComponent implements OnInit, AfterViewInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  redirectLink(rowLink: any): void {
+    console.log(rowLink.link);
+
+    this.router.navigate([rowLink.link]);
+  }
+
+  openDialog(): void {
+    this.addNew.emit(true)
+  }
+
+  editDataDialog(data: any): void {
+    this.edit.emit(data)
   }
 }

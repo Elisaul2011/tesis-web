@@ -3,6 +3,7 @@ export interface IColumns {
   name: string;
   type: typesColumns;
   link?: string;
+  icon?: string;
 }
 
-export type typesColumns = 'string' | 'links';
+export type typesColumns = 'string' | 'links' | 'icon';

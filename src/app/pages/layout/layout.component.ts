@@ -33,5 +33,4 @@ export class LayoutComponent implements OnInit {
   logout(): void {
     this.router.navigate(['/login']);
   }
-
 }

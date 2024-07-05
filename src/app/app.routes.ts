@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './pages/users/users.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AlmacenComponent } from './pages/almacen/almacen.component';
 
 export const routes: Routes = [
   {
@@ -10,7 +11,11 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path:'users',
+        path:'Almacen',
+        component: AlmacenComponent
+      },
+      {
+        path:'',
         component: UsersComponent
       },
       {

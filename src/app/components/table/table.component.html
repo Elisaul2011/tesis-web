@@ -1,14 +1,20 @@
 <div>
   <div class="flex items-center justify-end w-full">
-    <mat-form-field appearance="outline" class="w-[20rem]">
-      <mat-label>Buscar</mat-label>
-      <input matInput (keyup)="applyFilter($event)" #input />
-    </mat-form-field>
+    <div class="flex items-center gap-2">
+      <mat-form-field appearance="outline" class="w-[20rem]">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input />
+      </mat-form-field>
+      <button mat-mini-fab class="mb-5" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </div>
 
   <div class="mat-elevation-z8 overflow-auto h-[20rem]">
     <table mat-table [dataSource]="dataSource" matSort>
       @for (item of columns; track $index) {
+
         @if (item.type == 'links') {
           <ng-container matColumnDef="{{ item.name }}">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>
@@ -23,6 +29,18 @@
               {{ item.title }}
             </th>
             <td mat-cell *matCellDef="let row">{{ row[item.name] }}</td>
+          </ng-container>
+        }
+        @if (item.type == 'icon') {
+          <ng-container matColumnDef="{{ item.name }}">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ item.title }}
+            </th>
+            <td mat-cell *matCellDef="let row" (click)="editDataDialog(row)">
+              <button mat-icon-button>
+                <mat-icon>{{item.icon}}</mat-icon>
+              </button>
+            </td>
           </ng-container>
         }
       }
