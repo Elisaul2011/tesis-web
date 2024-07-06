@@ -52,12 +52,7 @@ export const dataFormUser: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
+    option: []
   },
 ];
 

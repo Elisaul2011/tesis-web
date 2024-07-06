@@ -1,19 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-import { IRoles, IUsers } from '../interfaces/users';
+import { IUsers } from '../interfaces/users';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class tallerService {
 
   private route_users = `${base_route}/users`;
-  private route_users_roles = `${this.route_users}/roles`;
   private setUserData = signal<IUsers[]>([]);
-  private setUserRolesData = signal<IRoles[]>([]);
   public getUserData = computed<IUsers[]>(() => this.setUserData());
-  public getUserRolsData = computed<IRoles[]>(() => this.setUserRolesData());
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,13 +19,8 @@ export class UsersService {
       result.map(user => {
         user.roles = user.roles.rol
       });
-      this.setUserData.set(result);
-    })
-  }
 
-  getUsersRoles(): void {
-    this.httpClient.get<IRoles[]>(this.route_users_roles).subscribe((result:IRoles[])  => {
-      this.setUserRolesData.set(result);
+      this.setUserData.set(result);
     })
   }
 
@@ -51,4 +43,3 @@ export class UsersService {
   }
 
 }
-

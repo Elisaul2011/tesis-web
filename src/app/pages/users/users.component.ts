@@ -4,10 +4,10 @@ import { IColumns } from '../../interfaces/table.interface';
 import { columnsUser, dataFormUser, formularioUser } from './user.data';
 import { TableComponent } from '../../components/table/table.component';
 import { UsersService } from '../../services/users.service';
-import { IUsers } from '../../interfaces/users';
+import { IRoles, IUsers } from '../../interfaces/users';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
-import { IFormulario } from '../../interfaces/fromulario.interface';
+
 
 @Component({
   selector: 'app-users',
@@ -29,11 +29,23 @@ export class UsersComponent implements OnInit {
   constructor(){
     effect(() => {
       this.dataUser = this.userService.getUserData();
+      this.userService.getUserRolsData();
+
+      const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
+      if(findRolesForm){
+        findRolesForm.option = this.userService.getUserRolsData().map((roles: IRoles) => {
+          return {
+            label: roles.rol,
+            value: roles.idRol
+          }
+        });
+      }
     })
   }
 
   ngOnInit(): void {
     this.userService.getUsers();
+    this.userService.getUsersRoles();
   }
 
   openDialog(): void {

@@ -1,0 +1,8 @@
+<h2 class="ml-2">Aeronave</h2>
+
+<app-table
+[columns]="columnsAeronave"
+[dataTable]="dataAeronave"
+(addNew)="openDialog()"
+(edit)="editDataDialog($event)"
+></app-table>

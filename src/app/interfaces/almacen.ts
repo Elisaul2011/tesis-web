@@ -1,4 +1,4 @@
-export interface IUsers {
+export interface IAlmacen {
   idUser:       number;
   nameUser:     string;
   lastnameUser: string;
@@ -8,12 +8,6 @@ export interface IUsers {
 }
 
 export interface Roles {
-  idRol: number;
-  rol:   string;
-}
-
-
-export interface IRoles {
   idRol: number;
   rol:   string;
 }

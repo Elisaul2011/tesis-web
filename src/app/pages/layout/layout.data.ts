@@ -11,55 +11,55 @@ export const menuLayout: IMenu[] = [
   {
     title: 'Almacen',
     redirect: 'almacen',
-    icon: 'bolt',
+    icon: 'warehouse',
     userRol: ['Almacenista', 'Jefe de Almacen']
   },
   {
     title: 'Aeronave',
     redirect: 'aeronave',
-    icon: 'bolt',
+    icon: 'flight',
     userRol: ['Almacenista', 'Jefe de Almacen']
   },
   {
     title: 'Taller de reparación',
     redirect: 'OT',
-    icon: 'bolt',
+    icon: 'home_repair_service',
     userRol: ['Almacenista', 'Jefe de Almacen']
   },
   {
     title: 'Almacenes',
     redirect: 'almacenes',
-    icon: 'bolt',
+    icon: 'view_list',
     userRol: ['Almacenista', 'Jefe de Almacen']
   },
   {
-    title: 'Inspección de componente',
+    title: 'Inspección',
     redirect: 'inspeccion',
-    icon: 'bolt',
+    icon: 'manage_search',
     userRol: ['Jefe de Almacen']
   },
   {
     title: 'Prestamo',
     redirect: 'prestamo',
-    icon: 'bolt',
+    icon: 'handshake',
     userRol: ['Jefe de Almacen', 'User']
   },
   {
-    title: 'Desecho',
-    redirect: 'desecho',
-    icon: 'bolt',
+    title: 'Descartar',
+    redirect: 'descartar',
+    icon: 'delete',
     userRol: ['Almacenista', 'Jefe de Almacen']
   },
   {
     title: 'Historial de movimientos',
     redirect: 'historial',
-    icon: 'bolt',
+    icon: 'history',
     userRol: ['Almacenista', 'Jefe de Almacen']
   },
   {
     title: 'Catalogo de Componente',
     redirect: 'catalogo',
-    icon: 'bolt',
+    icon: 'settings',
     userRol: ['Almacenista', 'Jefe de Almacen']
   },
   {
