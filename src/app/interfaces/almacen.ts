@@ -1,13 +1,16 @@
-export interface IAlmacen {
-  idUser:       number;
-  nameUser:     string;
-  lastnameUser: string;
-  rolId:        number;
-  password:     string;
-  roles:        string;
+export interface IAlmacenes {
+  idAlmacenes: number;
+  nombre:      string;
+  descripcion: string;
+  pais:        string;
+  ciudad:      string;
+  estado:      number;
+  zonaId:      number;
+  idZona:      IDZona;
 }
 
-export interface Roles {
-  idRol: number;
-  rol:   string;
+export interface IDZona {
+  idZona:          number;
+  zona:            string;
+  descripcionZona: string;
 }
