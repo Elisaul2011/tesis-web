@@ -4,7 +4,6 @@ import { columnsAlmacen, dataFormAlmacen, formularioAlmacen } from './almacen.da
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns } from '../../interfaces/table.interface';
 import { almacenService } from '../../services/almacen.service';
-import { IAlmacen } from '../../interfaces/almacen';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IFormulario } from '../../interfaces/fromulario.interface';
@@ -21,9 +20,9 @@ import { IFormulario } from '../../interfaces/fromulario.interface';
 })
 export class AlmacenComponent {
     columnsAlmacen: IColumns[] = columnsAlmacen;
-    dataAlmacen: IAlmacen[] = [];
+    dataAlmacen: any[] = [];
 
-    almacenService = inject(almacenService);
+    // almacenService = inject(almacenService);
     dialog = inject(MatDialog);
 
     constructor(){
@@ -45,11 +44,11 @@ export class AlmacenComponent {
 
       dialogRef.afterClosed().subscribe(result => {
         result.password = '12345678';
-        this.almacenService.postUsers(result)
+        // this.almacenService.postUsers(result)
       })
     }
 
-    editDataDialog(data: IAlmacen): void {
+    editDataDialog(data: any): void {
       const findNameUser = formularioAlmacen.dataForm.find(form => form.formControl == 'nameUser');
       const findLastnameUser = formularioAlmacen.dataForm.find(form => form.formControl == 'lastnameUser');
       const findRoles = formularioAlmacen.dataForm.find(form => form.formControl == 'rolId');
@@ -82,7 +81,7 @@ export class AlmacenComponent {
 
       dialogRef.afterClosed().subscribe(result => {
         result.password = '12345678';
-        this.almacenService.putUsers(result)
+        // this.almacenService.putUsers(result)
       })
     }
 

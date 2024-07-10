@@ -5,7 +5,7 @@ import { columnsAeronave, dataFormAeronave, formularioAeronave } from './aeronav
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns } from '../../interfaces/table.interface';
 import { aeronaveService } from '../../services/aeronave.service';
-import { IAlmacen } from '../../interfaces/almacen';
+import { IAlmacenes } from '../../interfaces/almacen';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { IAeronave } from '../../interfaces/aeronave';
 
@@ -49,7 +49,7 @@ export class AeronaveComponent {
       })
     }
 
-    editDataDialog(data: IAlmacen): void {
+    editDataDialog(data: any): void {
       const findNameUser = formularioAeronave.dataForm.find(form => form.formControl == 'nameUser');
       const findLastnameUser = formularioAeronave.dataForm.find(form => form.formControl == 'lastnameUser');
       const findRoles = formularioAeronave.dataForm.find(form => form.formControl == 'rolId');

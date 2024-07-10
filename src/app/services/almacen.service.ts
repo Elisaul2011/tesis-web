@@ -1,43 +1,45 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-import { IUsers } from '../interfaces/users';
+import { IAlmacenes } from '../interfaces/almacen';
 
 @Injectable({
   providedIn: 'root'
 })
 export class almacenService {
 
-  private route_users = `${base_route}/users`;
-  private setUserData = signal<IUsers[]>([]);
-  public getUserData = computed<IUsers[]>(() => this.setUserData());
+  private route_almacenes = `${base_route}/almacen`;
+  private setAlmacenesData = signal<IAlmacenes[]>([]);
+  public getAlmacenesData = computed<IAlmacenes[]>(() => this.setAlmacenesData());
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(): void {
-    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:any[])  => {
-      result.map(user => {
-        user.roles = user.roles.rol
-      });
-
-      this.setUserData.set(result);
+  getAlmacenes(): void {
+    this.httpClient.get<IAlmacenes[]>(this.route_almacenes).subscribe((result:IAlmacenes[])  => {
+      this.setAlmacenesData.set(result);
     })
   }
 
-  postUsers(bodyUser: any): void {
-    this.httpClient.post(this.route_users, bodyUser).subscribe(result => {
+  getZonas(): void {
+    this.httpClient.get<IAlmacenes[]>(this.route_almacenes).subscribe((result:IAlmacenes[])  => {
+      this.setAlmacenesData.set(result);
+    })
+  }
+
+  postAlmacenes(bodyUser: any): void {
+    this.httpClient.post(this.route_almacenes, bodyUser).subscribe(result => {
       console.log(result);
       if(result){
-        this.getUsers();
+        this.getAlmacenes();
       }
     })
   }
 
-  putUsers(bodyUser: any): void {
-    this.httpClient.put(this.route_users, bodyUser).subscribe(result => {
+  putAlmacenes(bodyUser: any): void {
+    this.httpClient.put(this.route_almacenes, bodyUser).subscribe(result => {
       console.log(result);
       if(result){
-        this.getUsers();
+        this.getAlmacenes();
       }
     })
   }

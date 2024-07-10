@@ -1,1 +1,8 @@
-<p>almacenes works!</p>,
+<h2 class="ml-2">Table de almacenes</h2>
+
+<app-table
+[columns]="columnsAlmacenes"
+[dataTable]="dataAlmacenes"
+(addNew)="openDialog()"
+(edit)="editDataDialog($event)"
+></app-table>
