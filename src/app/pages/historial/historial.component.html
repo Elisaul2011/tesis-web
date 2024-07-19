@@ -1,1 +1,12 @@
-<p>historial works!</p>,
+<h2 class="ml-2">Historial de Movimiento</h2>
+
+<app-table
+[columns]="columnsUser"
+[dataTable]="dataUser"
+[configTable]="historialConfigTable"
+(edit)="editDataDialog($event)"
+></app-table>
+
+<div class="example-button-row">
+  <button mat-raised-button>Reporte de Historial</button>
+</div>

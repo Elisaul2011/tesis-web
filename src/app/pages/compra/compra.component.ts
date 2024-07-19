@@ -3,25 +3,28 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { almacenService } from '../../services/almacen.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { columnsAlmacenes, formularioAlmacenes } from './almacenes.data';
+import { columnsAlmacenes, compras, formularioAlmacenes } from './compra.data';
 import { IColumns } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ICompra } from '../../interfaces/compra';
 
 @Component({
-  selector: 'app-almacenes',
+  selector: 'app-compra',
   standalone: true,
   imports: [
     CommonModule,
-    TableComponent
+    TableComponent,
+    MatButtonModule
   ],
-  templateUrl: './almacenes.component.html',
-  styleUrl: './almacenes.component.css',
+  templateUrl: './compra.component.html',
+  styleUrl: './compra.component.css',
 })
-export class AlmacenesComponent implements OnInit {
+export class CompraComponent {
   columnsAlmacenes: IColumns[] = columnsAlmacenes;
   dataAlmacenes: any[] = [];
-
+  compraData: ICompra[] = compras;
   almacenService = inject(almacenService);
   dialog = inject(MatDialog);
 
@@ -54,35 +57,42 @@ export class AlmacenesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.almacenService.postAlmacenes(result)
+      result.id=this.compraData.length+1;
+      this.compraData.push(result)
     })
   }
 
   editDataDialog(data: any): void {
-    const findNameUser = formularioAlmacenes.dataForm.find(form => form.formControl == 'nameUser');
-    const findLastnameUser = formularioAlmacenes.dataForm.find(form => form.formControl == 'lastnameUser');
-    const findRoles = formularioAlmacenes.dataForm.find(form => form.formControl == 'rolId');
+    const columnsData = this.columnsAlmacenes.filter(col => col.type!='icon')
 
-    // if(findRoles && findNameUser && findLastnameUser){
-    //   findRoles.value = data.rolId;
-    //   findNameUser.value = data.nameUser;
-    //   findLastnameUser.value = data.lastnameUser;
-    // }
+    columnsData.map(compraData => {
+      const findColumns = formularioAlmacenes.dataForm.find(form => form.formControl == compraData.name);
+      if (findColumns){
+        findColumns.value=data[compraData.name as string]
+      }
+    })
+    formularioAlmacenes.dataForm.push({
+      formControl: 'id',
+      label: '',
+      required: false,
+      typeInput: '',
+      value: data.id
+    })
 
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioAlmacenes,
     });
 
-    // formularioUser.dataForm.push({
-    //   label: '',
-    //   formControl: 'idUser',
-    //   value: data.idUser,
-    //   required: false,
-    //   typeInput: ''
-    // });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.almacenService.putAlmacenes(result)
+      const findData = this.compraData.find(com => com.id==result.id)
+
+      if (findData){
+        findData.item=result.item
+        findData.descripcion=result.descripcion
+        findData.cantidad=result.cantidad
+        findData.pn=result.pn
+      }
     })
   }
 }

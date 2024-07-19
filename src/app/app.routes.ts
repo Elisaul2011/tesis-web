@@ -8,10 +8,11 @@ import { AeronaveComponent } from './pages/aeronave/aeronave.component';
 import { TallerComponent } from './pages/taller/taller.component';
 import { AlmacenesComponent } from './pages/almacenes/almacenes.component';
 import { InspeccionComponent } from './pages/inspeccion/inspeccion.component';
-import { PrestamoComponent } from './pages/prestamo/prestamo.component';
+
 import { DescartarComponent } from './pages/descartar/descartar.component';
 import { HistorialComponent } from './pages/historial/historial.component';
-import { CatalogoComponent } from './pages/catalogo/catalogo.component';
+import { CompraComponent } from './pages/compra/compra.component';
+import { NecesidadesComponent } from './pages/necesidades/necesidades.component';
 
 export const routes: Routes = [
   {
@@ -39,10 +40,6 @@ export const routes: Routes = [
         component: InspeccionComponent
       },
       {
-        path:'prestamo',
-        component: PrestamoComponent
-      },
-      {
         path:'descartar',
         component: DescartarComponent
       },
@@ -51,12 +48,16 @@ export const routes: Routes = [
         component: HistorialComponent
       },
       {
-        path:'catalogo',
-        component: CatalogoComponent
-      },
-      {
         path:'users',
         component: UsersComponent
+      },
+      {
+        path:'necesidades-tecnicas',
+        component: NecesidadesComponent
+      },
+      {
+        path:'orden-compra',
+        component: CompraComponent
       },
     ]
   },

@@ -7,13 +7,15 @@ import { tallerService } from '../../services/taller.service';
 import { ITaller } from '../../interfaces/taller';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-taller',
   standalone: true,
   imports: [
     CommonModule,
-    TableComponent
+    TableComponent,
+    MatButton
   ],
   templateUrl: './taller.component.html',
   styleUrl: './taller.component.css',

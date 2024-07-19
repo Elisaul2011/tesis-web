@@ -1,34 +1,33 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject, OnInit } from '@angular/core';
-import { almacenService } from '../../services/almacen.service';
+
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { columnsAlmacenes, formularioAlmacenes } from './almacenes.data';
+import { columnsAlmacenes, formularioAlmacenes } from './necesidades.data';
 import { IColumns } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
 
 @Component({
-  selector: 'app-almacenes',
+  selector: 'app-necesidades',
   standalone: true,
   imports: [
     CommonModule,
     TableComponent
   ],
-  templateUrl: './almacenes.component.html',
-  styleUrl: './almacenes.component.css',
+  templateUrl: './necesidades.component.html',
+  styleUrl: './necesidades.component.css',
 })
-export class AlmacenesComponent implements OnInit {
+export class NecesidadesComponent {
   columnsAlmacenes: IColumns[] = columnsAlmacenes;
   dataAlmacenes: any[] = [];
 
-  almacenService = inject(almacenService);
+
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
-      this.dataAlmacenes = this.almacenService.getAlmacenesData();
-      this.almacenService.getZonas();
+
 
       // const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
       // if(findRolesForm){
@@ -43,7 +42,7 @@ export class AlmacenesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.almacenService.getAlmacenes();
+
   }
 
   openDialog(): void {
@@ -54,7 +53,7 @@ export class AlmacenesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.almacenService.postAlmacenes(result)
+
     })
   }
 
@@ -82,7 +81,7 @@ export class AlmacenesComponent implements OnInit {
     // });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.almacenService.putAlmacenes(result)
+
     })
   }
 }

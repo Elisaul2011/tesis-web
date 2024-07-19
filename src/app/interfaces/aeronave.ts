@@ -1,13 +1,10 @@
 export interface IAeronave {
-  idUser:       number;
-  nameUser:     string;
-  lastnameUser: string;
-  rolId:        number;
-  password:     string;
-  roles:        string;
-}
-
-export interface Roles {
-  idRol: number;
-  rol:   string;
+  id: number;
+  aeronave: string;
+  pn: string;
+  descripcion: string;
+  tipo: string;
+  sn: string;
+  cantidad: number;
+  order: string;
 }

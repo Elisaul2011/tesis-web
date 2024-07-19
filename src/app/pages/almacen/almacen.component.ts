@@ -1,19 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { columnsAlmacen, dataFormAlmacen, formularioAlmacen } from './almacen.data';
+import { almacen, columnsAlmacen, dataFormAlmacen, formularioAlmacen } from './almacen.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns } from '../../interfaces/table.interface';
 import { almacenService } from '../../services/almacen.service';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IFormulario } from '../../interfaces/fromulario.interface';
+import { MatButtonModule } from '@angular/material/button';
+import { IAlmacen } from '../../interfaces/almacen';
+import { formularioAlmacenes } from '../almacenes/almacenes.data';
 
 @Component({
   selector: 'app-almacen',
   standalone: true,
   imports: [
     CommonModule,
-    TableComponent
+    TableComponent,
+    MatButtonModule
   ],
   templateUrl: './almacen.component.html',
   styleUrl: './almacen.component.css',
@@ -21,9 +25,11 @@ import { IFormulario } from '../../interfaces/fromulario.interface';
 export class AlmacenComponent {
     columnsAlmacen: IColumns[] = columnsAlmacen;
     dataAlmacen: any[] = [];
+    almacenData: IAlmacen[] = almacen;
 
     // almacenService = inject(almacenService);
     dialog = inject(MatDialog);
+  compraData: any;
 
     constructor(){
       effect(() => {
@@ -43,46 +49,49 @@ export class AlmacenComponent {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        result.password = '12345678';
-        // this.almacenService.postUsers(result)
+        result.id=this.almacenData.length+1;
+      this.almacenData.push(result)
       })
     }
 
     editDataDialog(data: any): void {
-      const findNameUser = formularioAlmacen.dataForm.find(form => form.formControl == 'nameUser');
-      const findLastnameUser = formularioAlmacen.dataForm.find(form => form.formControl == 'lastnameUser');
-      const findRoles = formularioAlmacen.dataForm.find(form => form.formControl == 'rolId');
+      const columnsData = this.columnsAlmacen.filter(col => col.type!='icon')
 
-      // dataFormUser.map(form => {
-      //   const findForm = formularioUser.dataForm.find(form => form.formControl == form.formControl);
-
-      //   if(findForm){
-      //     findForm.value = data[form.formControl];
-      //   }
-      // });
-
-      if(findRoles && findNameUser && findLastnameUser){
-        findRoles.value = data.rolId;
-        findNameUser.value = data.nameUser;
-        findLastnameUser.value = data.lastnameUser;
-      }
+      columnsData.map(compraData => {
+        const findColumns = formularioAlmacenes.dataForm.find(form => form.formControl == compraData.name);
+        if (findColumns){
+          findColumns.value=data[compraData.name as string]
+        }
+      })
+      formularioAlmacenes.dataForm.push({
+        formControl: 'id',
+        label: '',
+        required: false,
+        typeInput: '',
+        value: data.id
+      })
 
       const dialogRef = this.dialog.open(FormularioComponent, {
-        data: formularioAlmacen,
+        data: formularioAlmacenes,
       });
-
-      formularioAlmacen.dataForm.push({
-        label: '',
-        formControl: 'idUser',
-        value: data.idUser,
-        required: false,
-        typeInput: ''
-      });
-
       dialogRef.afterClosed().subscribe(result => {
-        result.password = '12345678';
-        // this.almacenService.putUsers(result)
+        const findData = this.almacenData.find(com => com.id==result.id)
+        if (findData){
+          findData.ubicacion=result.ubicacion
+          findData.zona=result.zona
+          findData.pn=result.pn
+          findData.descripción=result.descripción
+          findData.tipo=result.tipo
+          findData.sn=result.sn
+          findData.cantidad=result.cantidad
+          findData.lote=result.lote
+          findData.estado=result.estado
+          findData.sl=result.sl
+          findData.order=result.order
+        }
       })
+
+
     }
 
 }

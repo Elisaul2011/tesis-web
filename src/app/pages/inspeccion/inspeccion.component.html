@@ -1,1 +1,12 @@
-<p>inspeccion works!</p>,
+<h2 class="ml-2">Inspeccionar</h2>
+
+<app-table
+[columns]="columnsUser"
+[dataTable]="dataUser"
+(addNew)="openDialog()"
+(edit)="editDataDialog($event)"
+></app-table>
+
+<div class="example-button-row">
+  <button mat-raised-button>Reporte de Inspección</button>
+</div>

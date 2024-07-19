@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { IColumns } from '../../interfaces/table.interface';
+import { IColumns, IConfigTable } from '../../interfaces/table.interface';
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class TableComponent implements OnInit, AfterViewInit{
 
   @Input() columns: IColumns[] = [];
+  @Input() configTable: IConfigTable={btnAdd: true};
   @Input() dataTable: any[] = [];
 
   @Output() addNew = new EventEmitter<boolean>();
@@ -61,6 +62,9 @@ export class TableComponent implements OnInit, AfterViewInit{
 
   ngAfterViewInit() {
     this.paginator._intl.itemsPerPageLabel = 'Elementos por pagina';
+    this.dataSource = new MatTableDataSource(this.dataTable);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {

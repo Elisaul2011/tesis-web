@@ -4,6 +4,11 @@ export interface IColumns {
   type: typesColumns;
   link?: string;
   icon?: string;
+  color?: string;
 }
 
 export type typesColumns = 'string' | 'links' | 'icon';
+
+export interface IConfigTable {
+  btnAdd: boolean;
+}

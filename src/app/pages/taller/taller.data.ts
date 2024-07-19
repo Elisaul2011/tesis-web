@@ -4,37 +4,37 @@ import { IColumns } from "../../interfaces/table.interface";
 export const columnsTaller: IColumns[] = [
   {
     title: 'Taller',
-    name: '',
+    name: 'Taller',
     type: 'string'
   },
   {
     title: 'P/N',
-    name: '',
+    name: 'P/N',
     type: 'string'
   },
   {
     title: 'Descripción',
-    name: '',
+    name: 'Descripción',
     type: 'string'
   },
   {
     title: 'Tipo',
-    name: '',
+    name: 'Tipo',
     type: 'string'
   },
   {
     title: 'S/N',
-    name: '',
+    name: 'S/N',
     type: 'string'
   },
   {
     title: 'Cantidad',
-    name: '',
+    name: 'Cantidad',
     type: 'string'
   },
   {
     title: 'Workshop Order',
-    name: '',
+    name: 'Workshop Order',
     type: 'string'
   },
   {

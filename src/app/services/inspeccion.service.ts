@@ -1,27 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-
+import { IInspeccion } from '../interfaces/almacen';
 
 @Injectable({
   providedIn: 'root'
 })
-export class almacenService {
+export class inspeccionService {
 
   private route_almacenes = `${base_route}/almacen`;
-  private setAlmacenesData = signal<[]>([]);
-  public getAlmacenesData = computed<[]>(() => this.setAlmacenesData());
+  private setAlmacenesData = signal<IAlmacenes[]>([]);
+  public getAlmacenesData = computed<IAlmacenes[]>(() => this.setAlmacenesData());
 
   constructor(private httpClient: HttpClient) { }
 
   getAlmacenes(): void {
-    this.httpClient.get<[]>(this.route_almacenes).subscribe((result:[])  => {
+    this.httpClient.get<IAlmacenes[]>(this.route_almacenes).subscribe((result:IAlmacenes[])  => {
       this.setAlmacenesData.set(result);
     })
   }
 
   getZonas(): void {
-    this.httpClient.get<[]>(this.route_almacenes).subscribe((result:[])  => {
+    this.httpClient.get<IAlmacenes[]>(this.route_almacenes).subscribe((result:IAlmacenes[])  => {
       this.setAlmacenesData.set(result);
     })
   }

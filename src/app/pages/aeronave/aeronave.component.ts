@@ -1,39 +1,41 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { columnsAeronave, dataFormAeronave, formularioAeronave } from './aeronave.data';
+import { aeronave, columnsAeronave, dataFormAeronave, formularioAeronave } from './aeronave.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns } from '../../interfaces/table.interface';
-import { aeronaveService } from '../../services/aeronave.service';
-import { IAlmacenes } from '../../interfaces/almacen';
+
+
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { IAeronave } from '../../interfaces/aeronave';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-aeronave',
   standalone: true,
   imports: [
     CommonModule,
-    TableComponent
+    TableComponent,
+    MatButtonModule
   ],
   templateUrl: './aeronave.component.html',
   styleUrl: './aeronave.component.css',
 })
 export class AeronaveComponent {
     columnsAeronave: IColumns[] = columnsAeronave;
-    dataAeronave: IAeronave[] = [];
+    dataAeronave: IAeronave[] = aeronave;
 
-    aeronaveService = inject(aeronaveService);
+    //aeronaveService = inject(aeronaveService);
     dialog = inject(MatDialog);
 
     constructor(){
       effect(() => {
-        this.dataAeronave = this.aeronaveService.getUserData();
+
       })
     }
 
     ngOnInit(): void {
-      this.aeronaveService.getUsers();
+
     }
 
     openDialog(): void {
@@ -44,8 +46,8 @@ export class AeronaveComponent {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        result.password = '12345678';
-        this.aeronaveService.postUsers(result)
+        result.id=this.dataAeronave.length+1;
+          this.dataAeronave.push(result)
       })
     }
 
@@ -81,9 +83,19 @@ export class AeronaveComponent {
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        result.password = '12345678';
-        this.aeronaveService.putUsers(result)
+        const findData = this.dataAeronave.find(com => com.id==result.id)
+
+        if (findData){
+          findData.id=result.id
+          findData.aeronave=result.aeronave
+          findData.pn=result.pn
+          findData.descripcion=result.descripcion
+          findData.sn=result.sn
+          findData.cantidad=result.cantidad
+          findData.order=result.order
+        }
       })
+
     }
 
 

@@ -3,38 +3,25 @@ import { IColumns } from "../../interfaces/table.interface";
 
 export const columnsAlmacenes: IColumns[] = [
     {
-        title: 'Nombre',
+        title: 'P/N',
         name: 'nombre',
         type: 'string'
     },
     {
-        title: 'Descripción',
+      title: 'Descripción',
+      name: 'pais',
+      type: 'string'
+    },
+    {
+        title: 'Cantidad',
         name: 'descripcion',
         type: 'string'
     },
     {
-        title: 'Pais',
-        name: 'pais',
-        type: 'string'
-    },
-    {
-        title: 'Ciudad',
-        name: 'ciudad',
-        type: 'string'
-    },
-    {
-      title: 'Editar',
-      name: 'edit',
-      type: 'icon',
-      icon: 'edit',
-      color: 'primary'
-    },
-    {
-      title: 'Eliminar',
-      name: 'delete',
-      type: 'icon',
-      icon: 'delete',
-      color: 'warn'
+        title: 'Editar',
+        name: 'edit',
+        type: 'icon',
+        icon: 'edit'
     }
 ];
 
