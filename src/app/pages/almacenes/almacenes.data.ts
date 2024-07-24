@@ -1,3 +1,4 @@
+import { IAlmacenes } from "../../interfaces/almacenes";
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 
@@ -40,26 +41,32 @@ export const columnsAlmacenes: IColumns[] = [
 
 export const dataFormAlmacenes: IDataForm[] = [
     {
-        label: 'Nombre de usuario',
+        label: 'Nombre',
         formControl: 'nameUser',
         value: '',
         required: true,
         typeInput: 'text'
     },
     {
-        label: 'Apellido de usuario',
+        label: 'Descripción',
         formControl: 'lastnameUser',
         value: '',
         required: true,
         typeInput: 'text'
     },
     {
-        label: 'Rol de usuario',
-        formControl: 'rolId',
-        value: '',
-        required: true,
-        typeInput: 'select',
-        option: []
+      label: 'Pais',
+      formControl: 'lastnameUser',
+      value: '',
+      required: true,
+      typeInput: 'text'
+    },
+    {
+      label: 'Ciudad',
+      formControl: 'lastnameUser',
+      value: '',
+      required: true,
+      typeInput: 'text'
     },
 ];
 
@@ -68,4 +75,28 @@ export const formularioAlmacenes: IFormulario = {
     title: 'Formulario de usuarios',
     dataForm: dataFormAlmacenes
 }
+
+export const almacenes: IAlmacenes[] = [
+  {
+    id: 1,
+    nombre: "Almacén de Zulia",
+    descripcion: "Almacén ubicado en el estado Zulia",
+    pais: "Venezuela",
+    ciudad: "Zulia",
+  },
+  {
+    id: 2,
+    nombre: "Taller de Motores",
+    descripcion: "Taller especializado en mantenimiento y reparación de motores de aeronaves",
+    pais: "Venezuela",
+    ciudad: "Zulia",
+  },
+  {
+    id: 3,
+    nombre: "Taller de Aviónicos",
+    descripcion: "Taller dedicado a la instalación y mantenimiento de sistemas electrónicos y aviónicos en aeronaves",
+    pais: "Venezuela",
+    ciudad: "Zulia",
+  },
+];
 

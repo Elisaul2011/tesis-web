@@ -48,6 +48,13 @@ export const columnsAeronave: IColumns[] = [
 
 export const dataFormAeronave: IDataForm[] = [
   {
+    label: 'Aeronave',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
     label: 'P/N',
     formControl: '',
     value: '',
@@ -62,47 +69,7 @@ export const dataFormAeronave: IDataForm[] = [
     typeInput: 'text'
   },
   {
-    label: 'Control de mantenimiento',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
-  },
-  {
-    label: 'ATA',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
-  },
-  {
-    label: 'Fabricante',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Costo Unitario',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Tipo de componente',
+    label: 'Tipo',
     formControl: '',
     value: '',
     required: true,
@@ -122,40 +89,18 @@ export const dataFormAeronave: IDataForm[] = [
     typeInput: 'text'
   },
   {
-    label: 'Fecha de Shelf Life',
+    label: 'Cantidad',
     formControl: '',
     value: '',
     required: true,
     typeInput: 'text'
   },
   {
-    //este depende de shelf life
-    label: 'Condición',
+    label: 'Work Order',
     formControl: '',
     value: '',
     required: true,
     typeInput: 'text'
-  },
-  {
-    label: 'Ubicación',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    //este depende de ubicacion
-    label: 'Zona',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
   },
 ];
 

@@ -2,7 +2,7 @@ import { ICompra } from "../../interfaces/compra";
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsAlmacenes: IColumns[] = [
+export const columnsCompra: IColumns[] = [
     {
         title: 'Item',
         name: 'item',
@@ -39,7 +39,7 @@ export const columnsAlmacenes: IColumns[] = [
     }
 ];
 
-export const dataFormAlmacenes: IDataForm[] = [
+export const dataFormCompra: IDataForm[] = [
     {
         label: 'Item',
         formControl: 'item',
@@ -71,9 +71,9 @@ export const dataFormAlmacenes: IDataForm[] = [
 ];
 
 
-export const formularioAlmacenes: IFormulario = {
+export const formularioCompra: IFormulario = {
     title: 'Formulario de usuarios',
-    dataForm: dataFormAlmacenes
+    dataForm: dataFormCompra
 }
 
 export const compras: ICompra[] = [

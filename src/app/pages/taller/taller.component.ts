@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { columnsTaller, dataFormTaller, formularioTaller } from './taller.data';
+import { columnsTaller, dataFormTaller, formularioTaller, datosTaller } from './taller.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns } from '../../interfaces/table.interface';
 import { tallerService } from '../../services/taller.service';
@@ -22,14 +22,14 @@ import { MatButton } from '@angular/material/button';
 })
 export class TallerComponent {
     columnsTaller: IColumns[] = columnsTaller;
-    dataTaller: ITaller[] = [];
+    dataTaller: ITaller[] = datosTaller;
 
     tallerService = inject(tallerService);
     dialog = inject(MatDialog);
 
     constructor(){
       effect(() => {
-        this.dataTaller = this.tallerService.getUserData();
+
       })
     }
 
@@ -63,11 +63,7 @@ export class TallerComponent {
       //   }
       // });
 
-      if(findRoles && findNameUser && findLastnameUser){
-        findRoles.value = data.rolId;
-        findNameUser.value = data.nameUser;
-        findLastnameUser.value = data.lastnameUser;
-      }
+
 
       const dialogRef = this.dialog.open(FormularioComponent, {
         data: formularioTaller,
@@ -76,14 +72,14 @@ export class TallerComponent {
       formularioTaller.dataForm.push({
         label: '',
         formControl: 'idUser',
-        value: data.idUser,
+        value: '',
         required: false,
         typeInput: ''
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        result.password = '12345678';
-        this.tallerService.putUsers(result)
+        result.id=this.dataTaller.length+1;
+          this.dataTaller.push(result)
       })
     }
 }

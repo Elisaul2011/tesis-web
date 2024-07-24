@@ -3,10 +3,11 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { almacenService } from '../../services/almacen.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { columnsAlmacenes, formularioAlmacenes } from './almacenes.data';
+import { columnsAlmacenes, formularioAlmacenes, almacenes } from './almacenes.data';
 import { IColumns } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
+import { IAlmacenes } from '../../interfaces/almacenes';
 
 @Component({
   selector: 'app-almacenes',
@@ -20,15 +21,15 @@ import { TableComponent } from '../../components/table/table.component';
 })
 export class AlmacenesComponent implements OnInit {
   columnsAlmacenes: IColumns[] = columnsAlmacenes;
-  dataAlmacenes: any[] = [];
+  dataAlmacenes: IAlmacenes[] = almacenes;
 
   almacenService = inject(almacenService);
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
-      this.dataAlmacenes = this.almacenService.getAlmacenesData();
-      this.almacenService.getZonas();
+      // this.dataAlmacenes = this.almacenService.getAlmacenesData();
+      // this.almacenService.getZonas();
 
       // const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
       // if(findRolesForm){
@@ -54,7 +55,8 @@ export class AlmacenesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.almacenService.postAlmacenes(result)
+      result.id=this.dataAlmacenes.length+1;
+      this.dataAlmacenes.push(result)
     })
   }
 
@@ -82,7 +84,9 @@ export class AlmacenesComponent implements OnInit {
     // });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.almacenService.putAlmacenes(result)
+      result.id=this.dataAlmacenes.length+1;
+          this.dataAlmacenes.push(result)
     })
   }
 }
+
