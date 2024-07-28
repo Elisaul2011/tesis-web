@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit {
   userRol: Roles = 'Almacenista';
   close: boolean = false;
   styleMenu: string =
-    'fixed hidden bg-blue-700 z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
+    'flex hidden bg-blue-700 z-20 h-full top-0 left-0 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
 
   constructor(
     private router: Router,
@@ -34,7 +34,7 @@ export class LayoutComponent implements OnInit {
       .subscribe((state: BreakpointState) => {
         if (state.matches) {
           this.styleMenu =
-          'fixed hidden bg-blue-700 z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
+          'flex bg-blue-700 z-20 h-full overflow-y-auto flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
         }
       });
   }
@@ -43,10 +43,10 @@ export class LayoutComponent implements OnInit {
     this.close = !this.close;
     if (this.close) {
       this.styleMenu =
-        'fixed z-20  bg-blue-700 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
+        'flex z-20 bg-blue-700 h-full overflow-auto flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
     } else {
       this.styleMenu =
-        'hidden z-20  bg-blue-700 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
+        'hidden z-20 bg-blue-700 h-full overflow-auto flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
     }
   }
 
