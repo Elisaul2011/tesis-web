@@ -18,6 +18,11 @@ export const columnsUser: IColumns[] = [
     type: 'string'
   },
   {
+    title: 'Activo',
+    name: 'active',
+    type: 'boolean',
+  },
+  {
     title: 'Editar',
     name: 'edit',
     type: 'icon',
@@ -53,6 +58,13 @@ export const dataFormUser: IDataForm[] = [
     required: true,
     typeInput: 'select',
     option: []
+  },
+  {
+    label: 'Activo',
+    formControl: 'active',
+    value: false,
+    required: true,
+    typeInput: 'boolean',
   },
 ];
 

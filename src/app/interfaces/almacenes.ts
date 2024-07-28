@@ -1,7 +1,17 @@
+
 export interface IAlmacenes {
-  id: number;
-  nombre: string;
+  idAlmacenes: number;
+  nombre:      string;
   descripcion: string;
-  pais: string;
-  ciudad: string;
+  pais:        string;
+  ciudad:      string;
+  estado:      number;
+  zonaId:      number;
+  idZona:      IDZona;
+}
+
+export interface IDZona {
+  idZona:          number;
+  zona:            string;
+  descripcionZona: string;
 }

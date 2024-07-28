@@ -7,6 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Component, OnInit, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-formulario',
@@ -19,7 +20,8 @@ import { CommonModule } from '@angular/common';
     MatFormField,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
   ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css',

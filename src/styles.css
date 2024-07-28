@@ -11,3 +11,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 {
   border-right: none;
 }
+
+
+.stylesDialog{
+  height: 98%;
+  margin: auto;
+}

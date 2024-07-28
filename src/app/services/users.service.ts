@@ -8,8 +8,11 @@ import { IRoles, IUsers } from '../interfaces/users';
 })
 export class UsersService {
 
+  //rutas del api
   private route_users = `${base_route}/users`;
   private route_users_roles = `${this.route_users}/roles`;
+
+  //Los signals o variables a guardar los datos
   private setUserData = signal<IUsers[]>([]);
   private setUserRolesData = signal<IRoles[]>([]);
   public getUserData = computed<IUsers[]>(() => this.setUserData());
@@ -43,6 +46,15 @@ export class UsersService {
 
   putUsers(bodyUser: any): void {
     this.httpClient.put(this.route_users, bodyUser).subscribe(result => {
+      console.log(result);
+      if(result){
+        this.getUsers();
+      }
+    })
+  }
+
+  deleteUsers(id: string): void {
+    this.httpClient.delete(`${this.route_users}/${id}`).subscribe(result => {
       console.log(result);
       if(result){
         this.getUsers();

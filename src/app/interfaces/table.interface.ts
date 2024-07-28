@@ -7,7 +7,7 @@ export interface IColumns {
   color?: string;
 }
 
-export type typesColumns = 'string' | 'links' | 'icon';
+export type typesColumns = 'string' | 'links' | 'icon' | 'boolean';
 
 export interface IConfigTable {
   btnAdd: boolean;

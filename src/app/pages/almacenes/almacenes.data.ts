@@ -76,27 +76,27 @@ export const formularioAlmacenes: IFormulario = {
     dataForm: dataFormAlmacenes
 }
 
-export const almacenes: IAlmacenes[] = [
-  {
-    id: 1,
-    nombre: "Almacén de Zulia",
-    descripcion: "Almacén ubicado en el estado Zulia",
-    pais: "Venezuela",
-    ciudad: "Zulia",
-  },
-  {
-    id: 2,
-    nombre: "Taller de Motores",
-    descripcion: "Taller especializado en mantenimiento y reparación de motores de aeronaves",
-    pais: "Venezuela",
-    ciudad: "Zulia",
-  },
-  {
-    id: 3,
-    nombre: "Taller de Aviónicos",
-    descripcion: "Taller dedicado a la instalación y mantenimiento de sistemas electrónicos y aviónicos en aeronaves",
-    pais: "Venezuela",
-    ciudad: "Zulia",
-  },
-];
+// export const almacenes: IAlmacenes[] = [
+//   {
+//     id: 1,
+//     nombre: "Almacén de Zulia",
+//     descripcion: "Almacén ubicado en el estado Zulia",
+//     pais: "Venezuela",
+//     ciudad: "Zulia",
+//   },
+//   {
+//     id: 2,
+//     nombre: "Taller de Motores",
+//     descripcion: "Taller especializado en mantenimiento y reparación de motores de aeronaves",
+//     pais: "Venezuela",
+//     ciudad: "Zulia",
+//   },
+//   {
+//     id: 3,
+//     nombre: "Taller de Aviónicos",
+//     descripcion: "Taller dedicado a la instalación y mantenimiento de sistemas electrónicos y aviónicos en aeronaves",
+//     pais: "Venezuela",
+//     ciudad: "Zulia",
+//   },
+// ];
 

@@ -4,6 +4,7 @@ export interface IUsers {
   lastnameUser: string;
   rolId:        number;
   password:     string;
+  active:       boolean;
   roles:        string;
 }
 

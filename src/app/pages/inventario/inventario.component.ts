@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { almacen, columnsAlmacen, dataFormAlmacen, formularioAlmacen } from './almacen.data';
+import { almacen, columnsAlmacen, dataFormAlmacen, formularioAlmacen } from './inventario.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns } from '../../interfaces/table.interface';
 import { almacenService } from '../../services/almacen.service';
@@ -9,7 +9,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { IFormulario } from '../../interfaces/fromulario.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { IAlmacen } from '../../interfaces/almacen';
-import { formularioAlmacenes } from '../almacenes/almacenes.data';
 
 @Component({
   selector: 'app-almacen',
@@ -19,10 +18,10 @@ import { formularioAlmacenes } from '../almacenes/almacenes.data';
     TableComponent,
     MatButtonModule
   ],
-  templateUrl: './almacen.component.html',
-  styleUrl: './almacen.component.css',
+  templateUrl: './inventario.component.html',
+  styleUrl: './inventario.component.css',
 })
-export class AlmacenComponent {
+export class InventarioComponent {
     columnsAlmacen: IColumns[] = columnsAlmacen;
     dataAlmacen: any[] = [];
     almacenData: IAlmacen[] = almacen;
@@ -39,12 +38,14 @@ export class AlmacenComponent {
 
     ngOnInit(): void {
       // this.almacenService.getUsers();
+
     }
 
     openDialog(): void {
       formularioAlmacen.dataForm.map(form => form.value = '');
 
       const dialogRef = this.dialog.open(FormularioComponent, {
+        panelClass: 'stylesDialog',
         data: formularioAlmacen,
       });
 
@@ -58,12 +59,12 @@ export class AlmacenComponent {
       const columnsData = this.columnsAlmacen.filter(col => col.type!='icon')
 
       columnsData.map(compraData => {
-        const findColumns = formularioAlmacenes.dataForm.find(form => form.formControl == compraData.name);
+        const findColumns = formularioAlmacen.dataForm.find(form => form.formControl == compraData.name);
         if (findColumns){
           findColumns.value=data[compraData.name as string]
         }
       })
-      formularioAlmacenes.dataForm.push({
+      formularioAlmacen.dataForm.push({
         formControl: 'id',
         label: '',
         required: false,
@@ -72,7 +73,7 @@ export class AlmacenComponent {
       })
 
       const dialogRef = this.dialog.open(FormularioComponent, {
-        data: formularioAlmacenes,
+        data: formularioAlmacen,
       });
       dialogRef.afterClosed().subscribe(result => {
         const findData = this.almacenData.find(com => com.id==result.id)

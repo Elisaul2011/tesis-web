@@ -33,6 +33,18 @@
             <td mat-cell *matCellDef="let row">{{ row[item.name] }}</td>
           </ng-container>
         }
+        @if (item.type == 'boolean') {
+          <ng-container matColumnDef="{{ item.name }}">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ item.title }}
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button>
+                <mat-icon [color]="row[item.name] ? 'success' : 'warn'">{{row[item.name] ? 'check' : 'close'}}</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+        }
         @if (item.type == 'icon') {
           <ng-container matColumnDef="{{ item.name }}">
             <th mat-header-cell *matHeaderCellDef>

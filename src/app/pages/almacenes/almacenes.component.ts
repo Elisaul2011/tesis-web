@@ -3,7 +3,7 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { almacenService } from '../../services/almacen.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { columnsAlmacenes, formularioAlmacenes, almacenes } from './almacenes.data';
+import { columnsAlmacenes, formularioAlmacenes } from './almacenes.data';
 import { IColumns } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
@@ -21,14 +21,14 @@ import { IAlmacenes } from '../../interfaces/almacenes';
 })
 export class AlmacenesComponent implements OnInit {
   columnsAlmacenes: IColumns[] = columnsAlmacenes;
-  dataAlmacenes: IAlmacenes[] = almacenes;
+  dataAlmacenes: IAlmacenes[] = [];
 
   almacenService = inject(almacenService);
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
-      // this.dataAlmacenes = this.almacenService.getAlmacenesData();
+      this.dataAlmacenes = this.almacenService.getAlmacenesData();
       // this.almacenService.getZonas();
 
       // const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
@@ -40,17 +40,22 @@ export class AlmacenesComponent implements OnInit {
       //     }
       //   });
       // }
+      console.log(this.almacenService.getAlmacenesData());
+      console.log(this.almacenService.getZonaData());
+
     })
   }
 
   ngOnInit(): void {
     this.almacenService.getAlmacenes();
+    this.almacenService.getZonas();
   }
 
   openDialog(): void {
     formularioAlmacenes.dataForm.map(form => form.value = '');
 
     const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
       data: formularioAlmacenes,
     });
 

@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { UsersComponent } from './pages/users/users.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { LoginComponent } from './pages/login/login.component';
-import { AlmacenComponent } from './pages/almacen/almacen.component';
+import { InventarioComponent } from './pages/inventario/inventario.component';
 import { AeronaveComponent } from './pages/aeronave/aeronave.component';
 import { TallerComponent } from './pages/taller/taller.component';
 import { AlmacenesComponent } from './pages/almacenes/almacenes.component';
@@ -21,7 +21,7 @@ export const routes: Routes = [
     children: [
       {
         path:'almacen',
-        component: AlmacenComponent
+        component: InventarioComponent
       },
       {
         path:'aeronave',

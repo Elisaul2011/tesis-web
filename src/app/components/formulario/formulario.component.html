@@ -8,6 +8,12 @@
           <input matInput formControlName="{{item.formControl}}"/>
         </mat-form-field>
       }
+      @if (item.typeInput == 'boolean') {
+        <div class="flex items-center justify-between w-[40%] mx-auto">
+          <mat-label>{{item.label}}</mat-label>
+          <mat-slide-toggle [formControlName]="item.formControl"></mat-slide-toggle>
+        </div>
+      }
       @if (item.typeInput == 'select') {
         <mat-form-field appearance="outline">
           <mat-label>{{item.label}}</mat-label>

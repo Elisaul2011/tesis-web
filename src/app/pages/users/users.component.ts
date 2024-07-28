@@ -49,7 +49,14 @@ export class UsersComponent implements OnInit {
   }
 
   openDialog(): void {
-    formularioUser.dataForm.map(form => form.value = '');
+    formularioUser.dataForm.map(form => {
+      if(form.typeInput == 'text'){
+        form.value = ''
+      }
+      if(form.typeInput == 'boolean'){
+        form.value = false
+      }
+    });
 
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioUser,
@@ -65,19 +72,13 @@ export class UsersComponent implements OnInit {
     const findNameUser = formularioUser.dataForm.find(form => form.formControl == 'nameUser');
     const findLastnameUser = formularioUser.dataForm.find(form => form.formControl == 'lastnameUser');
     const findRoles = formularioUser.dataForm.find(form => form.formControl == 'rolId');
+    const findActive = formularioUser.dataForm.find(form => form.formControl == 'active');
 
-    // dataFormUser.map(form => {
-    //   const findForm = formularioUser.dataForm.find(form => form.formControl == form.formControl);
-
-    //   if(findForm){
-    //     findForm.value = data[form.formControl];
-    //   }
-    // });
-
-    if(findRoles && findNameUser && findLastnameUser){
+    if(findRoles && findNameUser && findLastnameUser && findActive){
       findRoles.value = data.rolId;
       findNameUser.value = data.nameUser;
       findLastnameUser.value = data.lastnameUser;
+      findActive.value = data.active;
     }
 
     const dialogRef = this.dialog.open(FormularioComponent, {
