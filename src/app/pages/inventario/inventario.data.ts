@@ -1,8 +1,8 @@
-import { IAlmacen } from "../../interfaces/almacen";
+import { IInventario } from "../../interfaces/inventario";
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsAlmacen: IColumns[] = [
+export const columnsInventario: IColumns[] = [
   {
     title: 'Ubicación',
     name: 'ubicacion',
@@ -104,19 +104,6 @@ export const dataFormAlmacen: IDataForm[] = [
     typeInput: 'text'
   },
   {
-    label: 'Tipo',
-    formControl: 'tipo',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
-  },
-  {
     label: 'ATA',
     formControl: '',
     value: '',
@@ -178,36 +165,17 @@ export const dataFormAlmacen: IDataForm[] = [
     required: true,
     typeInput: 'text'
   },
-  {
-    label: 'Ubicación',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    //este depende de ubicacion
-    label: 'Zona',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
-  },
 ];
 
+//Una vez ingresado el componente, este queda por defecto en estado "esperando por inspeccion"
 
-export const formularioAlmacen: IFormulario = {
+
+export const formularioInventario: IFormulario = {
   title: 'Registrar Nuevo Componente',
   dataForm: dataFormAlmacen
 }
 
-export const almacen: IAlmacen[] = [
+export const inventario: IInventario[] = [
   {
     id: 1,
     ubicacion: 'Almacén A',

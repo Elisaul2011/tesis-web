@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-import { IInspeccion } from '../interfaces/almacen';
+import { IInspeccion } from '../interfaces/inventario';
 
 @Injectable({
   providedIn: 'root'

@@ -1,11 +1,18 @@
+import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IShelfLife } from "../../interfaces/shelfLife";
 import { IColumns } from "../../interfaces/table.interface";
+import { dataFormAlmacen } from "../inventario/inventario.data";
 
 export const columnsShelfLife: IColumns[] = [
   {
-      title: 'Fecha de Movimiento',
-      name: 'fechaMovimiento',
-      type: 'string'
+    title: 'Ubicación',
+    name: 'ubicacion',
+    type: 'string'
+  },
+  {
+    title: 'Zona',
+    name: 'zona',
+    type: 'string'
   },
   {
     title: 'P/N',
@@ -13,9 +20,14 @@ export const columnsShelfLife: IColumns[] = [
     type: 'string'
   },
   {
-      title: 'Descripción',
-      name: 'descripcion',
-      type: 'string'
+    title: 'Descripción',
+    name: 'descripción',
+    type: 'string'
+  },
+  {
+    title: 'Tipo',
+    name: 'tipo',
+    type: 'string'
   },
   {
     title: 'S/N',
@@ -23,28 +35,13 @@ export const columnsShelfLife: IColumns[] = [
     type: 'string'
   },
   {
-      title: 'Cantidad',
-      name: 'cantidad',
-      type: 'string'
-  },
-  {
-    title: 'Origen',
-    name: 'origen',
+    title: 'Cantidad',
+    name: 'cantidad',
     type: 'string'
   },
   {
-    title: 'Destino',
-    name: 'destino',
-    type: 'string'
-  },
-  {
-    title: 'Realizado por',
-    name: 'realizado',
-    type: 'string'
-  },
-  {
-    title: 'Tipo de Movimiento',
-    name: 'tipoMovimiento',
+    title: 'Lote',
+    name: 'lote',
     type: 'string'
   },
   {
@@ -53,11 +50,114 @@ export const columnsShelfLife: IColumns[] = [
     type: 'string'
   },
   {
-    title: 'Ordenes',
-    name: 'order',
+    title: 'Shelf Lite',
+    name: 'sl',
     type: 'string'
   },
+  {
+    title: 'Vence en',
+    name: 'vence',
+    type: 'string'
+  }
 ];
+
+export const dataFormShelfLife: IDataForm[] = [
+  {
+    label: 'Ubicación',
+    formControl: 'ubicacion',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Zona',
+    formControl: 'Zona',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'P/N',
+    formControl: 'pn',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Descripción',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'ATA',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [
+      {
+        label: 'Almacenista',
+        value: 1
+      }
+    ]
+  },
+  {
+    label: 'Fabricante',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Costo Unitario',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Tipo de componente',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [
+      {
+        label: 'Almacenista',
+        value: 1
+      }
+    ]
+  },
+  {
+    label: 'S/N',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Fecha de Shelf Life',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    //este depende de shelf life
+    label: 'Condición',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+];
+
+export const formularioShelfLife: IFormulario = {
+  title: 'Registrar Nuevo Componente',
+  dataForm: dataFormAlmacen
+}
 
 export const shelfLife: IShelfLife[] = [
 

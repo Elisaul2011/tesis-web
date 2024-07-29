@@ -65,7 +65,7 @@ export const menuLayout: IMenu[] = [
   },
   {
     title: 'Reporte de ShelfLife',
-    redirect: 'reporte-shelflife',
+    redirect: 'reporte-shelf-life',
     icon: 'receipt_long',
     userRol: ['User']
   },

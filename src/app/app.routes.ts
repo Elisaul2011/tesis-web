@@ -9,10 +9,11 @@ import { TallerComponent } from './pages/taller/taller.component';
 import { AlmacenesComponent } from './pages/almacenes/almacenes.component';
 import { InspeccionComponent } from './pages/inspeccion/inspeccion.component';
 
-import { DescartarComponent } from './pages/descartar/descartar.component';
+
 import { HistorialComponent } from './pages/historial/historial.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { NecesidadesComponent } from './pages/necesidades/necesidades.component';
+import { ShelfLifeComponent } from './pages/shelfLife/shelfLife.component';
 
 export const routes: Routes = [
   {
@@ -40,10 +41,6 @@ export const routes: Routes = [
         component: InspeccionComponent
       },
       {
-        path:'descartar',
-        component: DescartarComponent
-      },
-      {
         path:'historial',
         component: HistorialComponent
       },
@@ -58,6 +55,10 @@ export const routes: Routes = [
       {
         path:'orden-compra',
         component: CompraComponent
+      },
+      {
+        path:'reporte-shelf-life',
+        component: ShelfLifeComponent
       },
     ]
   },

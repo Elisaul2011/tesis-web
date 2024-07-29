@@ -1,7 +1,7 @@
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsAlmacenes: IColumns[] = [
+export const columnsNecesidades: IColumns[] = [
     {
         title: 'P/N',
         name: 'nombre',
@@ -25,7 +25,7 @@ export const columnsAlmacenes: IColumns[] = [
     }
 ];
 
-export const dataFormAlmacenes: IDataForm[] = [
+export const dataFormNecesidades: IDataForm[] = [
     {
         label: 'Nombre de usuario',
         formControl: 'nameUser',
@@ -51,8 +51,8 @@ export const dataFormAlmacenes: IDataForm[] = [
 ];
 
 
-export const formularioAlmacenes: IFormulario = {
+export const formularioNecesidades: IFormulario = {
     title: 'Formulario de usuarios',
-    dataForm: dataFormAlmacenes
+    dataForm: dataFormNecesidades
 }
 

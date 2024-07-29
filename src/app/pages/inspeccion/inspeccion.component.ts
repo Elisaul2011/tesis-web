@@ -22,7 +22,7 @@ import { IInspeccion } from '../../interfaces/inspeccion';
   styleUrl: './inspeccion.component.css',
 })
 export class InspeccionComponent {
-  columnsUser: IColumns[] = columnsInspeccion;
+  columnsInspeccion: IColumns[] = columnsInspeccion;
   dataInspeccion: IInspeccion[] = inspeccion;
 
   dialog = inject(MatDialog);

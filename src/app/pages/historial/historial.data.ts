@@ -1,7 +1,7 @@
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsUser: IColumns[] = [
+export const columnsHistorial: IColumns[] = [
   {
     title: 'Fecha del Movimiento',
     name: 'Ubicación',

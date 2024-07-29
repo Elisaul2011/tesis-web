@@ -1,4 +1,4 @@
-export interface IAlmacen {
+export interface IInventario {
   id: number;
   ubicacion: string;
   zona: string;

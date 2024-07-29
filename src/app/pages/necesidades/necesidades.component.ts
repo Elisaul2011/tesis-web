@@ -3,7 +3,7 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { columnsAlmacenes, formularioAlmacenes } from './necesidades.data';
+import { columnsNecesidades, formularioNecesidades } from './necesidades.data';
 import { IColumns } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
@@ -19,8 +19,8 @@ import { TableComponent } from '../../components/table/table.component';
   styleUrl: './necesidades.component.css',
 })
 export class NecesidadesComponent {
-  columnsAlmacenes: IColumns[] = columnsAlmacenes;
-  dataAlmacenes: any[] = [];
+  columnsNecesidades: IColumns[] = columnsNecesidades;
+  dataNecesidades: any[] = [];
 
 
   dialog = inject(MatDialog);
@@ -46,10 +46,10 @@ export class NecesidadesComponent {
   }
 
   openDialog(): void {
-    formularioAlmacenes.dataForm.map(form => form.value = '');
+    formularioNecesidades.dataForm.map(form => form.value = '');
 
     const dialogRef = this.dialog.open(FormularioComponent, {
-      data: formularioAlmacenes,
+      data: formularioNecesidades,
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -58,9 +58,9 @@ export class NecesidadesComponent {
   }
 
   editDataDialog(data: any): void {
-    const findNameUser = formularioAlmacenes.dataForm.find(form => form.formControl == 'nameUser');
-    const findLastnameUser = formularioAlmacenes.dataForm.find(form => form.formControl == 'lastnameUser');
-    const findRoles = formularioAlmacenes.dataForm.find(form => form.formControl == 'rolId');
+    const findNameUser = formularioNecesidades.dataForm.find(form => form.formControl == 'nameUser');
+    const findLastnameUser = formularioNecesidades.dataForm.find(form => form.formControl == 'lastnameUser');
+    const findRoles = formularioNecesidades.dataForm.find(form => form.formControl == 'rolId');
 
     // if(findRoles && findNameUser && findLastnameUser){
     //   findRoles.value = data.rolId;
@@ -69,7 +69,7 @@ export class NecesidadesComponent {
     // }
 
     const dialogRef = this.dialog.open(FormularioComponent, {
-      data: formularioAlmacenes,
+      data: formularioNecesidades,
     });
 
     // formularioUser.dataForm.push({

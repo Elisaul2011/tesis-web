@@ -1,14 +1,14 @@
 export interface IShelfLife {
   id: number;
-  fechaMovimiento: string;
+  ubicacion: string;
+  zona: string;
   pn: string;
-  descripcion: string;
+  descripción: string;
+  tipo: string;
   sn: string;
   cantidad: number;
-  origen: string;
-  destino: string;
-  realizado: string;
-  tipoMovimiento: string;
+  lote: string;
   estado: string;
-  order: string;
+  sl: string;
+  vence: string;
 }

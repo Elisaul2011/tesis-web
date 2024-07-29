@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, effect, inject } from '@angular/core';
 import { IColumns, IConfigTable } from '../../interfaces/table.interface';
-import { columnsUser, dataFormUser, formularioUser } from './historial.data';
+import { columnsHistorial, dataFormUser, formularioUser } from './historial.data';
 import { TableComponent } from '../../components/table/table.component';
 import { UsersService } from '../../services/users.service';
 import { IRoles, IUsers } from '../../interfaces/users';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { IHistorial } from '../../interfaces/historial';
 @Component({
   selector: 'app-historial',
   standalone: true,
@@ -20,16 +21,15 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './historial.component.css',
 })
 export class HistorialComponent {
-  columnsUser: IColumns[] = columnsUser;
-  dataUser: IUsers[] = [];
+  columnsHistorial: IColumns[] = columnsHistorial;
+  dataHistorial: IHistorial[] = [];
   historialConfigTable: IConfigTable={btnAdd: false}
   userService = inject(UsersService);
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
-      this.dataUser = this.userService.getUserData();
-      this.userService.getUserRolsData();
+
 
       const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
       if(findRolesForm){

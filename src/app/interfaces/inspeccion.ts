@@ -8,6 +8,5 @@ export interface IInspeccion {
   sn: string;
   cantidad: number;
   lote: string;
-  condición: string;
   estado: string;
 }

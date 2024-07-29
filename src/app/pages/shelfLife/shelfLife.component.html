@@ -1,1 +1,12 @@
-<p>shelfLife works!</p>,
+<h2 class="ml-2">Shelf Life</h2>
+
+<app-table
+[columns]="columnsShelfLife"
+[dataTable]="dataSL"
+[configTable]="SLConfigTable"
+(edit)="editDataDialog($event)"
+></app-table>
+
+<div class="example-button-row">
+  <button mat-raised-button>Reporte de Shelf Life</button>
+</div>

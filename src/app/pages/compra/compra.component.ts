@@ -22,7 +22,7 @@ import { ICompra } from '../../interfaces/compra';
   styleUrl: './compra.component.css',
 })
 export class CompraComponent {
-  columnsAlmacenes: IColumns[] = columnsCompra;
+  columnsCompra: IColumns[] = columnsCompra;
 
   compraData: ICompra[] = compras;
   almacenService = inject(almacenService);
@@ -61,7 +61,7 @@ export class CompraComponent {
   }
 
   editDataDialog(data: any): void {
-    const columnsData = this.columnsAlmacenes.filter(col => col.type!='icon')
+    const columnsData = this.columnsCompra.filter(col => col.type!='icon')
 
     columnsData.map(compraData => {
       const findColumns = formularioCompra.dataForm.find(form => form.formControl == compraData.name);

@@ -45,11 +45,6 @@ export const columnsInspeccion: IColumns[] = [
     type: 'string'
   },
   {
-    title: 'Condición',
-    name: 'condición',
-    type: 'string'
-  },
-  {
     title: 'Estado',
     name: 'estado',
     type: 'string'
@@ -104,7 +99,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "BH-456",
     cantidad: 20,
     lote: "Lote-2023",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -117,7 +111,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "VC-123",
     cantidad: 50,
     lote: "Lote-2024",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -130,7 +123,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "ST-789",
     cantidad: 30,
     lote: "Lote-2023",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -143,7 +135,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "CI-123",
     cantidad: 10,
     lote: "Lote-2024",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -156,7 +147,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "LI-456",
     cantidad: 40,
     lote: "Lote-2023",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -169,7 +159,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "RA-789",
     cantidad: 15,
     lote: "Lote-2024",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -182,7 +171,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "MN-012",
     cantidad: 25,
     lote: "Lote-2023",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -195,7 +183,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "PA-345",
     cantidad: 12,
     lote: "Lote-2024",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -208,7 +195,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "CP-678",
     cantidad: 35,
     lote: "Lote-2023",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
   {
@@ -221,7 +207,6 @@ export const inspeccion: IInspeccion[] = [
     sn: "MM-901",
     cantidad: 18,
     lote: "Lote-2024",
-    condición: "Nuevo",
     estado: "Esperando por Inspección",
   },
 ];
