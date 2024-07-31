@@ -48,6 +48,13 @@ export const columnsTaller: IColumns[] = [
 
 export const dataFormTaller: IDataForm[] = [
   {
+    label: 'Fecha',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
     label: 'Taller',
     formControl: '',
     value: '',
@@ -55,21 +62,14 @@ export const dataFormTaller: IDataForm[] = [
     typeInput: 'text'
   },
   {
-    label: 'P/N',
+    label: 'Orden de Taller',
     formControl: '',
     value: '',
     required: true,
     typeInput: 'text'
   },
   {
-    label: 'Descripción',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Tipo',
+    label: 'Realizado por',
     formControl: '',
     value: '',
     required: true,
@@ -81,27 +81,7 @@ export const dataFormTaller: IDataForm[] = [
       }
     ]
   },
-  {
-    label: 'S/N',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Cantidad',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Workshop Order',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
+  //falta tabla de los componente seleccionados
 ];
 
 

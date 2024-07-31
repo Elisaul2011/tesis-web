@@ -49,42 +49,44 @@ export const columnsInspeccion: IColumns[] = [
     name: 'estado',
     type: 'string'
   },
-  // {
-  //   title: 'Eliminar',
-  //   name: 'delete',
-  //   type: 'icon',
-  //   icon: 'delete'
-  // }
 ];
 
 export const dataFormInspeccion: IDataForm[] = [
   {
-    label: 'Nombre de usuario',
-    formControl: 'nameUser',
+    label: 'Fecha',
+    formControl: '',
     value: '',
     required: true,
     typeInput: 'text'
   },
   {
-    label: 'Apellido de usuario',
-    formControl: 'lastnameUser',
+    label: 'Aprobado',
+    formControl: 'active',
+    value: false,
+    required: true,
+    typeInput: 'boolean',
+  },
+  {
+    label: 'Orden de Inspeccion',
+    formControl: '',
     value: '',
     required: true,
     typeInput: 'text'
   },
   {
-    label: 'Rol de usuario',
-    formControl: 'rolId',
+    label: 'Inspeccionado por',
+    formControl: '',
     value: '',
     required: true,
     typeInput: 'select',
     option: []
   },
+  //falta la tabla de los componentes selecionados
 ];
 
 
 export const formularioInspeccion: IFormulario = {
-  title: 'Formulario de usuarios',
+  title: 'Aprobación de componentes',
   dataForm: dataFormInspeccion
 }
 

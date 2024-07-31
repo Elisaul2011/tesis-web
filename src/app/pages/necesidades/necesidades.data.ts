@@ -27,32 +27,31 @@ export const columnsNecesidades: IColumns[] = [
 
 export const dataFormNecesidades: IDataForm[] = [
     {
-        label: 'Nombre de usuario',
-        formControl: 'nameUser',
+        label: 'P/N',
+        formControl: '',
         value: '',
         required: true,
         typeInput: 'text'
     },
     {
-        label: 'Apellido de usuario',
-        formControl: 'lastnameUser',
+        label: 'Descripción',
+        formControl: '',
         value: '',
         required: true,
         typeInput: 'text'
     },
     {
-        label: 'Rol de usuario',
-        formControl: 'rolId',
+        label: 'cantidad',
+        formControl: '',
         value: '',
         required: true,
-        typeInput: 'select',
-        option: []
+        typeInput: 'text'
     },
 ];
 
 
 export const formularioNecesidades: IFormulario = {
-    title: 'Formulario de usuarios',
+    title: 'Solicitud de materiales',
     dataForm: dataFormNecesidades
 }
 

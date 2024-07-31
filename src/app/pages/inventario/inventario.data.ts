@@ -171,7 +171,7 @@ export const dataFormAlmacen: IDataForm[] = [
 
 
 export const formularioInventario: IFormulario = {
-  title: 'Registrar Nuevo Componente',
+  title: 'Registrar nuevo componente',
   dataForm: dataFormAlmacen
 }
 

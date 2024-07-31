@@ -4,9 +4,14 @@ import { IColumns } from "../../interfaces/table.interface";
 
 export const columnsCompra: IColumns[] = [
     {
-        title: 'Item',
-        name: 'item',
-        type: 'string'
+      title: 'Orden de compra',
+      name: 'orden',
+      type: 'string'
+    },
+    {
+      title: 'Item',
+      name: 'item',
+      type: 'string'
     },
     {
       title: 'P/N',
@@ -14,21 +19,21 @@ export const columnsCompra: IColumns[] = [
       type: 'string'
     },
     {
-        title: 'Descripción',
-        name: 'descripcion',
-        type: 'string'
+      title: 'Descripción',
+      name: 'descripcion',
+      type: 'string'
     },
     {
-        title: 'Cantidad',
-        name: 'cantidad',
-        type: 'string'
+      title: 'Cantidad',
+      name: 'cantidad',
+      type: 'string'
     },
     {
-        title: 'Editar',
-        name: 'edit',
-        type: 'icon',
-        icon: 'edit',
-        color: 'primary'
+      title: 'Editar',
+      name: 'edit',
+      type: 'icon',
+      icon: 'edit',
+      color: 'primary'
     },
     {
       title: 'Eliminar',
@@ -41,18 +46,25 @@ export const columnsCompra: IColumns[] = [
 
 export const dataFormCompra: IDataForm[] = [
     {
-        label: 'Item',
-        formControl: 'item',
-        value: '',
-        required: true,
-        typeInput: 'text'
+      label: 'Orden de compra',
+      formControl: 'orden',
+      value: '',
+      required: true,
+      typeInput: 'text'
     },
     {
-        label: 'P/N',
-        formControl: 'pn',
-        value: '',
-        required: true,
-        typeInput: 'text'
+      label: 'Item',
+      formControl: 'item',
+      value: '',
+      required: true,
+      typeInput: 'text'
+    },
+    {
+      label: 'P/N',
+      formControl: 'pn',
+      value: '',
+      required: true,
+      typeInput: 'text'
     },
     {
       label: 'Descripción',
@@ -72,7 +84,7 @@ export const dataFormCompra: IDataForm[] = [
 
 
 export const formularioCompra: IFormulario = {
-    title: 'Formulario de usuarios',
+    title: 'Orden de compra',
     dataForm: dataFormCompra
 }
 

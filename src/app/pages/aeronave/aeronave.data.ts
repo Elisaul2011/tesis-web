@@ -48,48 +48,14 @@ export const columnsAeronave: IColumns[] = [
 
 export const dataFormAeronave: IDataForm[] = [
   {
+    label: 'Fecha',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
     label: 'Aeronave',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'P/N',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Descripción',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Tipo',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
-  },
-  {
-    label: 'S/N',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Cantidad',
     formControl: '',
     value: '',
     required: true,
@@ -102,6 +68,20 @@ export const dataFormAeronave: IDataForm[] = [
     required: true,
     typeInput: 'text'
   },
+  {
+    label: 'Realizado por',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [
+      {
+        label: 'Almacenista',
+        value: 1
+      }
+    ]
+  },
+  //falta la tabla de componentes seleccionadas
 ];
 
 
