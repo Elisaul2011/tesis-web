@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
 import { TableComponent } from '../../components/table/table.component';
 import { MatDialog } from '@angular/material/dialog';
-import { IColumns } from '../../interfaces/table.interface';
+import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 import { columnsInspeccion, dataFormInspeccion, formularioInspeccion, inspeccion } from './inspeccion.data';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +22,7 @@ import { IInspeccion } from '../../interfaces/inspeccion';
   styleUrl: './inspeccion.component.css',
 })
 export class InspeccionComponent {
-  columnsInspeccion: IColumns[] = columnsInspeccion;
+  columnsInspeccion: IColumns<any>[] = columnsInspeccion;
   dataInspeccion: IInspeccion[] = inspeccion;
 
   dialog = inject(MatDialog);
@@ -35,6 +35,18 @@ export class InspeccionComponent {
 
   ngOnInit(): void {
 
+  }
+
+  defectColumnAction(dataComponent: ISendDataTable): void {
+    if(dataComponent.action == 'add'){
+      this.openDialog();
+    }
+    if(dataComponent.action == 'edit'){
+      this.editDataDialog(dataComponent.data);
+    }
+    // if(dataComponent.action == 'delete'){
+    //   this.deleteData(dataComponent.data);
+    // }
   }
 
   openDialog(): void {

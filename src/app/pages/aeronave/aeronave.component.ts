@@ -3,7 +3,7 @@ import { Component, effect, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { aeronave, columnsAeronave, dataFormAeronave, formularioAeronave } from './aeronave.data';
 import { TableComponent } from '../../components/table/table.component';
-import { IColumns } from '../../interfaces/table.interface';
+import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 
 import { FormularioComponent } from '../../components/formulario/formulario.component';
@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './aeronave.component.css',
 })
 export class AeronaveComponent {
-    columnsAeronave: IColumns[] = columnsAeronave;
+    columnsAeronave: IColumns<any>[] = columnsAeronave;
     dataAeronave: IAeronave[] = aeronave;
 
     //aeronaveService = inject(aeronaveService);
@@ -35,6 +35,16 @@ export class AeronaveComponent {
     }
 
     ngOnInit(): void {
+
+    }
+
+    defectColumnAction(dataComponent: ISendDataTable): void {
+      if(dataComponent.action == 'add'){
+        this.openDialog();
+      }
+      if(dataComponent.action == 'edit'){
+        this.editDataDialog(dataComponent.data);
+      }
 
     }
 

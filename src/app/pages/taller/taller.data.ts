@@ -2,45 +2,53 @@ import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 import { ITaller } from "../../interfaces/taller";
 
-export const columnsTaller: IColumns[] = [
+export const columnsTaller: IColumns<any>[] = [
   {
     title: 'Taller',
     name: 'taller',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'P/N',
     name: 'pn',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Descripción',
     name: 'descripcion',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Tipo',
     name: 'tipo',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'S/N',
     name: 'sn',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Cantidad',
     name: 'cantidad',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Workshop Order',
     name: 'workshopOrder',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Editar',
     name: 'edit',
+    valueColumn: () => '',
     type: 'icon',
     icon: 'edit'
   }

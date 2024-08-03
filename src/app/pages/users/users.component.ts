@@ -7,6 +7,7 @@ import { UsersService } from '../../services/users.service';
 import { IRoles, IUsers } from '../../interfaces/users';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrl: './users.component.css',
 })
 export class UsersComponent implements OnInit {
-  columnsUser: IColumns[] = columnsUser;
+  columnsUser: IColumns<IUsers>[] = columnsUser;
   dataUser: IUsers[] = [];
 
   userService = inject(UsersService);
@@ -98,4 +99,5 @@ export class UsersComponent implements OnInit {
       this.userService.putUsers(result)
     })
   }
+
 }

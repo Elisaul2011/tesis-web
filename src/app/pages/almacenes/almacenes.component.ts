@@ -4,10 +4,12 @@ import { almacenService } from '../../services/almacen.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { columnsAlmacenes, formularioAlmacenes } from './almacenes.data';
-import { IColumns } from '../../interfaces/table.interface';
+import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
-import { IAlmacenes } from '../../interfaces/almacenes';
+import { BodyCreateAlmacen, BodyUpdateAlmacen, IAlmacenes, IDZona } from '../../interfaces/almacenes';
+import { IOptions } from '../../interfaces/fromulario.interface';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-almacenes',
@@ -20,7 +22,7 @@ import { IAlmacenes } from '../../interfaces/almacenes';
   styleUrl: './almacenes.component.css',
 })
 export class AlmacenesComponent implements OnInit {
-  columnsAlmacenes: IColumns[] = columnsAlmacenes;
+  columnsAlmacenes: IColumns<IAlmacenes>[] = columnsAlmacenes;
   dataAlmacenes: IAlmacenes[] = [];
 
   almacenService = inject(almacenService);
@@ -29,26 +31,35 @@ export class AlmacenesComponent implements OnInit {
   constructor(){
     effect(() => {
       this.dataAlmacenes = this.almacenService.getAlmacenesData();
-      // this.almacenService.getZonas();
+      const findZona = formularioAlmacenes.dataForm.find(form => form.formControl == 'zonaId');
+      if(findZona){
+        findZona.option = this.almacenService.getZonaData().map((zona: IDZona) => {
+          const options: IOptions = {
+            label: zona.zona,
+            value: zona.idZona
+          }
 
-      // const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
-      // if(findRolesForm){
-      //   findRolesForm.option = this.userService.getUserRolsData().map((roles: IRoles) => {
-      //     return {
-      //       label: roles.rol,
-      //       value: roles.idRol
-      //     }
-      //   });
-      // }
-      console.log(this.almacenService.getAlmacenesData());
-      console.log(this.almacenService.getZonaData());
-
+          return options;
+        })
+      }
     })
   }
 
   ngOnInit(): void {
     this.almacenService.getAlmacenes();
     this.almacenService.getZonas();
+  }
+
+  defectColumnAction(dataComponent: ISendDataTable): void {
+    if(dataComponent.action == 'add'){
+      this.openDialog();
+    }
+    if(dataComponent.action == 'edit'){
+      this.editDataDialog(dataComponent.data);
+    }
+    if(dataComponent.action == 'delete'){
+      this.deleteData(dataComponent.data);
+    }
   }
 
   openDialog(): void {
@@ -59,39 +70,42 @@ export class AlmacenesComponent implements OnInit {
       data: formularioAlmacenes,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      result.id=this.dataAlmacenes.length+1;
-      this.dataAlmacenes.push(result)
+    dialogRef.afterClosed().subscribe((result:BodyCreateAlmacen ) => {
+      this.almacenService.postAlmacenes(result)
     })
   }
 
-  editDataDialog(data: any): void {
-    const findNameUser = formularioAlmacenes.dataForm.find(form => form.formControl == 'nameUser');
-    const findLastnameUser = formularioAlmacenes.dataForm.find(form => form.formControl == 'lastnameUser');
-    const findRoles = formularioAlmacenes.dataForm.find(form => form.formControl == 'rolId');
-
-    // if(findRoles && findNameUser && findLastnameUser){
-    //   findRoles.value = data.rolId;
-    //   findNameUser.value = data.nameUser;
-    //   findLastnameUser.value = data.lastnameUser;
-    // }
+  editDataDialog(data: IAlmacenes): void {
+    formularioAlmacenes.dataForm.map(form => {
+      const findByName = formularioAlmacenes.dataForm.find(loquesea => loquesea.formControl == form.formControl);
+      if(findByName){
+        findByName.value = data[form.formControl as keyof IAlmacenes]
+      }
+    })
 
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioAlmacenes,
     });
 
-    // formularioUser.dataForm.push({
-    //   label: '',
-    //   formControl: 'idUser',
-    //   value: data.idUser,
-    //   required: false,
-    //   typeInput: ''
-    // });
-
-    dialogRef.afterClosed().subscribe(result => {
-      result.id=this.dataAlmacenes.length+1;
-          this.dataAlmacenes.push(result)
+    dialogRef.afterClosed().subscribe((result: BodyUpdateAlmacen) => {
+      if(result){
+        result.idAlmacenes = data.idAlmacenes;
+        this.almacenService.putAlmacenes(result)
+      }
     })
   }
-}
 
+  deleteData(data: IAlmacenes): void {
+    Swal.fire({
+      title: "Seguro que quieres eliminar el almacen?",
+      showDenyButton: true,
+      confirmButtonColor: "#3085d6",
+      denyButtonText: `Cancelar`,
+      confirmButtonText: "Confirmar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.almacenService.deleteAlmacenes(data.idAlmacenes);
+      }
+    });
+  }
+}

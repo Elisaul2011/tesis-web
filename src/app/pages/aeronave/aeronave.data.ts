@@ -2,45 +2,53 @@ import { IAeronave } from "../../interfaces/aeronave";
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsAeronave: IColumns[] = [
+export const columnsAeronave: IColumns<any>[] = [
   {
     title: 'Aeronave',
     name: 'aeronave',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'P/N',
     name: 'pn',
+      valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Descripción',
     name: 'descripcion',
+      valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Tipo',
     name: 'tipo',
+      valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'S/N',
     name: 'sn',
+      valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Cantidad',
     name: 'cantidad',
+      valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Work Order',
     name: 'order',
+      valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Editar',
     name: 'edit',
+      valueColumn: () => '',
     type: 'icon',
     icon: 'edit'
   }

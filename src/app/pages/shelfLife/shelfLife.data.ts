@@ -3,60 +3,71 @@ import { IShelfLife } from "../../interfaces/shelfLife";
 import { IColumns } from "../../interfaces/table.interface";
 import { dataFormAlmacen } from "../inventario/inventario.data";
 
-export const columnsShelfLife: IColumns[] = [
+export const columnsShelfLife: IColumns<any>[] = [
   {
     title: 'Ubicación',
     name: 'ubicacion',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Zona',
     name: 'zona',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'P/N',
     name: 'pn',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Descripción',
     name: 'descripción',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Tipo',
     name: 'tipo',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'S/N',
     name: 'sn',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Cantidad',
     name: 'cantidad',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Lote',
     name: 'lote',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Estado',
     name: 'estado',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Shelf Lite',
     name: 'sl',
+    valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Vence en',
     name: 'vence',
+    valueColumn: () => '',
     type: 'string'
   }
 ];

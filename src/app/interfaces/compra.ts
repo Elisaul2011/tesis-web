@@ -1,7 +1,30 @@
+// export interface ICompra {
+// id: number;
+// ordenCompra: string;
+// fecha: Date;
+// pn: string;
+// descripcion: string;
+// cantidad: number;
+// }
 export interface ICompra {
-id: number;
-item: number;
-pn: string;
-descripcion: string;
-cantidad: number;
+  idOrdenCompra: number;
+  ordenCompra:   string;
+  Fecha:         Date;
+  descripcion:   string;
+  cantidad:      number;
+  pn:            string;
+  sn:            string;
+}
+
+export interface BodyCreateCompra {
+  ordenCompra:   string;
+  Fecha:         Date;
+  descripcion:   string;
+  cantidad:      number;
+  pn:            string;
+  sn:            string;
+}
+
+export interface BodyUpdateCompra extends BodyCreateCompra {
+  idOrdenCompra: number;
 }

@@ -3,7 +3,7 @@ import { Component, effect, inject } from '@angular/core';
 import { columnsTaller, dataFormTaller, formularioTaller, datosTaller } from './taller.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns } from '../../interfaces/table.interface';
-import { tallerService } from '../../services/taller.service';
+
 import { ITaller } from '../../interfaces/taller';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -21,10 +21,10 @@ import { MatButton } from '@angular/material/button';
   styleUrl: './taller.component.css',
 })
 export class TallerComponent {
-    columnsTaller: IColumns[] = columnsTaller;
+    columnsTaller: IColumns<any>[] = columnsTaller;
     dataTaller: ITaller[] = datosTaller;
 
-    tallerService = inject(tallerService);
+
     dialog = inject(MatDialog);
 
     constructor(){
@@ -34,7 +34,7 @@ export class TallerComponent {
     }
 
     ngOnInit(): void {
-      this.tallerService.getUsers();
+
     }
 
     openDialog(): void {
@@ -46,7 +46,7 @@ export class TallerComponent {
 
       dialogRef.afterClosed().subscribe(result => {
         result.password = '12345678';
-        this.tallerService.postUsers(result)
+
       })
     }
 

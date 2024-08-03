@@ -2,50 +2,59 @@ import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IInspeccion } from "../../interfaces/inspeccion";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsInspeccion: IColumns[] = [
+export const columnsInspeccion: IColumns<any>[] = [
   {
     title: 'Ubicación',
+    valueColumn: (element: any) => '',
     name: 'ubicacion',
     type: 'string'
   },
   {
     title: 'Zona',
+    valueColumn: (element: any) => '',
     name: 'zona',
     type: 'string'
   },
   {
     title: 'P/N',
+    valueColumn: (element: any) => '',
     name: 'pn',
     type: 'string'
   },
   {
     title: 'Descripción',
+    valueColumn: (element: any) => '',
     name: 'descripcion',
     type: 'icon',
     icon: 'edit'
   },
   {
     title: 'Tipo',
+    valueColumn: (element: any) => '',
     name: 'tipo',
     type: 'string'
   },
   {
     title: 'S/N',
+    valueColumn: (element: any) => '',
     name: 'sn',
     type: 'string'
   },
   {
     title: 'Cantidad',
+    valueColumn: (element: any) => '',
     name: 'cantidad',
     type: 'string'
   },
   {
     title: 'Lote',
+    valueColumn: (element: any) => '',
     name: 'lote',
     type: 'string'
   },
   {
     title: 'Estado',
+    valueColumn: (element: any) => '',
     name: 'estado',
     type: 'string'
   },

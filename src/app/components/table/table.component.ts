@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { IColumns, IConfigTable } from '../../interfaces/table.interface';
+import { IColumns, IConfigTable, ISendDataTable, TypeActions } from '../../interfaces/table.interface';
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,12 +29,14 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class TableComponent implements OnInit, AfterViewInit{
 
-  @Input() columns: IColumns[] = [];
+  @Input() columns: IColumns<any>[] = [];
   @Input() configTable: IConfigTable={btnAdd: true};
   @Input() dataTable: any[] = [];
 
   @Output() addNew = new EventEmitter<boolean>();
   @Output() edit = new EventEmitter<any>();
+
+  @Output() sendData = new EventEmitter<ISendDataTable>();
 
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<any> = new MatTableDataSource();
@@ -83,10 +85,10 @@ export class TableComponent implements OnInit, AfterViewInit{
   }
 
   openDialog(): void {
-    this.addNew.emit(true)
+    this.sendData.emit({data: null,action: 'add'})
   }
 
-  editDataDialog(data: any): void {
-    this.edit.emit(data)
+  editDataDialog(data: any, actionColumn: string): void {
+    this.sendData.emit({data: data, action: actionColumn as TypeActions})
   }
 }

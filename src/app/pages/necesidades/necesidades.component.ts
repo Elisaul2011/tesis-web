@@ -19,7 +19,7 @@ import { TableComponent } from '../../components/table/table.component';
   styleUrl: './necesidades.component.css',
 })
 export class NecesidadesComponent {
-  columnsNecesidades: IColumns[] = columnsNecesidades;
+  columnsNecesidades: IColumns<any>[] = columnsNecesidades;
   dataNecesidades: any[] = [];
 
 

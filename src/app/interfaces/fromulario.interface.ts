@@ -8,7 +8,7 @@ export interface IDataForm {
   label: string;
   formControl: string;
   required: boolean;
-  value: string | number | boolean;
+  value: string | number | boolean | any;
   option?: IOptions[],
 }
 

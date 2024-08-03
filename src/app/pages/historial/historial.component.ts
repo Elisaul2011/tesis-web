@@ -21,7 +21,7 @@ import { IHistorial } from '../../interfaces/historial';
   styleUrl: './historial.component.css',
 })
 export class HistorialComponent {
-  columnsHistorial: IColumns[] = columnsHistorial;
+  columnsHistorial: IColumns<any>[] = columnsHistorial;
   dataHistorial: IHistorial[] = [];
   historialConfigTable: IConfigTable={btnAdd: false}
   userService = inject(UsersService);

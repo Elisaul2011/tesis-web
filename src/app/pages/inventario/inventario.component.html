@@ -3,8 +3,7 @@
 <app-table
 [columns]="columnsInventario"
 [dataTable]="inventarioData"
-(addNew)="openDialog()"
-(edit)="editDataDialog($event)"
+(sendData)="defectColumnAction($event)"
 ></app-table>
 
 <div class="example-button-row">

@@ -20,7 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ShelfLifeComponent {
 
-  columnsShelfLife: IColumns[] = columnsShelfLife;
+  columnsShelfLife: IColumns<any>[] = columnsShelfLife;
   dataSL: any[] = [];
   SLConfigTable: IConfigTable={btnAdd: false}
 
