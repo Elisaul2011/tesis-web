@@ -12,9 +12,13 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatButtonModule } from '@angular/material/button';
-import { IInventario } from '../../interfaces/inventario';
+import { IAtas, IInventario, ITiposComponentes, IZonas } from '../../interfaces/inventario';
 import { InventarioService } from '../../services/inventario.service';
 import { almacenService } from '../../services/almacen.service';
+import { ZonasService } from '../../services/zonas.service';
+import { IAlmacenes } from '../../interfaces/almacenes';
+import { AtasService } from '../../services/atas.service';
+import { TiposComponentesService } from '../../services/tiposComponentes.service';
 
 @Component({
   selector: 'app-almacen',
@@ -29,19 +33,53 @@ export class InventarioComponent {
   inventarioData: IInventario[] = [];
 
   almacenService = inject(almacenService);
+  zonaService = inject(ZonasService);
   inventarioService = inject(InventarioService);
+  atasService = inject(AtasService);
+  tiposComponentesService = inject(TiposComponentesService);
   dialog = inject(MatDialog);
   compraData: any;
 
   constructor() {
     effect(() => {
       this.inventarioData = this.inventarioService.getInventarioData();
+      const findAlmacen = formularioInventario.dataForm.find(form => form.formControl == 'almacenesId');
+      if(findAlmacen){
+        findAlmacen.option = this.almacenService.getAlmacenesData().map((almacen: IAlmacenes) => {
+          return {
+            label: almacen.nombre,
+            value: almacen.idAlmacenes
+          }
+        });
+      }
+
+      const findAtas = formularioInventario.dataForm.find(form => form.formControl == 'atas');
+      if(findAtas){
+        findAtas.option = this.atasService.getAtaData().map((atas: IAtas) => {
+          return {
+            label: `${atas.CodigoAta} - ${atas.NombreATA}`,
+            value: atas.IdAta
+          }
+        });
+      }
+
+      const findTipos = formularioInventario.dataForm.find(form => form.formControl == 'tipoComponenteId');
+      if(findTipos){
+        findTipos.option = this.tiposComponentesService.getTiposComponentesData().map((tipos: ITiposComponentes) => {
+          return {
+            label: tipos.tipoComponente,
+            value: tipos.idTipoComponente
+          }
+        });
+      }
     });
   }
 
   ngOnInit(): void {
     this.almacenService.getAlmacenes();
     this.inventarioService.getInventario();
+    this.atasService.getAtas();
+    this.tiposComponentesService.getTiposComponentes();
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
@@ -65,50 +103,19 @@ export class InventarioComponent {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      result.id = this.dataInvenario.length + 1;
-      this.dataInvenario.push(result);
+      console.log(result);
     });
   }
 
-  editDataDialog(data: any): void {
-    const columnsData = this.columnsInventario.filter(
-      (col) => col.type != 'icon'
-    );
+  editDataDialog(data: IInventario): void {
+    console.log(data);
 
-    columnsData.map((compraData) => {
-      const findColumns = formularioInventario.dataForm.find(
-        (form) => form.formControl == compraData.name
-      );
-      if (findColumns) {
-        findColumns.value = data[compraData.name as string];
-      }
+    const dialogRef = this.dialog.open(FormularioComponent, {
+      data: formularioInventario,
+      panelClass: 'stylesDialog',
     });
-    formularioInventario.dataForm.push({
-      formControl: 'id',
-      label: '',
-      required: false,
-      typeInput: '',
-      value: data.id,
-    });
-
-    // const dialogRef = this.dialog.open(FormularioComponent, {
-    //   data: formularioInventario,
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   const findData = this.dataInvenario.find(com => com.id==result.id)
-    //   if (findData){
-    //     findData.ubicacion=result.ubicacion
-    //     findData.zona=result.zona
-    //     findData.pn=result.pn
-    //     findData.descripción=result.descripción
-    //     findData.tipo=result.tipo
-    //     findData.sn=result.sn
-    //     findData.cantidad=result.cantidad
-    //     findData.lote=result.lote
-    //     findData.estado=result.estado
-    //     findData.sl=result.sl
-    //     findData.order=result.order
-    //   }
-    // })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    })
   }
 }

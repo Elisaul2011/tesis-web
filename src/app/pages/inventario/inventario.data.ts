@@ -12,7 +12,7 @@ export const columnsInventario: IColumns<IInventario>[] = [
   {
     title: 'Zona',
     name: 'zona',
-    valueColumn: (inventario: IInventario) => inventario.almacenes.idZona.zona,
+    valueColumn: (inventario: IInventario) => inventario.zonas.zona,
     type: 'string'
   },
   {
@@ -90,18 +90,21 @@ export const columnsInventario: IColumns<IInventario>[] = [
 export const dataFormAlmacen: IDataForm[] = [
   {
     label: 'Ubicación',
-    formControl: 'ubicacion',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Zona',
-    formControl: 'idZona',
+    formControl: 'almacenesId',
     value: '',
     required: true,
     typeInput: 'select',
-    option: []
+    option: [],
+    main: true
+  },
+  {
+    label: 'Zona',
+    formControl: 'zonaId',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [],
+    detectChange: true
   },
   {
     label: 'P/N',
@@ -119,16 +122,11 @@ export const dataFormAlmacen: IDataForm[] = [
   },
   {
     label: 'ATA',
-    formControl: '',
+    formControl: 'atas',
     value: '',
     required: true,
     typeInput: 'select',
-    option: [
-      {
-        label: 'Almacenista',
-        value: 1
-      }
-    ]
+    option: []
   },
   {
     label: 'Fabricante',
@@ -168,14 +166,6 @@ export const dataFormAlmacen: IDataForm[] = [
   },
   {
     label: 'Fecha de Shelf Life',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    //este depende de shelf life
-    label: 'Condición',
     formControl: '',
     value: '',
     required: true,

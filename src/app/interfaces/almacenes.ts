@@ -6,16 +6,7 @@ export interface IAlmacenes {
   pais:        string;
   ciudad:      string;
   estado:      number;
-  zonaId:      number;
-  idZona:      IDZona;
 }
-
-export interface IDZona {
-  idZona:          number;
-  zona:            string;
-  descripcionZona: string;
-}
-
 
 export interface BodyCreateAlmacen {
   ciudad: string;
@@ -23,7 +14,6 @@ export interface BodyCreateAlmacen {
   estado: number;
   pais: string;
   nombre: string;
-  zonaId: number;
 }
 
 export interface BodyUpdateAlmacen extends BodyCreateAlmacen {

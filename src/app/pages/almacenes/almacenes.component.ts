@@ -7,7 +7,7 @@ import { columnsAlmacenes, formularioAlmacenes } from './almacenes.data';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
-import { BodyCreateAlmacen, BodyUpdateAlmacen, IAlmacenes, IDZona } from '../../interfaces/almacenes';
+import { BodyCreateAlmacen, BodyUpdateAlmacen, IAlmacenes } from '../../interfaces/almacenes';
 import { IOptions } from '../../interfaces/fromulario.interface';
 import Swal from 'sweetalert2'
 
@@ -31,23 +31,11 @@ export class AlmacenesComponent implements OnInit {
   constructor(){
     effect(() => {
       this.dataAlmacenes = this.almacenService.getAlmacenesData();
-      const findZona = formularioAlmacenes.dataForm.find(form => form.formControl == 'zonaId');
-      if(findZona){
-        findZona.option = this.almacenService.getZonaData().map((zona: IDZona) => {
-          const options: IOptions = {
-            label: zona.zona,
-            value: zona.idZona
-          }
-
-          return options;
-        })
-      }
     })
   }
 
   ngOnInit(): void {
     this.almacenService.getAlmacenes();
-    this.almacenService.getZonas();
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
@@ -71,6 +59,7 @@ export class AlmacenesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result:BodyCreateAlmacen ) => {
+      result.estado = 1;
       this.almacenService.postAlmacenes(result)
     })
   }
@@ -89,6 +78,7 @@ export class AlmacenesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: BodyUpdateAlmacen) => {
       if(result){
+        result.estado = 1;
         result.idAlmacenes = data.idAlmacenes;
         this.almacenService.putAlmacenes(result)
       }

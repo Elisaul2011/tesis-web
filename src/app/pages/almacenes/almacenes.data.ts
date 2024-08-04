@@ -80,14 +80,6 @@ export const dataFormAlmacenes: IDataForm[] = [
       value: '',
       required: true,
       typeInput: 'text'
-    },
-    {
-      label: 'Zona',
-      formControl: 'zonaId',
-      value: 0,
-      required: true,
-      typeInput: 'select',
-      option: []
     }
 ];
 

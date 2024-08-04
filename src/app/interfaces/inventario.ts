@@ -1,6 +1,7 @@
 export interface IInventario {
   idInventario:     number;
   almacenesId:      number;
+  zonaId:           number;
   pn:               string;
   descripcion:      string;
   tipoComponenteId: number;
@@ -13,6 +14,7 @@ export interface IInventario {
   idEstado:         IDEstado;
   idTipoComponente: IDTipoComponente;
   almacenes:        Almacenes;
+  zonas:            IZonas;
 }
 
 export interface Almacenes {
@@ -22,14 +24,6 @@ export interface Almacenes {
   pais:        string;
   ciudad:      string;
   estado:      number;
-  zonaId:      number;
-  idZona:      IDZona;
-}
-
-export interface IDZona {
-  idZona:          number;
-  zona:            string;
-  descripcionZona: string;
 }
 
 export interface IDEstado {
@@ -38,6 +32,23 @@ export interface IDEstado {
 }
 
 export interface IDTipoComponente {
+  idTipoComponente: number;
+  tipoComponente:   string;
+}
+
+export interface IZonas {
+  idZona:          number;
+  zona:            string;
+  descripcionZona: string;
+  almacenId:       number;
+}
+
+export interface IAtas {
+  IdAta:       number;
+  CodigoAta: string;
+  NombreATA: string;
+}
+export interface ITiposComponentes {
   idTipoComponente: number;
   tipoComponente:   string;
 }

@@ -9,7 +9,9 @@ export interface IDataForm {
   formControl: string;
   required: boolean;
   value: string | number | boolean | any;
-  option?: IOptions[],
+  option?: IOptions[];
+  main?: boolean;
+  detectChange?: boolean;
 }
 
 export interface IOptions{
@@ -17,5 +19,9 @@ export interface IOptions{
   value: string | number
 }
 
+export interface ReturnSelect {
+  formControl: string;
+  value: string | number | boolean | any;
+}
 
 export type InputsTypes = 'text' | 'number' | 'date' | 'select' |'boolean' | '';
