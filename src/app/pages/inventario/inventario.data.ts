@@ -173,6 +173,26 @@ export const dataFormAlmacen: IDataForm[] = [
   },
 ];
 
+export const dataFormAsignar: IDataForm[] = [
+  {
+    label: 'Asignar Order',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [],
+    main: true
+  },
+  {
+    label: '#Order',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'text',
+  },
+
+];
+
 //Una vez ingresado el componente, este queda por defecto en estado "esperando por inspeccion"
 
 
@@ -181,6 +201,10 @@ export const formularioInventario: IFormulario = {
   dataForm: dataFormAlmacen
 }
 
+export const formularioAsignar: IFormulario = {
+  title: 'Asignar Orden',
+  dataForm: dataFormAlmacen
+}
 // export const inventario: IInventario[] = [
 //   {
 //     id: 1,

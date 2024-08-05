@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, effect, inject } from '@angular/core';
-import { IColumns } from '../../interfaces/table.interface';
+import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 import { columnsUser, dataFormUser, formularioUser } from './user.data';
 import { TableComponent } from '../../components/table/table.component';
 import { UsersService } from '../../services/users.service';
@@ -47,6 +47,18 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers();
     this.userService.getUsersRoles();
+  }
+
+  defectColumnAction(dataComponent: ISendDataTable): void {
+    if(dataComponent.action == 'add'){
+      this.openDialog();
+    }
+    if(dataComponent.action == 'edit'){
+      this.editDataDialog(dataComponent.data);
+    }
+    // if(dataComponent.action == 'delete'){
+    //   this.deleteData(dataComponent.data);
+    // }
   }
 
   openDialog(): void {
