@@ -60,8 +60,8 @@ export const dataFormCompra: IDataForm[] = [
       typeInput: 'text'
     },
     {
-      label: 'Item',
-      formControl: 'item',
+      label: 'Fecha',
+      formControl: 'Fecha',
       value: '',
       required: true,
       typeInput: 'text'

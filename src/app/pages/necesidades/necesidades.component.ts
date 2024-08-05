@@ -4,7 +4,7 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { columnsNecesidades, formularioNecesidades } from './necesidades.data';
-import { IColumns } from '../../interfaces/table.interface';
+import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
 
@@ -43,6 +43,18 @@ export class NecesidadesComponent {
 
   ngOnInit(): void {
 
+  }
+
+  defectColumnAction(dataComponent: ISendDataTable): void {
+    if(dataComponent.action == 'add'){
+      this.openDialog();
+    }
+    if(dataComponent.action == 'edit'){
+      this.editDataDialog(dataComponent.data);
+    }
+    // if(dataComponent.action == 'delete'){
+    //   this.deleteData(dataComponent.data);
+    // }
   }
 
   openDialog(): void {
