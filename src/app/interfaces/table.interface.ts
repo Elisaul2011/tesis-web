@@ -5,10 +5,11 @@ export interface IColumns<T> {
   type: typesColumns;
   link?: string;
   icon?: string;
+  width?: string;
   color?: string;
 }
 
-export type typesColumns = 'string' | 'links' | 'icon' | 'boolean';
+export type typesColumns = 'string' | 'links' | 'icon' | 'boolean' | 'date';
 
 export interface IConfigTable {
   btnAdd: boolean;

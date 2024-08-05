@@ -9,6 +9,7 @@ import { IColumns, IConfigTable, ISendDataTable, TypeActions } from '../../inter
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FormatDatePipe } from '../../pipes/FormatDate.pipe';
 
 @Component({
   selector: 'app-table',
@@ -22,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatPaginatorModule,
     RouterLink,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    FormatDatePipe
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
@@ -52,6 +54,12 @@ export class TableComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.displayedColumns = this.columns.map(col => col.name);
     this.dataSource = new MatTableDataSource(this.dataTable);
+  }
+
+  styleHead(styles: string | undefined): string {
+    console.log(styles);
+    
+    return `${styles}`
   }
 
   ngOnChanges(changes: SimpleChanges): void {

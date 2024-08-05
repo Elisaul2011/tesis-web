@@ -19,7 +19,7 @@ export const columnsInventario: IColumns<IInventario>[] = [
     title: 'P/N',
     name: 'pn',
     valueColumn: (inventario: IInventario) => inventario.pn,
-    type: 'string'
+    type: 'string',
   },
   {
     title: 'Descripción',
@@ -61,7 +61,7 @@ export const columnsInventario: IColumns<IInventario>[] = [
     title: 'Shelf Lite',
     name: 'shelfLife',
     valueColumn: (inventario: IInventario) => inventario.shelfLife,
-    type: 'string'
+    type: 'date'
   },
   {
     title: '# Order',
