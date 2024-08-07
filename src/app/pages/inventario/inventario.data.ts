@@ -5,7 +5,7 @@ import { IColumns } from "../../interfaces/table.interface";
 export const columnsInventario: IColumns<IInventario>[] = [
   {
     title: 'Ubicación',
-    name: 'almacenes',
+    name: 'nombre',
     valueColumn: (inventario: IInventario) => inventario.almacenes.nombre,
     type: 'string'
   },
@@ -76,15 +76,15 @@ export const columnsInventario: IColumns<IInventario>[] = [
     type: 'icon',
     icon: 'edit',
     color: 'primary'
-},
-{
-  title: 'Eliminar',
-  name: 'delete',
-  valueColumn: () => 'delete',
-  type: 'icon',
-  icon: 'delete',
-  color: 'warn'
-}
+  }
+  // {
+  //   title: 'Eliminar',
+  //   name: 'delete',
+  //   valueColumn: () => 'delete',
+  //   type: 'icon',
+  //   icon: 'delete',
+  //   color: 'warn'
+  // }
 ];
 
 export const dataFormAlmacen: IDataForm[] = [

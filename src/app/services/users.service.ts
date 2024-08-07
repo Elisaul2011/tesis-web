@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
 import { IRoles, IUsers } from '../interfaces/users';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService extends BaseService {
 
   //rutas del api
   private route_users = `${base_route}/users`;
@@ -18,13 +19,14 @@ export class UsersService {
   public getUserData = computed<IUsers[]>(() => this.setUserData());
   public getUserRolsData = computed<IRoles[]>(() => this.setUserRolesData());
 
-  constructor(private httpClient: HttpClient) { }
+  // constructor(private httpClient: HttpClient) { }
+
+  getUserToken(): IUsers {
+    return JSON.parse(localStorage.getItem('userToken') as string);
+  }
 
   getUsers(): void {
-    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:any[])  => {
-      result.map(user => {
-        user.roles = user.roles.rol
-      });
+    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:IUsers[])  => {
       this.setUserData.set(result);
     })
   }
@@ -37,7 +39,7 @@ export class UsersService {
 
   postUsers(bodyUser: any): void {
     this.httpClient.post(this.route_users, bodyUser).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getUsers();
       }
@@ -46,7 +48,7 @@ export class UsersService {
 
   putUsers(bodyUser: any): void {
     this.httpClient.put(this.route_users, bodyUser).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getUsers();
       }
@@ -55,7 +57,7 @@ export class UsersService {
 
   deleteUsers(id: string): void {
     this.httpClient.delete(`${this.route_users}/${id}`).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getUsers();
       }

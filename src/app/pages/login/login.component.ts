@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -11,6 +11,8 @@ import {
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AuthService } from '../../services/auth.service';
+import { ILogin } from '../../interfaces/users';
 import { Router } from '@angular/router';
 
 @Component({
@@ -34,20 +36,16 @@ export class LoginComponent {
   typePassword: string = 'password';
 
   loginForm = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    nameUser: new FormControl('', [Validators.required, Validators.minLength(5)]),
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(
-    private router: Router
-  ){
-
-  }
+  authService = inject(AuthService);
+  router = inject(Router);
 
   onSubmitLogin(): void {
     if(this.loginForm.valid){
-      console.log(this.loginForm.value);
-      this.router.navigate(['/']);
+      this.authService.postAuthenticade(this.loginForm.value as ILogin);
     }
   }
 

@@ -17,8 +17,8 @@ export const columnsUser: IColumns<IUsers>[] = [
   },
   {
     title: 'Rol',
-    name: 'roles',
-    valueColumn: (element: IUsers) => element.roles,
+    name: 'rol',
+    valueColumn: (element: IUsers) => element.roles.rol,
     type: 'string'
   },
   {
