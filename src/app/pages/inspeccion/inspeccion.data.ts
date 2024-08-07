@@ -25,8 +25,7 @@ export const columnsInspeccion: IColumns<any>[] = [
     title: 'Descripción',
     valueColumn: (element: any) => '',
     name: 'descripcion',
-    type: 'icon',
-    icon: 'edit'
+    type: 'string',
   },
   {
     title: 'Tipo',

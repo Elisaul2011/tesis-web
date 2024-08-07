@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
 import { columnsTaller, dataFormTaller, formularioTaller, datosTaller } from './taller.data';
 import { TableComponent } from '../../components/table/table.component';
-import { IColumns } from '../../interfaces/table.interface';
+import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 import { ITaller } from '../../interfaces/taller';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
@@ -48,6 +48,18 @@ export class TallerComponent {
         result.password = '12345678';
 
       })
+    }
+
+    defectColumnAction(dataComponent: ISendDataTable): void {
+      if(dataComponent.action == 'add'){
+        this.openDialog();
+      }
+      if(dataComponent.action == 'edit'){
+        this.editDataDialog(dataComponent.data);
+      }
+      // if(dataComponent.action == 'delete'){
+      //   this.deleteData(dataComponent.data);
+      // }
     }
 
     editDataDialog(data: ITaller): void {

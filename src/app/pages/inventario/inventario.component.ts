@@ -94,6 +94,8 @@ export class InventarioComponent {
     // }
   }
 
+
+
   openDialog(): void {
     formularioInventario.dataForm.map((form) => (form.value = ''));
 
