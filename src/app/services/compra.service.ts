@@ -19,13 +19,13 @@ export class CompraService extends BaseService {
   getCompra(): void {
     this.httpClient.get<ICompra[]>(this.route_compra).subscribe((result: ICompra[]) => {
       this.setCompraData.set(result);
-      console.log(result);
+       
     })
   }
 
   postCompra(bodyCompra: BodyCreateCompra): void {
     this.httpClient.post<BaseResponse>(this.route_compra, bodyCompra).subscribe((result: BaseResponse) => {
-      console.log(result);
+       
       if(result){
         this.getCompra();
       }
@@ -34,7 +34,7 @@ export class CompraService extends BaseService {
 
   putCompra(putCompra: BodyUpdateCompra): void {
     this.httpClient.put<BaseResponse>(this.route_compra, putCompra).subscribe((result:BaseResponse) => {
-      console.log(result);
+       
       if(result){
         this.getCompra();
       }
@@ -43,7 +43,7 @@ export class CompraService extends BaseService {
 
   deleteCompra(idOrdenCompra: number): void {
     this.httpClient.delete<BaseResponse>(`${this.route_compra}/${idOrdenCompra}`).subscribe((result:BaseResponse) => {
-      console.log(result);
+       
       if(result){
         this.getCompra();
       }

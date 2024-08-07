@@ -1,8 +1,8 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
 import { IInventario } from '../interfaces/inventario';
-import { HttpClient } from '@angular/common/http';
 import { BaseService } from './base.service';
+import { BaseResponse } from '../interfaces/base.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,33 @@ export class InventarioService extends BaseService {
   private setInventarioData = signal<IInventario[]>([]);
   public getInventarioData = computed<IInventario[]>(() => this.setInventarioData());
 
-  // constructor(private httpClient: HttpClient) { }
-
   getInventario(): void {
     this.httpClient.get<IInventario[]>(this.base_router).subscribe((result: IInventario[]) => {
       this.setInventarioData.set(result);
-      console.log(result);
+    })
+  }
+
+  postInventario(bodyAlmacenes: any): void {
+    this.httpClient.post<BaseResponse>(this.base_router, bodyAlmacenes).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getInventario();
+      }
+    })
+  }
+
+  putInventario(putAlmacen: any): void {
+    this.httpClient.put<BaseResponse>(this.base_router, putAlmacen).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getInventario();
+      }
+    })
+  }
+
+  deleteInventario(idAlmacen: number): void {
+    this.httpClient.delete<BaseResponse>(`${this.base_router}/${idAlmacen}`).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getInventario();
+      }
     })
   }
 }

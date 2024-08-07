@@ -17,6 +17,10 @@ import { ShelfLifeComponent } from './pages/shelfLife/shelfLife.component';
 
 export const routes: Routes = [
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path:'',
     component: LayoutComponent,
     children: [
@@ -61,10 +65,6 @@ export const routes: Routes = [
         component: ShelfLifeComponent
       },
     ]
-  },
-  {
-    path: 'login',
-    component: LoginComponent
   },
   {path: '**',  redirectTo: ''}
 ];

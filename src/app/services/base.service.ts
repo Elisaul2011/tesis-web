@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,6 @@ import { inject, Injectable } from '@angular/core';
 export class BaseService {
 
   public httpClient = inject(HttpClient);
-  
-
-  constructor() { }
+  public router = inject(Router);
 
 }

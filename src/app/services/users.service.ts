@@ -21,11 +21,12 @@ export class UsersService extends BaseService {
 
   // constructor(private httpClient: HttpClient) { }
 
+  getUserToken(): IUsers {
+    return JSON.parse(localStorage.getItem('userToken') as string);
+  }
+
   getUsers(): void {
-    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:any[])  => {
-      result.map(user => {
-        user.roles = user.roles.rol
-      });
+    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:IUsers[])  => {
       this.setUserData.set(result);
     })
   }
@@ -38,7 +39,7 @@ export class UsersService extends BaseService {
 
   postUsers(bodyUser: any): void {
     this.httpClient.post(this.route_users, bodyUser).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getUsers();
       }
@@ -47,7 +48,7 @@ export class UsersService extends BaseService {
 
   putUsers(bodyUser: any): void {
     this.httpClient.put(this.route_users, bodyUser).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getUsers();
       }
@@ -56,7 +57,7 @@ export class UsersService extends BaseService {
 
   deleteUsers(id: string): void {
     this.httpClient.delete(`${this.route_users}/${id}`).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getUsers();
       }

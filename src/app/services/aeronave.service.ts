@@ -20,7 +20,7 @@ export class aeronaveService extends BaseService {
 
   postAeronaves(bodyAeronave: BodyCreateAeronave): void {
     this.httpClient.post(this.route_aeronaves, bodyAeronave).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getAeronaves();
       }
@@ -29,7 +29,7 @@ export class aeronaveService extends BaseService {
 
   putAeronaves(bodyAeronave: BodyUpdateAeronave): void {
     this.httpClient.put(this.route_aeronaves, bodyAeronave).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getAeronaves();
       }

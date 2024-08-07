@@ -4,78 +4,59 @@ import { IColumns } from "../../interfaces/table.interface";
 export const columnsHistorial: IColumns<any>[] = [
   {
     title: 'Fecha del Movimiento',
-    name: 'Ubicación',
+    name: 'fechaMovimiento',
     valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'P/N',
-    name: 'Zona',
+    name: 'pn',
     valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Descripción',
-    name: 'Descripción',
+    name: 'descripcion',
     valueColumn: () => '',
     type: 'icon',
     icon: 'edit'
   },
   {
     title: 'S/N',
-    name: 'S',
+    name: 'sn',
     valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Cantidad',
-    name: 'Cantidad',
-    valueColumn: () => '',
-    type: 'string'
-  },
-  {
-    title: 'Origen',
-    name: 'Lote',
-    valueColumn: () => '',
-    type: 'string'
-  },
-  {
-    title: 'Destino',
-    name: 'Condición',
+    name: 'cantidad',
     valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Realizado Por',
-    name: 'Estado',
+    name: '',
     valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Tipo de Movimiento',
-    name: 'Movimiento',
+    name: 'idTipoMovimiento',
     valueColumn: () => '',
     type: 'string'
   },
   {
     title: 'Estado del Componente',
-    name: 'Componente',
+    name: 'estadoId',
     valueColumn: () => '',
     type: 'string'
   },
   {
     title: '# Order',
-    name: 'Order',
+    name: 'order',
     valueColumn: () => '',
     type: 'string'
   },
-  // {
-  //   title: 'Eliminar',
-  //   name: 'delete',
-  // valueColumn: () => '',
-  //   type: 'icon',
-  //   icon: 'delete'
-  // }
 ];
 
 export const dataFormUser: IDataForm[] = [

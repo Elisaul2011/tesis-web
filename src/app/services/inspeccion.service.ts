@@ -29,7 +29,7 @@ export class inspeccionService extends BaseService  {
 
   postAlmacenes(bodyUser: any): void {
     this.httpClient.post(this.route_almacenes, bodyUser).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getAlmacenes();
       }
@@ -38,7 +38,7 @@ export class inspeccionService extends BaseService  {
 
   putAlmacenes(bodyUser: any): void {
     this.httpClient.put(this.route_almacenes, bodyUser).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getAlmacenes();
       }

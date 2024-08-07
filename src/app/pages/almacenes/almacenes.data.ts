@@ -28,6 +28,14 @@ export const columnsAlmacenes: IColumns<IAlmacenes>[] = [
         type: 'string'
     },
     {
+      title: 'Estado',
+      name: 'estado',
+      valueColumn: (element: IAlmacenes) => element.estado == 1,
+      type: 'boolean',
+      icon: 'edit',
+      color: 'primary'
+    },
+    {
       title: 'Editar',
       name: 'edit',
       valueColumn: () => '',
@@ -65,7 +73,11 @@ export const dataFormAlmacenes: IDataForm[] = [
       formControl: 'estado',
       value: '',
       required: true,
-      typeInput: 'number'
+      typeInput: 'select',
+      option: [
+        { value: 1, label: 'Activo' },
+        { value: 0, label: 'Inactivo' }
+      ]
     },
     {
       label: 'Pais',

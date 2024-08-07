@@ -20,7 +20,7 @@ export class TallerService extends BaseService {
 
   postTaller(bodyTaller: BodyCreateTaller): void {
     this.httpClient.post(this.route_taller, bodyTaller).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getTaller();
       }
@@ -29,7 +29,7 @@ export class TallerService extends BaseService {
 
   putTaller(bodyTaller: BodyUpdateTaller): void {
     this.httpClient.put(this.route_taller, bodyTaller).subscribe(result => {
-      console.log(result);
+       
       if(result){
         this.getTaller();
       }

@@ -25,7 +25,7 @@ export class almacenService extends BaseService {
 
   postAlmacenes(bodyAlmacenes: BodyCreateAlmacen): void {
     this.httpClient.post<BaseResponse>(this.route_almacenes, bodyAlmacenes).subscribe((result: BaseResponse) => {
-      console.log(result);
+       
       if(result){
         this.getAlmacenes();
       }
@@ -34,7 +34,7 @@ export class almacenService extends BaseService {
 
   putAlmacenes(putAlmacen: BodyUpdateAlmacen): void {
     this.httpClient.put<BaseResponse>(this.route_almacenes, putAlmacen).subscribe((result:BaseResponse) => {
-      console.log(result);
+       
       if(result){
         this.getAlmacenes();
       }
@@ -43,7 +43,7 @@ export class almacenService extends BaseService {
 
   deleteAlmacenes(idAlmacen: number): void {
     this.httpClient.delete<BaseResponse>(`${this.route_almacenes}/${idAlmacen}`).subscribe((result:BaseResponse) => {
-      console.log(result);
+       
       if(result){
         this.getAlmacenes();
       }
