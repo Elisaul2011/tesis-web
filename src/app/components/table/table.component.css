@@ -1,0 +1,8 @@
+th.mat-header-cell {
+    font-weight: bold;
+    color: black;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1;
+}

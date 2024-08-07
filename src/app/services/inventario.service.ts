@@ -2,17 +2,18 @@ import { computed, Injectable, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
 import { IInventario } from '../interfaces/inventario';
 import { HttpClient } from '@angular/common/http';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InventarioService {
+export class InventarioService extends BaseService {
 
   private base_router = `${base_route}/inventario`;
   private setInventarioData = signal<IInventario[]>([]);
   public getInventarioData = computed<IInventario[]>(() => this.setInventarioData());
 
-  constructor(private httpClient: HttpClient) { }
+  // constructor(private httpClient: HttpClient) { }
 
   getInventario(): void {
     this.httpClient.get<IInventario[]>(this.base_router).subscribe((result: IInventario[]) => {

@@ -57,8 +57,6 @@ export class TableComponent implements OnInit, AfterViewInit{
   }
 
   styleHead(styles: string | undefined): string {
-    console.log(styles);
-    
     return `${styles}`
   }
 

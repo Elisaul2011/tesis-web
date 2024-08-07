@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
 import { IRoles, IUsers } from '../interfaces/users';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService extends BaseService {
 
   //rutas del api
   private route_users = `${base_route}/users`;
@@ -18,7 +19,7 @@ export class UsersService {
   public getUserData = computed<IUsers[]>(() => this.setUserData());
   public getUserRolsData = computed<IRoles[]>(() => this.setUserRolesData());
 
-  constructor(private httpClient: HttpClient) { }
+  // constructor(private httpClient: HttpClient) { }
 
   getUsers(): void {
     this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:any[])  => {
