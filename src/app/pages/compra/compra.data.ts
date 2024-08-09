@@ -34,6 +34,12 @@ export const columnsCompra: IColumns<ICompra>[] = [
     type: 'string'
   },
   {
+    title: 'Proveedor',
+    name: 'proveedor',
+    valueColumn: (element: ICompra) => element.proveedor,
+    type: 'string'
+  },
+  {
     title: 'Editar',
     name: 'edit',
     valueColumn: () => '',

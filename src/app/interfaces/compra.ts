@@ -3,6 +3,7 @@ export interface ICompra {
   ordenCompra:   string;
   Fecha:         Date;
   descripcion:   string;
+  proveedor:   string;
   cantidad:      number;
   pn:            string;
   sn:            string;

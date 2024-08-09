@@ -52,9 +52,9 @@ export class FormularioComponent implements OnInit {
   readonly data = inject<IFormulario>(MAT_DIALOG_DATA);
   readonly dialogRef = inject(MatDialogRef<FormularioComponent>);
 
-  private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
-  private readonly _intl = inject(MatDatepickerIntl);
-  private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE));
+  // private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
+  // private readonly _intl = inject(MatDatepickerIntl);
+  // private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE));
 
   zonasService = inject(ZonasService);
   selectEmpy: IDataForm | any = {} as IDataForm;
@@ -75,8 +75,8 @@ export class FormularioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._locale.set('es');
-    this._adapter.setLocale(this._locale());
+    // this._locale.set('es');
+    // this._adapter.setLocale(this._locale());
     
     this.data.dataForm.map((form: IDataForm) => {
       this.globalForm.addControl(form.formControl, new FormControl(form.value));
