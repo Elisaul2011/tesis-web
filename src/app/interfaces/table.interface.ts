@@ -1,6 +1,7 @@
 export interface IColumns<T> {
   title: string;
   name: string;
+  loop?: number;
   valueColumn: (element: T) => string | number | Date | boolean
   type: typesColumns;
   link?: string;

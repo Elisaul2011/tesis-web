@@ -12,7 +12,7 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatButtonModule } from '@angular/material/button';
-import { IAtas, IInventario, ITiposComponentes, IZonas } from '../../interfaces/inventario';
+import { IAtas, IInventario, ITipocomponente } from '../../interfaces/inventario';
 import { InventarioService } from '../../services/inventario.service';
 import { almacenService } from '../../services/almacen.service';
 import { ZonasService } from '../../services/zonas.service';
@@ -66,7 +66,7 @@ export class InventarioComponent {
 
       const findTipos = formularioInventario.dataForm.find(form => form.formControl == 'tipoComponenteId');
       if (findTipos) {
-        findTipos.option = this.tiposComponentesService.getTiposComponentesData().map((tipos: ITiposComponentes) => {
+        findTipos.option = this.tiposComponentesService.getTiposComponentesData().map((tipos: ITipocomponente) => {
           return {
             label: tipos.tipoComponente,
             value: tipos.idTipoComponente
@@ -94,8 +94,6 @@ export class InventarioComponent {
       this.deleteData(dataComponent.data);
     }
   }
-
-
 
   openDialog(): void {
     formularioInventario.dataForm.map((form) => (form.value = ''));

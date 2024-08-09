@@ -1,11 +1,3 @@
-// export interface ICompra {
-// id: number;
-// ordenCompra: string;
-// fecha: Date;
-// pn: string;
-// descripcion: string;
-// cantidad: number;
-// }
 export interface ICompra {
   idOrdenCompra: number;
   ordenCompra:   string;

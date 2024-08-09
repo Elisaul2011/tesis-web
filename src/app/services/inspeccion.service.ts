@@ -1,48 +1,45 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
 import { IInventario } from '../interfaces/inventario';
 import { BaseService } from './base.service';
+import { BaseResponse } from '../interfaces/base.interface';
+import { IInspeccion } from '../interfaces/inspeccion';
 
 @Injectable({
   providedIn: 'root'
 })
-export class inspeccionService extends BaseService  {
+export class inspeccionService extends BaseService {
+  private base_router = `${base_route}/inspeccion`;
+  private setInspeccionData = signal<IInspeccion[]>([]);
+  public getInspeccionData = computed<IInspeccion[]>(() => this.setInspeccionData());
 
-  private route_almacenes = `${base_route}/almacen`;
-  private setAlmacenesData = signal<IInventario[]>([]);
-  public getAlmacenesData = computed<IInventario[]>(() => this.setAlmacenesData());
-
-  // constructor(private httpClient: HttpClient) { }
-
-  getAlmacenes(): void {
-    this.httpClient.get<IInventario[]>(this.route_almacenes).subscribe((result:IInventario[])  => {
-      this.setAlmacenesData.set(result);
+  getInspeccion(): void {
+    this.httpClient.get<IInspeccion[]>(this.base_router).subscribe((result: IInspeccion[]) => {
+      this.setInspeccionData.set(result);
     })
   }
 
-  getZonas(): void {
-    this.httpClient.get<IInventario[]>(this.route_almacenes).subscribe((result:IInventario[])  => {
-      this.setAlmacenesData.set(result);
-    })
-  }
-
-  postAlmacenes(bodyUser: any): void {
-    this.httpClient.post(this.route_almacenes, bodyUser).subscribe(result => {
-       
-      if(result){
-        this.getAlmacenes();
+  postInspeccion(bodyAlmacenes: any): void {
+    this.httpClient.post<BaseResponse>(this.base_router, bodyAlmacenes).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getInspeccion();
       }
     })
   }
 
-  putAlmacenes(bodyUser: any): void {
-    this.httpClient.put(this.route_almacenes, bodyUser).subscribe(result => {
-       
-      if(result){
-        this.getAlmacenes();
+  putInspeccion(putAlmacen: any): void {
+    this.httpClient.put<BaseResponse>(this.base_router, putAlmacen).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getInspeccion();
       }
     })
   }
 
+  deleteInspeccion(idAlmacen: number): void {
+    this.httpClient.delete<BaseResponse>(`${this.base_router}/${idAlmacen}`).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getInspeccion();
+      }
+    })
+  }
 }
