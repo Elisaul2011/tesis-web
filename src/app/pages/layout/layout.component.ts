@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { IMenu, Roles, menuLayout } from './layout.data';
 import { MatIconModule } from '@angular/material/icon';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-layout',
@@ -14,8 +15,8 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 })
 export class LayoutComponent implements OnInit {
   menuLayout: IMenu[] = menuLayout;
-  userRol: Roles = 'Almacenista';
   close: boolean = false;
+  userService = inject(UsersService);
   styleMenu: string =
     'flex hidden bg-blue-700 z-20 h-full top-0 left-0 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
 
@@ -25,7 +26,12 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.menuLayout = menuLayout.filter(menu => menu.userRol?.includes(this.userRol));
+    const user = this.userService.getUserToken();
+    if (user) {
+      this.menuLayout = menuLayout.filter(menu => menu.userRol?.includes(user.roles.rol as Roles));
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
   mediaQuery() {
@@ -51,6 +57,7 @@ export class LayoutComponent implements OnInit {
   }
 
   logout(): void {
+    localStorage.removeItem('userToken');
     this.router.navigate(['/login']);
   }
 }

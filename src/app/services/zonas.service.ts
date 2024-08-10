@@ -1,26 +1,27 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { IZonas } from '../interfaces/inventario';
+import { IZona } from '../interfaces/inventario';
 import { HttpClient } from '@angular/common/http';
 import { base_route } from '../../../enviroment';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ZonasService {
+export class ZonasService extends BaseService  {
   private base_router = `${base_route}/zona`;
-  private setZonaData = signal<IZonas[]>([]);
-  public getZonaData = computed<IZonas[]>(() => this.setZonaData());
+  private setZonaData = signal<IZona[]>([]);
+  public getZonaData = computed<IZona[]>(() => this.setZonaData());
 
-  constructor(private httpClient: HttpClient) { }
+  // constructor(private httpClient: HttpClient) { }
 
   getZonas(): void {
-    this.httpClient.get<IZonas[]>(this.base_router).subscribe((result: IZonas[])  => {
+    this.httpClient.get<IZona[]>(this.base_router).subscribe((result: IZona[])  => {
       this.setZonaData.set(result);
     })
   }
 
   getZonasByAlmacen(almacenId: string): void {
-    this.httpClient.get<IZonas[]>(`${this.base_router}/${almacenId}`).subscribe((result: IZonas[])  => {
+    this.httpClient.get<IZona[]>(`${this.base_router}/${almacenId}`).subscribe((result: IZona[])  => {
       this.setZonaData.set(result);
     })
   }

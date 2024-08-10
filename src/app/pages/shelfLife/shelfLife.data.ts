@@ -1,73 +1,73 @@
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IShelfLife } from "../../interfaces/shelfLife";
 import { IColumns } from "../../interfaces/table.interface";
-import { dataFormAlmacen } from "../inventario/inventario.data";
 
-export const columnsShelfLife: IColumns<any>[] = [
+export const columnsShelfLife: IColumns<IShelfLife>[] = [
   {
     title: 'Ubicación',
-    name: 'ubicacion',
-    valueColumn: () => '',
-    type: 'string'
+    name: 'inventario.almacenes.nombre',
+    valueColumn: (element) => element.inventario.almacenes.nombre,
+    type: 'string',
+    loop: 3
   },
   {
     title: 'Zona',
-    name: 'zona',
-    valueColumn: () => '',
+    name: 'inventario.zona.zona',
+    valueColumn: (element) => element.inventario.zona.zona,
     type: 'string'
   },
   {
     title: 'P/N',
-    name: 'pn',
-    valueColumn: () => '',
+    name: 'inventario.pn',
+    valueColumn: (element) => element.inventario.pn,
     type: 'string'
   },
   {
     title: 'Descripción',
-    name: 'descripción',
-    valueColumn: () => '',
+    name: 'inventario.descripcion',
+    valueColumn: (element) => element.inventario.descripcion,
     type: 'string'
   },
   {
     title: 'Tipo',
-    name: 'tipo',
-    valueColumn: () => '',
+    name: 'inventario.tipocomponente.tipoComponente',
+    valueColumn: (element) => element.inventario.tipocomponente.tipoComponente,
     type: 'string'
   },
   {
     title: 'S/N',
-    name: 'sn',
-    valueColumn: () => '',
+    name: 'inventario.sn',
+    valueColumn: (element) => element.inventario.sn,
     type: 'string'
   },
   {
     title: 'Cantidad',
-    name: 'cantidad',
-    valueColumn: () => '',
+    name: 'inventario.cantidad',
+    valueColumn: (element) => element.inventario.cantidad,
     type: 'string'
   },
   {
     title: 'Lote',
-    name: 'lote',
-    valueColumn: () => '',
+    name: 'inventario.lote',
+    valueColumn: (element) => element.inventario.lote,
     type: 'string'
   },
   {
     title: 'Estado',
-    name: 'estado',
-    valueColumn: () => '',
+    name: 'inventario.estado.estado',
+    valueColumn: (element) => element.inventario.estado.estado,
     type: 'string'
   },
   {
     title: 'Shelf Lite',
-    name: 'sl',
-    valueColumn: () => '',
-    type: 'string'
+    name: 'inventario.shelfLife',
+    valueColumn: (element) => element.inventario.shelfLife,
+    type: 'date'
   },
   {
     title: 'Vence en',
-    name: 'vence',
-    valueColumn: () => '',
+    name: 'venceEn',
+    valueColumn: (element) => element.venceEn,
     type: 'string'
   }
 ];
@@ -167,9 +167,5 @@ export const dataFormShelfLife: IDataForm[] = [
 
 export const formularioShelfLife: IFormulario = {
   title: 'Registrar Nuevo Componente',
-  dataForm: dataFormAlmacen
+  dataForm: dataFormShelfLife
 }
-
-export const shelfLife: IShelfLife[] = [
-
-]

@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { aeronave, columnsAeronave, dataFormAeronave, formularioAeronave } from './aeronave.data';
+import { columnsAeronave, formularioAeronave } from './aeronave.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { IAeronave } from '../../interfaces/aeronave';
+import { BodyCreateAeronave, BodyUpdateAeronave, IAeronave } from '../../interfaces/aeronave';
 import { MatButtonModule } from '@angular/material/button';
+import { aeronaveService } from '../../services/aeronave.service';
 
 @Component({
   selector: 'app-aeronave',
@@ -22,20 +23,20 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './aeronave.component.css',
 })
 export class AeronaveComponent {
-    columnsAeronave: IColumns<any>[] = columnsAeronave;
-    dataAeronave: IAeronave[] = aeronave;
+    columnsAeronave: IColumns<IAeronave>[] = columnsAeronave;
+    dataAeronave: IAeronave[] = [];
 
-    //aeronaveService = inject(aeronaveService);
+    aeronaveService = inject(aeronaveService);
     dialog = inject(MatDialog);
 
     constructor(){
       effect(() => {
-
-      })
+        this.dataAeronave = this.aeronaveService.getAeronaveData();
+      })  
     }
 
     ngOnInit(): void {
-
+      this.aeronaveService.getAeronaves();
     }
 
     defectColumnAction(dataComponent: ISendDataTable): void {
@@ -50,62 +51,35 @@ export class AeronaveComponent {
 
     openDialog(): void {
       formularioAeronave.dataForm.map(form => form.value = '');
-
+  
       const dialogRef = this.dialog.open(FormularioComponent, {
+        panelClass: 'stylesDialog',
         data: formularioAeronave,
       });
-
-      dialogRef.afterClosed().subscribe(result => {
-        result.id=this.dataAeronave.length+1;
-          this.dataAeronave.push(result)
+  
+      dialogRef.afterClosed().subscribe((result:BodyCreateAeronave ) => {
+        this.aeronaveService.postAeronaves(result)
       })
     }
-
-    editDataDialog(data: any): void {
-      const findNameUser = formularioAeronave.dataForm.find(form => form.formControl == 'nameUser');
-      const findLastnameUser = formularioAeronave.dataForm.find(form => form.formControl == 'lastnameUser');
-      const findRoles = formularioAeronave.dataForm.find(form => form.formControl == 'rolId');
-
-      // dataFormUser.map(form => {
-      //   const findForm = formularioUser.dataForm.find(form => form.formControl == form.formControl);
-
-      //   if(findForm){
-      //     findForm.value = data[form.formControl];
-      //   }
-      // });
-
-      if(findRoles && findNameUser && findLastnameUser){
-        findRoles.value = data.rolId;
-        findNameUser.value = data.nameUser;
-        findLastnameUser.value = data.lastnameUser;
-      }
-
+  
+    editDataDialog(data: IAeronave): void {
+      formularioAeronave.dataForm.map(form => {
+        const findByName = formularioAeronave.dataForm.find(loquesea => loquesea.formControl == form.formControl);
+        if(findByName){
+          findByName.value = data[form.formControl as keyof IAeronave]
+        }
+      })
+  
       const dialogRef = this.dialog.open(FormularioComponent, {
         data: formularioAeronave,
       });
-
-      formularioAeronave.dataForm.push({
-        label: '',
-        formControl: 'idUser',
-        value: data.idUser,
-        required: false,
-        typeInput: ''
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        const findData = this.dataAeronave.find(com => com.id==result.id)
-
-        if (findData){
-          findData.id=result.id
-          findData.aeronave=result.aeronave
-          findData.pn=result.pn
-          findData.descripcion=result.descripcion
-          findData.sn=result.sn
-          findData.cantidad=result.cantidad
-          findData.order=result.order
+  
+      dialogRef.afterClosed().subscribe((result: BodyUpdateAeronave) => {
+        if(result){
+          result.idAeronave = data.idAeronave;
+          this.aeronaveService.putAeronaves(result)
         }
       })
-
     }
 
 

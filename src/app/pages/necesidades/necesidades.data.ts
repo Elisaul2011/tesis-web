@@ -1,23 +1,24 @@
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
+import { INecesidades } from "../../interfaces/necesidades";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsNecesidades: IColumns<any>[] = [
+export const columnsNecesidades: IColumns<INecesidades>[] = [
     {
         title: 'P/N',
-        name: 'nombre',
-        valueColumn: () => '',
+        name: 'pn',
+        valueColumn: (element) => element.pn,
         type: 'string'
     },
     {
-      title: 'Descripción',
-      name: 'pais',
-        valueColumn: () => '',
-      type: 'string'
+        title: 'Descripción',
+        name: 'descripcion',
+        valueColumn: (element) => element.descripcion,
+        type: 'string'
     },
     {
         title: 'Cantidad',
-        name: 'descripcion',
-        valueColumn: () => '',
+        name: 'cantidad',
+        valueColumn: (element) => element.cantidad,
         type: 'string'
     },
     {

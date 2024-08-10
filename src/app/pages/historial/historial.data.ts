@@ -1,81 +1,62 @@
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
+import { IHistorial } from "../../interfaces/historial";
 import { IColumns } from "../../interfaces/table.interface";
 
-export const columnsHistorial: IColumns<any>[] = [
+export const columnsHistorial: IColumns<IHistorial>[] = [
   {
     title: 'Fecha del Movimiento',
-    name: 'Ubicación',
-    valueColumn: () => '',
-    type: 'string'
+    name: 'fechaMovimiento',
+    valueColumn: (element) => element.fechaMovimiento,
+    type: 'date'
   },
   {
     title: 'P/N',
-    name: 'Zona',
-    valueColumn: () => '',
+    name: 'inventario.pn',
+    valueColumn: (element) => element.inventario.pn,
     type: 'string'
   },
   {
     title: 'Descripción',
-    name: 'Descripción',
-    valueColumn: () => '',
-    type: 'icon',
-    icon: 'edit'
+    name: 'inventario.descripcion',
+    valueColumn: (element) => element.inventario.descripcion,
+    type: 'string',
   },
   {
     title: 'S/N',
-    name: 'S',
-    valueColumn: () => '',
+    name: 'inventario.sn',
+    valueColumn: (element) => element.inventario.sn,
     type: 'string'
   },
   {
     title: 'Cantidad',
-    name: 'Cantidad',
-    valueColumn: () => '',
+    name: 'inventario.cantidad',
+    valueColumn: (element) => element.inventario.cantidad,
     type: 'string'
   },
-  {
-    title: 'Origen',
-    name: 'Lote',
-    valueColumn: () => '',
-    type: 'string'
-  },
-  {
-    title: 'Destino',
-    name: 'Condición',
-    valueColumn: () => '',
-    type: 'string'
-  },
-  {
-    title: 'Realizado Por',
-    name: 'Estado',
-    valueColumn: () => '',
-    type: 'string'
-  },
+  // {
+  //   title: 'Realizado Por',
+  //   name: '',
+  //   valueColumn: (element) => element.inventario.pn,
+  //   type: 'string'
+  // },
   {
     title: 'Tipo de Movimiento',
-    name: 'Movimiento',
-    valueColumn: () => '',
+    name: 'tipomovimiento.tipoMovimiento',
+    valueColumn: (element) => element.tipomovimiento.tipoMovimiento,
     type: 'string'
   },
   {
     title: 'Estado del Componente',
-    name: 'Componente',
-    valueColumn: () => '',
+    name: 'inventario.estado.estado',
+    valueColumn: (element) => element.inventario.estado.estado,
     type: 'string'
   },
   {
     title: '# Order',
-    name: 'Order',
-    valueColumn: () => '',
+    name: 'inventario.order',
+    valueColumn: (element) => element.inventario.order,
     type: 'string'
   },
-  // {
-  //   title: 'Eliminar',
-  //   name: 'delete',
-  // valueColumn: () => '',
-  //   type: 'icon',
-  //   icon: 'delete'
-  // }
 ];
 
 export const dataFormUser: IDataForm[] = [

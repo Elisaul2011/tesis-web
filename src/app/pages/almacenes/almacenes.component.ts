@@ -54,13 +54,13 @@ export class AlmacenesComponent implements OnInit {
     formularioAlmacenes.dataForm.map(form => form.value = '');
 
     const dialogRef = this.dialog.open(FormularioComponent, {
-      panelClass: 'stylesDialog',
       data: formularioAlmacenes,
     });
 
     dialogRef.afterClosed().subscribe((result:BodyCreateAlmacen ) => {
-      result.estado = 1;
-      this.almacenService.postAlmacenes(result)
+      if(result){
+        this.almacenService.postAlmacenes(result)
+      }
     })
   }
 
@@ -78,7 +78,6 @@ export class AlmacenesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: BodyUpdateAlmacen) => {
       if(result){
-        result.estado = 1;
         result.idAlmacenes = data.idAlmacenes;
         this.almacenService.putAlmacenes(result)
       }

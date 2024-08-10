@@ -17,8 +17,8 @@ export const columnsUser: IColumns<IUsers>[] = [
   },
   {
     title: 'Rol',
-    name: 'roles',
-    valueColumn: (element: IUsers) => element.roles,
+    name: 'roles.rol',
+    valueColumn: (element: IUsers) => element.roles.rol,
     type: 'string'
   },
   {
@@ -32,14 +32,16 @@ export const columnsUser: IColumns<IUsers>[] = [
     name: 'edit',
     valueColumn: () => 'edit',
     type: 'icon',
-    icon: 'edit'
+    icon: 'edit',
+    color: 'primary'
   },
   // {
   //   title: 'Eliminar',
   //   name: 'delete',
   //   valueColumn: () => 'delete',
   //   type: 'icon',
-  //   icon: 'delete'
+  //   icon: 'delete',
+  //   color: 'warn'
   // }
 ];
 

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, effect, inject } from '@angular/core';
-import { IColumns, IConfigTable } from '../../interfaces/table.interface';
+import { IColumns, IConfigTable, ISendDataTable } from '../../interfaces/table.interface';
 import { columnsHistorial, dataFormUser, formularioUser } from './historial.data';
 import { TableComponent } from '../../components/table/table.component';
 import { UsersService } from '../../services/users.service';
@@ -9,6 +9,10 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { IHistorial } from '../../interfaces/historial';
+import Swal from 'sweetalert2';
+import { IInventario } from '../../interfaces/inventario';
+import { formularioInventario } from '../inventario/inventario.data';
+import { HistorialService } from '../../services/historial.service';
 @Component({
   selector: 'app-historial',
   standalone: true,
@@ -21,80 +25,66 @@ import { IHistorial } from '../../interfaces/historial';
   styleUrl: './historial.component.css',
 })
 export class HistorialComponent {
-  columnsHistorial: IColumns<any>[] = columnsHistorial;
+  columnsHistorial: IColumns<IHistorial>[] = columnsHistorial;
   dataHistorial: IHistorial[] = [];
   historialConfigTable: IConfigTable={btnAdd: false}
-  userService = inject(UsersService);
+  historialService = inject(HistorialService);
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
+      this.dataHistorial = this.historialService.getHistorialData();
 
-
-      const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
-      if(findRolesForm){
-        findRolesForm.option = this.userService.getUserRolsData().map((roles: IRoles) => {
-          return {
-            label: roles.rol,
-            value: roles.idRol
-          }
-        });
-      }
     })
   }
 
   ngOnInit(): void {
-    this.userService.getUsers();
-    this.userService.getUsersRoles();
+    this.historialService.getHistorial();
+  }
+
+  defectColumnAction(dataComponent: ISendDataTable): void {
+    if (dataComponent.action == 'add') {
+      this.openDialog();
+    }
+    if (dataComponent.action == 'edit') {
+      this.editDataDialog(dataComponent.data);
+    }
+    if (dataComponent.action == 'delete') {
+      this.deleteData(dataComponent.data);
+    }
   }
 
   openDialog(): void {
-    formularioUser.dataForm.map(form => form.value = '');
-
+    formularioInventario.dataForm.map((form) => (form.value = ''));
     const dialogRef = this.dialog.open(FormularioComponent, {
-      data: formularioUser,
+      panelClass: 'stylesDialog',
+      data: formularioInventario,
     });
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+  }
 
+  editDataDialog(data: IInventario): void {
+    console.log(data);
+    const dialogRef = this.dialog.open(FormularioComponent, {
+      data: formularioInventario,
+      panelClass: 'stylesDialog',
+    });
     dialogRef.afterClosed().subscribe(result => {
-      result.password = '12345678';
-      this.userService.postUsers(result)
     })
   }
 
-  editDataDialog(data: IUsers): void {
-    const findNameUser = formularioUser.dataForm.find(form => form.formControl == 'nameUser');
-    const findLastnameUser = formularioUser.dataForm.find(form => form.formControl == 'lastnameUser');
-    const findRoles = formularioUser.dataForm.find(form => form.formControl == 'rolId');
-
-    // dataFormUser.map(form => {
-    //   const findForm = formularioUser.dataForm.find(form => form.formControl == form.formControl);
-
-    //   if(findForm){
-    //     findForm.value = data[form.formControl];
-    //   }
-    // });
-
-    if(findRoles && findNameUser && findLastnameUser){
-      findRoles.value = data.rolId;
-      findNameUser.value = data.nameUser;
-      findLastnameUser.value = data.lastnameUser;
-    }
-
-    const dialogRef = this.dialog.open(FormularioComponent, {
-      data: formularioUser,
+  deleteData(data: IInventario): void {
+    Swal.fire({
+      title: "Seguro que quieres eliminar el componente del inventario?",
+      showDenyButton: true,
+      confirmButtonColor: "#3085d6",
+      denyButtonText: `Cancelar`,
+      confirmButtonText: "Confirmar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // this.historialConfigTable.deleteInventario(data.idInventario);
+      }
     });
-
-    formularioUser.dataForm.push({
-      label: '',
-      formControl: 'idUser',
-      value: data.idUser,
-      required: false,
-      typeInput: ''
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      result.password = '12345678';
-      this.userService.putUsers(result)
-    })
   }
 }

@@ -3,90 +3,103 @@ import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
 import { IColumns } from "../../interfaces/table.interface";
 
 export const columnsAlmacenes: IColumns<IAlmacenes>[] = [
-    {
-        title: 'Nombre',
-        name: 'nombre',
-        valueColumn: (element: IAlmacenes) => element.nombre,
-        type: 'string'
-    },
-    {
-        title: 'Descripción',
-        name: 'descripcion',
-        valueColumn: (element: IAlmacenes) => element.descripcion,
-        type: 'string'
-    },
-    {
-        title: 'Pais',
-        name: 'pais',
-        valueColumn: (element: IAlmacenes) => element.pais,
-        type: 'string'
-    },
-    {
-        title: 'Ciudad',
-        name: 'ciudad',
-        valueColumn: (element: IAlmacenes) => element.ciudad,
-        type: 'string'
-    },
-    {
-      title: 'Editar',
-      name: 'edit',
-      valueColumn: () => '',
-      type: 'icon',
-      icon: 'edit',
-      color: 'primary'
-    },
-    {
-      title: 'Eliminar',
-      name: 'delete',
-      valueColumn: () => '',
-      type: 'icon',
-      icon: 'delete',
-      color: 'warn'
-    }
+  {
+    title: 'Nombre',
+    name: 'nombre',
+    valueColumn: (element: IAlmacenes) => element.nombre,
+    type: 'string'
+  },
+  {
+    title: 'Descripción',
+    name: 'descripcion',
+    valueColumn: (element: IAlmacenes) => element.descripcion,
+    type: 'string'
+  },
+  {
+    title: 'Pais',
+    name: 'pais',
+    valueColumn: (element: IAlmacenes) => element.pais,
+    type: 'string'
+  },
+  {
+    title: 'Ciudad',
+    name: 'ciudad',
+    valueColumn: (element: IAlmacenes) => element.ciudad,
+    type: 'string'
+  },
+  {
+    title: 'Estado',
+    name: 'estado',
+    valueColumn: (element: IAlmacenes) => element.estado == 1,
+    type: 'boolean',
+    icon: 'edit',
+    color: 'primary'
+  },
+  {
+    title: 'Editar',
+    name: 'edit',
+    valueColumn: () => '',
+    type: 'icon',
+    icon: 'edit',
+    color: 'primary'
+  },
+  {
+    title: 'Eliminar',
+    name: 'delete',
+    valueColumn: () => '',
+    type: 'icon',
+    icon: 'delete',
+    color: 'warn'
+  }
 ];
 
 export const dataFormAlmacenes: IDataForm[] = [
-    {
-        label: 'Ciudad',
-        formControl: 'ciudad',
-        value: '',
-        required: true,
-        typeInput: 'text'
-    },
-    {
-        label: 'Descripción',
-        formControl: 'descripcion',
-        value: '',
-        required: true,
-        typeInput: 'text'
-    },
-    {
-      label: 'Estado',
-      formControl: 'estado',
-      value: '',
-      required: true,
-      typeInput: 'number'
-    },
-    {
-      label: 'Pais',
-      formControl: 'pais',
-      value: '',
-      required: true,
-      typeInput: 'text'
-    },
-    {
-      label: 'Nombre',
-      formControl: 'nombre',
-      value: '',
-      required: true,
-      typeInput: 'text'
-    }
+  {
+    label: 'Nombre',
+    formControl: 'nombre',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Descripción',
+    formControl: 'descripcion',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Pais',
+    formControl: 'pais',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Ciudad',
+    formControl: 'ciudad',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
+    label: 'Estado',
+    formControl: 'estado',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [
+      { value: 1, label: 'Activo' },
+      { value: 0, label: 'Inactivo' }
+    ]
+  },
+
 ];
 
 
 export const formularioAlmacenes: IFormulario = {
-    title: 'Formulario de usuarios',
-    dataForm: dataFormAlmacenes
+  title: 'Formulario de Almacenes',
+  dataForm: dataFormAlmacenes
 }
 
 // export const almacenes: IAlmacenes[] = [

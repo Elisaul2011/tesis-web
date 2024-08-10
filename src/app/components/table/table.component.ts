@@ -9,6 +9,7 @@ import { IColumns, IConfigTable, ISendDataTable, TypeActions } from '../../inter
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { FormatDatePipe } from '../../pipes/FormatDate.pipe';
 
 @Component({
   selector: 'app-table',
@@ -22,15 +23,16 @@ import { MatButtonModule } from '@angular/material/button';
     MatPaginatorModule,
     RouterLink,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    FormatDatePipe
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css',
 })
-export class TableComponent implements OnInit, AfterViewInit{
+export class TableComponent implements OnInit, AfterViewInit {
 
   @Input() columns: IColumns<any>[] = [];
-  @Input() configTable: IConfigTable={btnAdd: true};
+  @Input() configTable: IConfigTable = { btnAdd: true };
   @Input() dataTable: any[] = [];
 
   @Output() addNew = new EventEmitter<boolean>();
@@ -54,8 +56,12 @@ export class TableComponent implements OnInit, AfterViewInit{
     this.dataSource = new MatTableDataSource(this.dataTable);
   }
 
+  styleHead(styles: string | undefined): string {
+    return `${styles}`
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['dataTable']){
+    if (changes['dataTable']) {
       this.dataSource = new MatTableDataSource(this.dataTable);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -71,11 +77,41 @@ export class TableComponent implements OnInit, AfterViewInit{
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.dataTable && this.dataTable.length > 0) {
+      const filterColumns = this.columns.filter(column => column.type !== 'icon').map(col => col.name);
+      
+      const filterSearch = filterColumns.map((col: string) => {
+        return (
+          this.dataTable.filter((fil) => {
+            const splitWord = col.split('.');
+            // console.log(splitWord);
+            if(splitWord.length == 1){
+              // console.log(fil[splitWord[0]]);
+              return (fil[splitWord[0]].toString().toLowerCase().includes(filterValue.toLowerCase()))
+            }
+            if(splitWord.length == 2){
+              return (fil[splitWord[0]][splitWord[1]].toString().toLowerCase().includes(filterValue.toLowerCase()))
+            }
+            if(splitWord.length == 3){
+              return (fil[splitWord[0]][splitWord[1]][splitWord[2]].toString().toLowerCase().includes(filterValue.toLowerCase()))
+            }
+            return (fil[col].toString().toLowerCase().includes(filterValue.toLowerCase()))
+          }
+          )
+        )
+      }
+          
+        )
+        .flat();
+      const reduceFilter = new Set(filterSearch);
+      const result = [...reduceFilter];
+      this.dataSource.data = result;
     }
+
+    // if (this.dataSource.paginator) {
+    //   this.dataSource.paginator.firstPage();
+    // }
   }
 
   redirectLink(rowLink: any): void {
@@ -85,10 +121,10 @@ export class TableComponent implements OnInit, AfterViewInit{
   }
 
   openDialog(): void {
-    this.sendData.emit({data: null,action: 'add'})
+    this.sendData.emit({ data: null, action: 'add' })
   }
 
   editDataDialog(data: any, actionColumn: string): void {
-    this.sendData.emit({data: data, action: actionColumn as TypeActions})
+    this.sendData.emit({ data: data, action: actionColumn as TypeActions })
   }
 }

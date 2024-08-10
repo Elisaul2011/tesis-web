@@ -3,10 +3,12 @@ import { Component, effect, inject } from '@angular/core';
 import { TableComponent } from '../../components/table/table.component';
 import { MatDialog } from '@angular/material/dialog';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
-import { columnsInspeccion, dataFormInspeccion, formularioInspeccion, inspeccion } from './inspeccion.data';
+import { columnsInspeccion, formularioInspeccion } from './inspeccion.data';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatButtonModule } from '@angular/material/button';
 import { IInspeccion } from '../../interfaces/inspeccion';
+import { inspeccionService } from '../../services/inspeccion.service';
+import Swal from 'sweetalert2';
 
 
 
@@ -22,76 +24,65 @@ import { IInspeccion } from '../../interfaces/inspeccion';
   styleUrl: './inspeccion.component.css',
 })
 export class InspeccionComponent {
-  columnsInspeccion: IColumns<any>[] = columnsInspeccion;
-  dataInspeccion: IInspeccion[] = inspeccion;
+  columnsInspeccion: IColumns<IInspeccion>[] = columnsInspeccion;
+  dataInspeccion: IInspeccion[] = [];
 
+  inspeccionService = inject(inspeccionService);
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
-
+      this.dataInspeccion = this.inspeccionService.getInspeccionData();
     })
   }
 
   ngOnInit(): void {
-
+    this.inspeccionService.getInspeccion();
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
-    if(dataComponent.action == 'add'){
+    if (dataComponent.action == 'add') {
       this.openDialog();
     }
-    if(dataComponent.action == 'edit'){
+    if (dataComponent.action == 'edit') {
       this.editDataDialog(dataComponent.data);
     }
-    // if(dataComponent.action == 'delete'){
-    //   this.deleteData(dataComponent.data);
-    // }
+    if (dataComponent.action == 'delete') {
+      this.deleteData(dataComponent.data);
+    }
   }
 
   openDialog(): void {
-    formularioInspeccion.dataForm.map(form => form.value = '');
-
+    formularioInspeccion.dataForm.map((form) => (form.value = ''));
     const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
       data: formularioInspeccion,
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      result.id=this.dataInspeccion.length+1;
-      this.dataInspeccion.push(result)
-    })
+    dialogRef.afterClosed().subscribe((result) => {
+    });
   }
 
   editDataDialog(data: IInspeccion): void {
-    const findNameUser = formularioInspeccion.dataForm.find(form => form.formControl == 'nameUser');
-    const findLastnameUser = formularioInspeccion.dataForm.find(form => form.formControl == 'lastnameUser');
-    const findRoles = formularioInspeccion.dataForm.find(form => form.formControl == 'rolId');
-
-    // dataFormUser.map(form => {
-    //   const findForm = formularioUser.dataForm.find(form => form.formControl == form.formControl);
-
-    //   if(findForm){
-    //     findForm.value = data[form.formControl];
-    //   }
-    // });
-
-
-
+    console.log(data);
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioInspeccion,
+      panelClass: 'stylesDialog',
     });
-
-    formularioInspeccion.dataForm.push({
-      label: '',
-      formControl: 'id',
-      value: data.id,
-      required: false,
-      typeInput: ''
-    });
-
     dialogRef.afterClosed().subscribe(result => {
-      result.id=this.dataInspeccion.length+1;
-      this.dataInspeccion.push(result)
     })
+  }
+
+  deleteData(data: IInspeccion): void {
+    Swal.fire({
+      title: "Seguro que quieres eliminar el componente del inventario?",
+      showDenyButton: true,
+      confirmButtonColor: "#3085d6",
+      denyButtonText: `Cancelar`,
+      confirmButtonText: "Confirmar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.inspeccionService.deleteInspeccion(data.idInspeccion);
+      }
+    });
   }
 }
