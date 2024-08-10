@@ -21,11 +21,14 @@ import {
   Output,
   effect,
   inject,
+  signal,
 } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { IZonas } from '../../interfaces/inventario';
+import { IZona } from '../../interfaces/inventario';
+import { MatDatepickerIntl, MatDatepickerModule } from '@angular/material/datepicker';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 
 @Component({
   selector: 'app-formulario',
@@ -40,6 +43,7 @@ import { IZonas } from '../../interfaces/inventario';
     MatButtonModule,
     MatSelectModule,
     MatSlideToggleModule,
+    MatDatepickerModule,
   ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css',
@@ -48,6 +52,10 @@ export class FormularioComponent implements OnInit {
   readonly data = inject<IFormulario>(MAT_DIALOG_DATA);
   readonly dialogRef = inject(MatDialogRef<FormularioComponent>);
 
+  // private readonly _adapter = inject<DateAdapter<unknown, unknown>>(DateAdapter);
+  // private readonly _intl = inject(MatDatepickerIntl);
+  // private readonly _locale = signal(inject<unknown>(MAT_DATE_LOCALE));
+
   zonasService = inject(ZonasService);
   selectEmpy: IDataForm | any = {} as IDataForm;
 
@@ -55,16 +63,21 @@ export class FormularioComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      this.selectEmpy.option = this.zonasService.getZonaData().map((zona: IZonas) => {
-          return {
-            label: zona.zona,
-            value: zona.idZona,
-          };
-        });
+      if(this.selectEmpy){
+        this.selectEmpy.option = this.zonasService.getZonaData().map((zona: IZona) => {
+            return {
+              label: zona.zona,
+              value: zona.idZona,
+            };
+          });
+      }
     });
   }
 
   ngOnInit(): void {
+    // this._locale.set('es');
+    // this._adapter.setLocale(this._locale());
+    
     this.data.dataForm.map((form: IDataForm) => {
       this.globalForm.addControl(form.formControl, new FormControl(form.value));
     });

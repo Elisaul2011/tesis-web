@@ -7,6 +7,8 @@ import { columnsNecesidades, formularioNecesidades } from './necesidades.data';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
+import { NecesidadesService } from '../../services/necesidades.service';
+import { INecesidades } from '../../interfaces/necesidades';
 
 @Component({
   selector: 'app-necesidades',
@@ -19,81 +21,61 @@ import { TableComponent } from '../../components/table/table.component';
   styleUrl: './necesidades.component.css',
 })
 export class NecesidadesComponent {
-  columnsNecesidades: IColumns<any>[] = columnsNecesidades;
-  dataNecesidades: any[] = [];
+  columnsNecesidades: IColumns<INecesidades>[] = columnsNecesidades;
+  dataNecesidades: INecesidades[] = [];
 
-
+  necesidadesService = inject(NecesidadesService);
   dialog = inject(MatDialog);
 
-  constructor(){
+  constructor() {
     effect(() => {
-
-
-      // const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
-      // if(findRolesForm){
-      //   findRolesForm.option = this.userService.getUserRolsData().map((roles: IRoles) => {
-      //     return {
-      //       label: roles.rol,
-      //       value: roles.idRol
-      //     }
-      //   });
-      // }
+      this.dataNecesidades = this.necesidadesService.getNecesidadesData();
     })
   }
 
   ngOnInit(): void {
-
+    this.necesidadesService.getNecesidades();
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
-    if(dataComponent.action == 'add'){
+    if (dataComponent.action == 'add') {
       this.openDialog();
     }
-    if(dataComponent.action == 'edit'){
+    if (dataComponent.action == 'edit') {
       this.editDataDialog(dataComponent.data);
     }
-    // if(dataComponent.action == 'delete'){
-    //   this.deleteData(dataComponent.data);
-    // }
   }
 
   openDialog(): void {
     formularioNecesidades.dataForm.map(form => form.value = '');
 
     const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
       data: formularioNecesidades,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe((result: INecesidades) => {
+      this.necesidadesService.postNecesidades(result)
     })
   }
 
-  editDataDialog(data: any): void {
-    const findNameUser = formularioNecesidades.dataForm.find(form => form.formControl == 'nameUser');
-    const findLastnameUser = formularioNecesidades.dataForm.find(form => form.formControl == 'lastnameUser');
-    const findRoles = formularioNecesidades.dataForm.find(form => form.formControl == 'rolId');
-
-    // if(findRoles && findNameUser && findLastnameUser){
-    //   findRoles.value = data.rolId;
-    //   findNameUser.value = data.nameUser;
-    //   findLastnameUser.value = data.lastnameUser;
-    // }
+  editDataDialog(data: INecesidades): void {
+    formularioNecesidades.dataForm.map(form => {
+      const findByName = formularioNecesidades.dataForm.find(loquesea => loquesea.formControl == form.formControl);
+      if (findByName) {
+        findByName.value = data[form.formControl as keyof INecesidades]
+      }
+    })
 
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioNecesidades,
     });
 
-    // formularioUser.dataForm.push({
-    //   label: '',
-    //   formControl: 'idUser',
-    //   value: data.idUser,
-    //   required: false,
-    //   typeInput: ''
-    // });
-
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe((result: INecesidades) => {
+      if (result) {
+        result.idNecesidadesTecnicas = data.idNecesidadesTecnicas;
+        this.necesidadesService.putNecesidades(result)
+      }
     })
   }
 }

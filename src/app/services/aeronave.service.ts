@@ -13,15 +13,14 @@ export class aeronaveService extends BaseService {
   public getAeronaveData = computed<IAeronave[]>(() => this.setAeronaveData());
 
   getAeronaves(): void {
-    this.httpClient.get<IAeronave[]>(this.route_aeronaves).subscribe((result:IAeronave[])  => {
+    this.httpClient.get<IAeronave[]>(this.route_aeronaves).subscribe((result: IAeronave[]) => {
       this.setAeronaveData.set(result);
     })
   }
 
   postAeronaves(bodyAeronave: BodyCreateAeronave): void {
     this.httpClient.post(this.route_aeronaves, bodyAeronave).subscribe(result => {
-       
-      if(result){
+      if (result) {
         this.getAeronaves();
       }
     })
@@ -29,8 +28,7 @@ export class aeronaveService extends BaseService {
 
   putAeronaves(bodyAeronave: BodyUpdateAeronave): void {
     this.httpClient.put(this.route_aeronaves, bodyAeronave).subscribe(result => {
-       
-      if(result){
+      if (result) {
         this.getAeronaves();
       }
     })

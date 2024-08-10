@@ -3,7 +3,7 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { CompraService } from '../../services/compra.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { columnsCompra, compras, formularioCompra } from './compra.data';
+import { columnsCompra,formularioCompra } from './compra.data';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
@@ -49,67 +49,40 @@ export class CompraComponent {
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
-    if(dataComponent.action == 'add'){
+    if (dataComponent.action == 'add') {
       this.openDialog();
     }
-    if(dataComponent.action == 'edit'){
+    if (dataComponent.action == 'edit') {
       this.editDataDialog(dataComponent.data);
     }
-    if(dataComponent.action == 'delete'){
+    if (dataComponent.action == 'delete') {
       this.deleteData(dataComponent.data);
     }
   }
 
   openDialog(): void {
-    formularioCompra.dataForm.map(form => form.value = '');
-
+    formularioCompra.dataForm.map((form) => (form.value = ''));
     const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
       data: formularioCompra,
     });
-
-    dialogRef.afterClosed().subscribe(result => {
-      result.id=this.compraData.length+1;
-      this.compraData.push(result)
-    })
+    dialogRef.afterClosed().subscribe((result) => {
+    });
   }
 
-  editDataDialog(data: any): void {
-    const columnsData = this.columnsCompra.filter(col => col.type!='icon')
-
-    columnsData.map(compraData => {
-      const findColumns = formularioCompra.dataForm.find(form => form.formControl == compraData.name);
-      if (findColumns){
-        findColumns.value=data[compraData.name as string]
-      }
-    })
-    formularioCompra.dataForm.push({
-      formControl: 'id',
-      label: '',
-      required: false,
-      typeInput: '',
-      value: data.id
-    })
-
+  editDataDialog(data: ICompra): void {
+    console.log(data);
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioCompra,
+      panelClass: 'stylesDialog',
     });
-
-
     dialogRef.afterClosed().subscribe(result => {
-      // const findData = this.compraData.find(com => com.id==result.id)
-
-      // if (findData){
-
-      //   findData.descripcion=result.descripcion
-      //   findData.cantidad=result.cantidad
-      //   findData.pn=result.pn
-      // }
     })
   }
 
   deleteData(data: ICompra): void {
     Swal.fire({
-      title: "¿Seguro que quieres eliminar La Orden de Compra?",
+      title: "Seguro que quieres eliminar el componente del inventario?",
       showDenyButton: true,
       confirmButtonColor: "#3085d6",
       denyButtonText: `Cancelar`,

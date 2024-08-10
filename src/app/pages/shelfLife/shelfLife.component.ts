@@ -1,11 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { IColumns, IConfigTable } from '../../interfaces/table.interface';
+import { IColumns, IConfigTable, ISendDataTable } from '../../interfaces/table.interface';
 import { columnsShelfLife, formularioShelfLife } from './shelfLife.data';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { TableComponent } from "../../components/table/table.component";
 import { MatButtonModule } from '@angular/material/button';
+import { ReportSlService } from '../../services/report-sl.service';
+import { BodyCreateTaller, ITaller, BodyUpdateTaller } from '../../interfaces/taller';
+import { IShelfLife } from '../../interfaces/shelfLife';
 
 @Component({
   selector: 'app-shelf-life',
@@ -20,70 +23,62 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ShelfLifeComponent {
 
-  columnsShelfLife: IColumns<any>[] = columnsShelfLife;
-  dataSL: any[] = [];
+  columnsShelfLife: IColumns<IShelfLife>[] = columnsShelfLife;
+  dataSL: IShelfLife[] = [];
   SLConfigTable: IConfigTable={btnAdd: false}
-
+  reportSLService = inject(ReportSlService)
 
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
-
-
-      // const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
-      // if(findRolesForm){
-      //   findRolesForm.option = this.userService.getUserRolsData().map((roles: IRoles) => {
-      //     return {
-      //       label: roles.rol,
-      //       value: roles.idRol
-      //     }
-      //   });
-      // }
+      this.dataSL = this.reportSLService.getReportData();
     })
   }
 
   ngOnInit(): void {
+    this.reportSLService.getReportSL();
+  }
 
+  defectColumnAction(dataComponent: ISendDataTable): void {
+    if(dataComponent.action == 'add'){
+      this.openDialog();
+    }
+    if(dataComponent.action == 'edit'){
+      this.editDataDialog(dataComponent.data);
+    }
   }
 
   openDialog(): void {
     formularioShelfLife.dataForm.map(form => form.value = '');
 
     const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
       data: formularioShelfLife,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe((result:BodyCreateTaller ) => {
+      this.reportSLService.postReport(result)
     })
   }
 
-  editDataDialog(data: any): void {
-    const findNameUser = formularioShelfLife.dataForm.find(form => form.formControl == 'nameUser');
-    const findLastnameUser = formularioShelfLife.dataForm.find(form => form.formControl == 'lastnameUser');
-    const findRoles = formularioShelfLife.dataForm.find(form => form.formControl == 'rolId');
-
-    // if(findRoles && findNameUser && findLastnameUser){
-    //   findRoles.value = data.rolId;
-    //   findNameUser.value = data.nameUser;
-    //   findLastnameUser.value = data.lastnameUser;
-    // }
+  editDataDialog(data: ITaller): void {
+    formularioShelfLife.dataForm.map(form => {
+      const findByName = formularioShelfLife.dataForm.find(loquesea => loquesea.formControl == form.formControl);
+      if(findByName){
+        findByName.value = data[form.formControl as keyof ITaller]
+      }
+    })
 
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioShelfLife,
     });
 
-    // formularioUser.dataForm.push({
-    //   label: '',
-    //   formControl: 'idUser',
-    //   value: data.idUser,
-    //   required: false,
-    //   typeInput: ''
-    // });
-
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe((result: BodyUpdateTaller) => {
+      if(result){
+        result.idTaller = data.idTaller;
+        this.reportSLService.putReport(result)
+      }
     })
   }
 

@@ -11,38 +11,38 @@ export const columnsTaller: IColumns<ITaller>[] = [
   },
   {
     title: 'P/N',
-    name: 'pn',
-    valueColumn: (element) => element.idInventario.pn,
+    name: 'inventario.pn',
+    valueColumn: (element) => element.inventario.pn,
     type: 'string'
   },
   {
     title: 'Descripción',
-    name: 'descripcion',
-    valueColumn: (element) => element.idInventario.descripcion,
+    name: 'inventario.descripcion',
+    valueColumn: (element) => element.inventario.descripcion,
     type: 'string'
   },
   {
     title: 'Tipo',
-    name: 'tipo',
-    valueColumn: (element) => element.idInventario.idTipoComponente.tipoComponente,
+    name: 'inventario.tipocomponente.tipoComponente',
+    valueColumn: (element) => element.inventario.tipocomponente.tipoComponente,
     type: 'string'
   },
   {
     title: 'S/N',
-    name: 'sn',
-    valueColumn: (element) => element.idInventario.sn,
+    name: 'inventario.sn',
+    valueColumn: (element) => element.inventario.sn,
     type: 'string'
   },
   {
     title: 'Cantidad',
-    name: 'cantidad',
-    valueColumn: (element) => element.idInventario.cantidad,
+    name: 'inventario.cantidad',
+    valueColumn: (element) => element.inventario.cantidad,
     type: 'string'
   },
   {
     title: 'Workshop Order',
-    name: 'workshopOrder',
-    valueColumn: (element) => element.idInventario.order,
+    name: 'inventario.order',
+    valueColumn: (element) => element.inventario.order,
     type: 'string'
   },
   {
@@ -50,7 +50,8 @@ export const columnsTaller: IColumns<ITaller>[] = [
     name: 'edit',
     valueColumn: () => '',
     type: 'icon',
-    icon: 'edit'
+    icon: 'edit',
+    color: 'primary'
   }
 ];
 

@@ -1,14 +1,8 @@
+import { IInventario } from "./inventario";
+
 export interface IShelfLife {
-  id: number;
-  ubicacion: string;
-  zona: string;
-  pn: string;
-  descripción: string;
-  tipo: string;
-  sn: string;
-  cantidad: number;
-  lote: string;
-  estado: string;
-  sl: string;
-  vence: string;
+  idReporteShelfLife: number;
+  inventarioId: number;
+  venceEn: number;
+  inventario: IInventario;
 }

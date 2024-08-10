@@ -54,12 +54,13 @@ export class AlmacenesComponent implements OnInit {
     formularioAlmacenes.dataForm.map(form => form.value = '');
 
     const dialogRef = this.dialog.open(FormularioComponent, {
-      panelClass: 'stylesDialog',
       data: formularioAlmacenes,
     });
 
     dialogRef.afterClosed().subscribe((result:BodyCreateAlmacen ) => {
-      this.almacenService.postAlmacenes(result)
+      if(result){
+        this.almacenService.postAlmacenes(result)
+      }
     })
   }
 
