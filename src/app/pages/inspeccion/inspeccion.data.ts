@@ -94,7 +94,7 @@ export const dataFormInspeccion: IDataForm[] = [
 
 
 export const formularioInspeccion: IFormulario = {
-  title: 'Aprobación de componentes',
+  title: 'Aprobación de Componentes',
   dataForm: dataFormInspeccion
 }
 

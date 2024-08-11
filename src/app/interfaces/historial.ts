@@ -5,9 +5,6 @@ export interface IHistorial {
   descripcion: string;
   sn: string;
   cantidad: number;
-  origen: string;
-  destino: string;
-  realizado: string;
   tipoMovimiento: string;
   estado: string;
   order: string;

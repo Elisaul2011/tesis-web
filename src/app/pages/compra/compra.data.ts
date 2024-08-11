@@ -16,6 +16,13 @@ export const columnsCompra: IColumns<ICompra>[] = [
       type: 'string'
     },
     {
+      title: 'Proveedor',
+      name: 'proveedor',
+        valueColumn: (element: ICompra) => element.proveedor,
+      type: 'string'
+    },
+    //falta agregar data en proveedor
+    {
       title: 'P/N',
       name: 'pn',
         valueColumn: (element: ICompra) => element.pn,
@@ -91,7 +98,7 @@ export const dataFormCompra: IDataForm[] = [
 
 
 export const formularioCompra: IFormulario = {
-    title: 'Orden de compra',
+    title: 'Registro de Orden de Compra',
     dataForm: dataFormCompra
 }
 

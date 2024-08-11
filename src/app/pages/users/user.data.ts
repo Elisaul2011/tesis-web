@@ -67,6 +67,13 @@ export const dataFormUser: IDataForm[] = [
     option: []
   },
   {
+    label: 'Contraseña',
+    formControl: 'password',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
     label: 'Activo',
     formControl: 'active',
     value: false,
@@ -77,7 +84,7 @@ export const dataFormUser: IDataForm[] = [
 
 
 export const formularioUser: IFormulario = {
-  title: 'Registro de usuarios',
+  title: 'Registrar Usuario',
   dataForm: dataFormUser
 }
 

@@ -55,7 +55,7 @@ export const dataFormNecesidades: IDataForm[] = [
 
 
 export const formularioNecesidades: IFormulario = {
-    title: 'Solicitud de materiales',
+    title: 'Solicitud de Materiales',
     dataForm: dataFormNecesidades
 }
 

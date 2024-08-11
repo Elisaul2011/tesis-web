@@ -5,68 +5,67 @@ export interface IMenu {
   userRol?: Roles[];
 }
 
-export type Roles = 'Almacenista' | 'Jefe de Almacen' | 'User';
+export type Roles = 'Almacenista' | 'Jefe de Almacen' | 'Tecnico' | 'Inspector' | 'Admin';
 
 export const menuLayout: IMenu[] = [
+  {
+    title: 'Orden de compra',
+    redirect: 'orden-compra',
+    icon: 'receipt_long',
+    userRol: ['Almacenista', 'Jefe de Almacen', 'Admin']
+  },
   {
     title: 'Inventario',
     redirect: 'almacen',
     icon: 'warehouse',
-    userRol: ['Almacenista', 'Jefe de Almacen']
-  },
-  {
-    title: 'Aeronave',
-    redirect: 'aeronave',
-    icon: 'flight',
-    userRol: ['Almacenista', 'Jefe de Almacen']
-  },
-  {
-    title: 'Taller de reparación',
-    redirect: 'OT',
-    icon: 'home_repair_service',
-    userRol: ['Almacenista', 'Jefe de Almacen']
-  },
-  {
-    title: 'Almacenes',
-    redirect: 'almacenes',
-    icon: 'view_list',
-    userRol: ['Almacenista', 'Jefe de Almacen']
+    userRol: ['Almacenista', 'Jefe de Almacen', 'Admin']
   },
   {
     title: 'Inspección',
     redirect: 'inspeccion',
     icon: 'manage_search',
-    userRol: ['Jefe de Almacen']
-  },
-
-  {
-    title: 'Historial de movimientos',
-    redirect: 'historial',
-    icon: 'history',
-    userRol: ['Almacenista', 'Jefe de Almacen']
-  },
-  {
-    title: 'Personal',
-    redirect: 'users',
-    icon: 'group',
-    userRol: ['User']
+    userRol: ['Inspector', 'Jefe de Almacen', 'Admin']
   },
   {
     title: 'Necesidades técnicas',
     redirect: 'necesidades-tecnicas',
     icon: 'construction',
-    userRol: ['User']
+    userRol: ['Tecnico', 'Admin']
   },
   {
-    title: 'Orden de compra',
-    redirect: 'orden-compra',
-    icon: 'receipt_long',
-    userRol: ['User']
+    title: 'Ordenes de Trabajo',
+    redirect: 'aeronave',
+    icon: 'flight',
+    userRol: ['Tecnico', 'Jefe de Almacen', 'Admin']
+  },
+  {
+    title: 'Ordenes de Taller',
+    redirect: 'OT',
+    icon: 'home_repair_service',
+    userRol: ['Tecnico', 'Jefe de Almacen', 'Admin']
+  },
+  {
+    title: 'Almacenes',
+    redirect: 'almacenes',
+    icon: 'view_list',
+    userRol: ['Jefe de Almacen', 'Admin']
+  },
+  {
+    title: 'Historial de movimientos',
+    redirect: 'historial',
+    icon: 'history',
+    userRol: ['Jefe de Almacen', 'Admin']
   },
   {
     title: 'Reporte de ShelfLife',
     redirect: 'reporte-shelf-life',
     icon: 'receipt_long',
-    userRol: ['User']
+    userRol: ['Jefe de Almacen', 'Admin']
+  },
+  {
+    title: 'Usuarios',
+    redirect: 'users',
+    icon: 'group',
+    userRol: ['Jefe de Almacen', 'Admin']
   },
 ]

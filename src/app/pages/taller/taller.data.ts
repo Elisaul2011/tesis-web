@@ -40,7 +40,7 @@ export const columnsTaller: IColumns<any>[] = [
     type: 'string'
   },
   {
-    title: 'Workshop Order',
+    title: 'Orden de Taller',
     name: 'workshopOrder',
     valueColumn: () => '',
     type: 'string'

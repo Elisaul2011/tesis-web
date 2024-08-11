@@ -89,6 +89,16 @@ export const columnsInventario: IColumns<IInventario>[] = [
 
 export const dataFormAlmacen: IDataForm[] = [
   {
+    label: 'Orden de Compra',
+    formControl: 'almacenesId',
+    //aqui el id de orden de compra
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [],
+    main: true
+  },
+  {
     label: 'Ubicación',
     formControl: 'almacenesId',
     value: '',
@@ -175,7 +185,7 @@ export const dataFormAlmacen: IDataForm[] = [
 
 export const dataFormAsignar: IDataForm[] = [
   {
-    label: 'Asignar Order',
+    label: 'Asignar Orden',
     formControl: '',
     value: '',
     required: true,
@@ -184,20 +194,29 @@ export const dataFormAsignar: IDataForm[] = [
     main: true
   },
   {
-    label: '#Order',
+    label: 'Tipo de Orden',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [],
+    main: true
+  },
+  //aqui va tipo de orden si es "Orden de Trabajo" o "Orden de Taller"
+  {
+    label: ' Numero de Orden',
     formControl: '',
     value: '',
     required: true,
     typeInput: 'text',
   },
-
 ];
 
 //Una vez ingresado el componente, este queda por defecto en estado "esperando por inspeccion"
 
 
 export const formularioInventario: IFormulario = {
-  title: 'Registrar nuevo componente',
+  title: 'Registrar Nuevo Componente',
   dataForm: dataFormAlmacen
 }
 

@@ -40,7 +40,7 @@ export const columnsAeronave: IColumns<any>[] = [
     type: 'string'
   },
   {
-    title: 'Work Order',
+    title: 'Orden de Trabajo',
     name: 'order',
       valueColumn: () => '',
     type: 'string'
