@@ -4,7 +4,6 @@ export interface ICompra {
   Fecha:         Date;
   proveedor:     string;
   descripcion:   string;
-  proveedor:   string;
   cantidad:      number;
   pn:            string;
   sn:            string;

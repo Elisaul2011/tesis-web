@@ -12,7 +12,7 @@ export const menuLayout: IMenu[] = [
     title: 'Orden de compra',
     redirect: 'orden-compra',
     icon: 'receipt_long',
-    userRol: ['Almacenista', 'Jefe de Almacen', 'Admin']
+    userRol: ['Almacenista', 'Jefe de almacén', 'Administrador']
   },
   {
     title: 'Inventario',
@@ -24,13 +24,13 @@ export const menuLayout: IMenu[] = [
     title: 'Inspección',
     redirect: 'inspeccion',
     icon: 'manage_search',
-    userRol: ['Inspector', 'Jefe de Almacen', 'Admin']
+    userRol: ['Inspector', 'Jefe de almacén', 'Administrador']
   },
   {
     title: 'Necesidades técnicas',
     redirect: 'necesidades-tecnicas',
     icon: 'construction',
-    userRol: ['Tecnico', 'Admin']
+    userRol: ['Técnico', 'Administrador']
   },
   {
     title: 'Ordenes de Trabajo',
