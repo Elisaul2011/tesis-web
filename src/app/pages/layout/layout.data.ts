@@ -36,7 +36,7 @@ export const menuLayout: IMenu[] = [
     title: 'Inspección',
     redirect: 'inspeccion',
     icon: 'manage_search',
-    userRol: ['Administrador','Jefe de almacén']
+    userRol: ['Administrador','Almacenista','Jefe de almacén']
   },
 
   {
