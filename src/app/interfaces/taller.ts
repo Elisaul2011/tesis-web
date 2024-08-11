@@ -1,10 +1,18 @@
+import { IInventario } from "./inventario";
+
 export interface ITaller {
-  id: number;
+  idTaller:     number;
+  taller:       string;
+  inventarioId: number;
+  inventario: IInventario;
+}
+
+export interface BodyCreateTaller {
   taller: string;
-  pn: string;
-  descripcion: string;
-  tipo: string;
-  sn: string;
-  cantidad: number;
+  inventarioId: number
   workshopOrder: string;
+}
+
+export interface BodyUpdateTaller extends BodyCreateTaller {
+  idTaller: number;
 }

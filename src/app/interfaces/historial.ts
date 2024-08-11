@@ -1,11 +1,15 @@
+import { IInventario } from "./inventario";
+
 export interface IHistorial {
-  id: number;
+  idHistorial: number;
+  tipoMovimientoId: number;
+  inventarioId: number;
   fechaMovimiento: string;
-  pn: string;
-  descripcion: string;
-  sn: string;
-  cantidad: number;
-  tipoMovimiento: string;
-  estado: string;
-  order: string;
+  inventario: IInventario;
+  tipomovimiento: ITipoMovimiento
+}
+
+export interface ITipoMovimiento {
+  idTipoMovimiento: number;
+  tipoMovimiento:   string;
 }

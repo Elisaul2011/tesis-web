@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { columnsTaller, dataFormTaller, formularioTaller, datosTaller } from './taller.data';
+import { columnsTaller, dataFormTaller, formularioTaller } from './taller.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
-import { ITaller } from '../../interfaces/taller';
+import { BodyCreateTaller, BodyUpdateTaller, ITaller } from '../../interfaces/taller';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
+import { TallerService } from '../../services/taller.service';
 
 @Component({
   selector: 'app-taller',
@@ -21,77 +22,62 @@ import { MatButton } from '@angular/material/button';
   styleUrl: './taller.component.css',
 })
 export class TallerComponent {
-    columnsTaller: IColumns<any>[] = columnsTaller;
-    dataTaller: ITaller[] = datosTaller;
+  columnsTaller: IColumns<ITaller>[] = columnsTaller;
+  dataTaller: ITaller[] = [];
 
+  tallerService = inject(TallerService);
+  dialog = inject(MatDialog);
 
-    dialog = inject(MatDialog);
+  constructor(){
+    effect(() => {
+      this.dataTaller = this.tallerService.getTallerData();
+    })  
+  }
 
-    constructor(){
-      effect(() => {
+  ngOnInit(): void {
+    this.tallerService.getTaller();
+  }
 
-      })
+  defectColumnAction(dataComponent: ISendDataTable): void {
+    if(dataComponent.action == 'add'){
+      this.openDialog();
+    }
+    if(dataComponent.action == 'edit'){
+      this.editDataDialog(dataComponent.data);
     }
 
-    ngOnInit(): void {
+  }
 
-    }
+  openDialog(): void {
+    formularioTaller.dataForm.map(form => form.value = '');
 
-    openDialog(): void {
-      formularioTaller.dataForm.map(form => form.value = '');
+    const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
+      data: formularioTaller,
+    });
 
-      const dialogRef = this.dialog.open(FormularioComponent, {
-        data: formularioTaller,
-      });
+    dialogRef.afterClosed().subscribe((result:BodyCreateTaller ) => {
+      this.tallerService.postTaller(result)
+    })
+  }
 
-      dialogRef.afterClosed().subscribe(result => {
-        result.password = '12345678';
-
-      })
-    }
-
-    defectColumnAction(dataComponent: ISendDataTable): void {
-      if(dataComponent.action == 'add'){
-        this.openDialog();
+  editDataDialog(data: ITaller): void {
+    formularioTaller.dataForm.map(form => {
+      const findByName = formularioTaller.dataForm.find(loquesea => loquesea.formControl == form.formControl);
+      if(findByName){
+        findByName.value = data[form.formControl as keyof ITaller]
       }
-      if(dataComponent.action == 'edit'){
-        this.editDataDialog(dataComponent.data);
+    })
+
+    const dialogRef = this.dialog.open(FormularioComponent, {
+      data: formularioTaller,
+    });
+
+    dialogRef.afterClosed().subscribe((result: BodyUpdateTaller) => {
+      if(result){
+        result.idTaller = data.idTaller;
+        this.tallerService.putTaller(result)
       }
-      // if(dataComponent.action == 'delete'){
-      //   this.deleteData(dataComponent.data);
-      // }
-    }
-
-    editDataDialog(data: ITaller): void {
-      const findNameUser = formularioTaller.dataForm.find(form => form.formControl == 'nameUser');
-      const findLastnameUser = formularioTaller.dataForm.find(form => form.formControl == 'lastnameUser');
-      const findRoles = formularioTaller.dataForm.find(form => form.formControl == 'rolId');
-
-      // dataFormUser.map(form => {
-      //   const findForm = formularioUser.dataForm.find(form => form.formControl == form.formControl);
-
-      //   if(findForm){
-      //     findForm.value = data[form.formControl];
-      //   }
-      // });
-
-
-
-      const dialogRef = this.dialog.open(FormularioComponent, {
-        data: formularioTaller,
-      });
-
-      formularioTaller.dataForm.push({
-        label: '',
-        formControl: 'idUser',
-        value: '',
-        required: false,
-        typeInput: ''
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        result.id=this.dataTaller.length+1;
-          this.dataTaller.push(result)
-      })
-    }
+    })
+  }
 }

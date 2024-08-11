@@ -1,43 +1,35 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-import { IUsers } from '../interfaces/users';
+import { BaseService } from './base.service';
+import { BodyCreateAeronave, BodyUpdateAeronave, IAeronave } from '../interfaces/aeronave';
 
 @Injectable({
   providedIn: 'root'
 })
-export class aeronaveService {
+export class aeronaveService extends BaseService {
 
-  private route_users = `${base_route}/users`;
-  private setUserData = signal<IUsers[]>([]);
-  public getUserData = computed<IUsers[]>(() => this.setUserData());
+  private route_aeronaves = `${base_route}/aeronave`;
+  private setAeronaveData = signal<IAeronave[]>([]);
+  public getAeronaveData = computed<IAeronave[]>(() => this.setAeronaveData());
 
-  constructor(private httpClient: HttpClient) { }
-
-  getUsers(): void {
-    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:any[])  => {
-      result.map(user => {
-        user.roles = user.roles.rol
-      });
-
-      this.setUserData.set(result);
+  getAeronaves(): void {
+    this.httpClient.get<IAeronave[]>(this.route_aeronaves).subscribe((result: IAeronave[]) => {
+      this.setAeronaveData.set(result);
     })
   }
 
-  postUsers(bodyUser: any): void {
-    this.httpClient.post(this.route_users, bodyUser).subscribe(result => {
-      console.log(result);
-      if(result){
-        this.getUsers();
+  postAeronaves(bodyAeronave: BodyCreateAeronave): void {
+    this.httpClient.post(this.route_aeronaves, bodyAeronave).subscribe(result => {
+      if (result) {
+        this.getAeronaves();
       }
     })
   }
 
-  putUsers(bodyUser: any): void {
-    this.httpClient.put(this.route_users, bodyUser).subscribe(result => {
-      console.log(result);
-      if(result){
-        this.getUsers();
+  putAeronaves(bodyAeronave: BodyUpdateAeronave): void {
+    this.httpClient.put(this.route_aeronaves, bodyAeronave).subscribe(result => {
+      if (result) {
+        this.getAeronaves();
       }
     })
   }

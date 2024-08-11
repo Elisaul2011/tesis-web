@@ -12,13 +12,14 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatButtonModule } from '@angular/material/button';
-import { IAtas, IInventario, ITiposComponentes, IZonas } from '../../interfaces/inventario';
+import { IAtas, IInventario, ITipocomponente } from '../../interfaces/inventario';
 import { InventarioService } from '../../services/inventario.service';
 import { almacenService } from '../../services/almacen.service';
 import { ZonasService } from '../../services/zonas.service';
 import { IAlmacenes } from '../../interfaces/almacenes';
 import { AtasService } from '../../services/atas.service';
 import { TiposComponentesService } from '../../services/tiposComponentes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-almacen',
@@ -44,7 +45,7 @@ export class InventarioComponent {
     effect(() => {
       this.inventarioData = this.inventarioService.getInventarioData();
       const findAlmacen = formularioInventario.dataForm.find(form => form.formControl == 'almacenesId');
-      if(findAlmacen){
+      if (findAlmacen) {
         findAlmacen.option = this.almacenService.getAlmacenesData().map((almacen: IAlmacenes) => {
           return {
             label: almacen.nombre,
@@ -54,7 +55,7 @@ export class InventarioComponent {
       }
 
       const findAtas = formularioInventario.dataForm.find(form => form.formControl == 'atas');
-      if(findAtas){
+      if (findAtas) {
         findAtas.option = this.atasService.getAtaData().map((atas: IAtas) => {
           return {
             label: `${atas.CodigoAta} - ${atas.NombreATA}`,
@@ -64,8 +65,8 @@ export class InventarioComponent {
       }
 
       const findTipos = formularioInventario.dataForm.find(form => form.formControl == 'tipoComponenteId');
-      if(findTipos){
-        findTipos.option = this.tiposComponentesService.getTiposComponentesData().map((tipos: ITiposComponentes) => {
+      if (findTipos) {
+        findTipos.option = this.tiposComponentesService.getTiposComponentesData().map((tipos: ITipocomponente) => {
           return {
             label: tipos.tipoComponente,
             value: tipos.idTipoComponente
@@ -83,41 +84,48 @@ export class InventarioComponent {
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
-    if(dataComponent.action == 'add'){
+    if (dataComponent.action == 'add') {
       this.openDialog();
     }
-    if(dataComponent.action == 'edit'){
+    if (dataComponent.action == 'edit') {
       this.editDataDialog(dataComponent.data);
     }
-    // if(dataComponent.action == 'delete'){
-    //   this.deleteData(dataComponent.data);
-    // }
+    if (dataComponent.action == 'delete') {
+      this.deleteData(dataComponent.data);
+    }
   }
-
-
 
   openDialog(): void {
     formularioInventario.dataForm.map((form) => (form.value = ''));
-
     const dialogRef = this.dialog.open(FormularioComponent, {
       panelClass: 'stylesDialog',
       data: formularioInventario,
     });
-
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
     });
   }
 
   editDataDialog(data: IInventario): void {
     console.log(data);
-
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioInventario,
       panelClass: 'stylesDialog',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
     })
+  }
+
+  deleteData(data: IInventario): void {
+    Swal.fire({
+      title: "Seguro que quieres eliminar el componente del inventario?",
+      showDenyButton: true,
+      confirmButtonColor: "#3085d6",
+      denyButtonText: `Cancelar`,
+      confirmButtonText: "Confirmar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.inventarioService.deleteInventario(data.idInventario);
+      }
+    });
   }
 }

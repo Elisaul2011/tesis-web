@@ -5,68 +5,68 @@ import { IColumns } from "../../interfaces/table.interface";
 export const columnsInventario: IColumns<IInventario>[] = [
   {
     title: 'Ubicación',
-    name: 'almacenes',
-    valueColumn: (inventario: IInventario) => inventario.almacenes.nombre,
+    name: 'almacenes.nombre',
+    valueColumn: (element) => element.almacenes.nombre,
     type: 'string'
   },
   {
     title: 'Zona',
-    name: 'zona',
-    valueColumn: (inventario: IInventario) => inventario.zonas.zona,
+    name: 'zona.zona',
+    valueColumn: (element) => element.zona.zona,
     type: 'string'
   },
   {
     title: 'P/N',
     name: 'pn',
-    valueColumn: (inventario: IInventario) => inventario.pn,
-    type: 'string'
+    valueColumn: (element) => element.pn,
+    type: 'string',
   },
   {
     title: 'Descripción',
-    name: 'descripción',
-    valueColumn: (inventario: IInventario) => inventario.descripcion,
+    name: 'descripcion',
+    valueColumn: (element) => element.descripcion,
     type: 'string'
   },
   {
     title: 'Tipo',
-    name: 'tipoComponente',
-    valueColumn: (inventario: IInventario) => inventario.idTipoComponente.tipoComponente,
+    name: 'tipocomponente.tipoComponente',
+    valueColumn: (element) => element.tipocomponente.tipoComponente,
     type: 'string'
   },
   {
     title: 'S/N',
     name: 'sn',
-    valueColumn: (inventario: IInventario) => inventario.sn,
+    valueColumn: (element) => element.sn,
     type: 'string'
   },
   {
     title: 'Cantidad',
     name: 'cantidad',
-    valueColumn: (inventario: IInventario) => inventario.cantidad,
+    valueColumn: (element) => element.cantidad,
     type: 'string'
   },
   {
     title: 'Lote',
     name: 'lote',
-    valueColumn: (inventario: IInventario) => inventario.lote,
+    valueColumn: (element) => element.lote,
     type: 'string'
   },
   {
     title: 'Estado',
-    name: 'estado',
-    valueColumn: (inventario: IInventario) => inventario.idEstado.estado,
+    name: 'estado.estado',
+    valueColumn: (element) => element.estado.estado,
     type: 'string'
   },
   {
     title: 'Shelf Lite',
     name: 'shelfLife',
-    valueColumn: (inventario: IInventario) => inventario.shelfLife,
-    type: 'string'
+    valueColumn: (element) => element.shelfLife,
+    type: 'date'
   },
   {
     title: '# Order',
     name: 'order',
-    valueColumn: (inventario: IInventario) => inventario.order,
+    valueColumn: (element) => element.order,
     type: 'string'
   },
   {
@@ -76,15 +76,15 @@ export const columnsInventario: IColumns<IInventario>[] = [
     type: 'icon',
     icon: 'edit',
     color: 'primary'
-},
-{
-  title: 'Eliminar',
-  name: 'delete',
-  valueColumn: () => 'delete',
-  type: 'icon',
-  icon: 'delete',
-  color: 'warn'
-}
+  }
+  // {
+  //   title: 'Eliminar',
+  //   name: 'delete',
+  //   valueColumn: () => 'delete',
+  //   type: 'icon',
+  //   icon: 'delete',
+  //   color: 'warn'
+  // }
 ];
 
 export const dataFormAlmacen: IDataForm[] = [

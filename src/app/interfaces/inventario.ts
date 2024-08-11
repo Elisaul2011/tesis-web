@@ -1,20 +1,25 @@
 export interface IInventario {
-  idInventario:     number;
-  almacenesId:      number;
-  zonaId:           number;
-  pn:               string;
-  descripcion:      string;
-  tipoComponenteId: number;
-  sn:               string;
-  cantidad:         number;
-  lote:             string;
-  estadoId:         number;
-  shelfLife:        Date;
-  order:            string;
-  idEstado:         IDEstado;
-  idTipoComponente: IDTipoComponente;
-  almacenes:        Almacenes;
-  zonas:            IZonas;
+  idInventario:          number;
+  almacenesId:           number;
+  zonaId:                number;
+  pn:                    string;
+  descripcion:           string;
+  tipoComponenteId:      number;
+  sn:                    string;
+  cantidad:              number;
+  lote:                  string;
+  fabricante:            string;
+  estadoId:              number;
+  shelfLife:             Date;
+  order:                 string;
+  ataId:                 number;
+  horasManualesId:       number;
+  necesidadesTecnicasId: number;
+  rolId:                 number;
+  estado:                IEstado;
+  tipocomponente:        ITipocomponente;
+  almacenes:             Almacenes;
+  zona:                  IZona;
 }
 
 export interface Almacenes {
@@ -26,17 +31,17 @@ export interface Almacenes {
   estado:      number;
 }
 
-export interface IDEstado {
+export interface IEstado {
   idEstado: number;
   estado:   string;
 }
 
-export interface IDTipoComponente {
+export interface ITipocomponente {
   idTipoComponente: number;
   tipoComponente:   string;
 }
 
-export interface IZonas {
+export interface IZona {
   idZona:          number;
   zona:            string;
   descripcionZona: string;
@@ -44,11 +49,7 @@ export interface IZonas {
 }
 
 export interface IAtas {
-  IdAta:       number;
+  IdAta:     number;
   CodigoAta: string;
   NombreATA: string;
-}
-export interface ITiposComponentes {
-  idTipoComponente: number;
-  tipoComponente:   string;
 }
