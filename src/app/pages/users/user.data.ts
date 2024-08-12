@@ -86,7 +86,7 @@ export const dataFormUser: IDataForm[] = [
 
 
 export const formularioUser: IFormulario = {
-  title: 'Registrar Usuario',
+  title: 'Registro de usuario',
   dataForm: dataFormUser
 }
 

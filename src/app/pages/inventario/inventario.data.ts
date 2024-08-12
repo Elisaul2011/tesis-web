@@ -64,7 +64,7 @@ export const columnsInventario: IColumns<IInventario>[] = [
     type: 'date'
   },
   {
-    title: '# Order',
+    title: '# Orden',
     name: 'order',
     valueColumn: (element) => element.order,
     type: 'string'
@@ -91,7 +91,6 @@ export const dataFormAlmacen: IDataForm[] = [
   {
     label: 'Orden de Compra',
     formControl: 'almacenesId',
-    //aqui el id de orden de compra
     value: '',
     required: true,
     typeInput: 'select',
@@ -202,9 +201,8 @@ export const dataFormAsignar: IDataForm[] = [
     option: [],
     main: true
   },
-  //aqui va tipo de orden si es "Orden de Trabajo" o "Orden de Taller"
   {
-    label: ' Numero de Orden',
+    label: '#Orden',
     formControl: '',
     value: '',
     required: true,
