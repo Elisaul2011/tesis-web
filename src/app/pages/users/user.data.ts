@@ -69,6 +69,13 @@ export const dataFormUser: IDataForm[] = [
     option: []
   },
   {
+    label: 'Contraseña',
+    formControl: 'password',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
     label: 'Activo',
     formControl: 'active',
     value: false,

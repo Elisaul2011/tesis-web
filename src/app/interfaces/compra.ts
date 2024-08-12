@@ -2,8 +2,8 @@ export interface ICompra {
   idOrdenCompra: number;
   ordenCompra:   string;
   Fecha:         Date;
+  proveedor:     string;
   descripcion:   string;
-  proveedor:   string;
   cantidad:      number;
   pn:            string;
   sn:            string;

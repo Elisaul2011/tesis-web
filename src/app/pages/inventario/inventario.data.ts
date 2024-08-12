@@ -208,7 +208,6 @@ export const dataFormAsignar: IDataForm[] = [
     required: true,
     typeInput: 'text',
   },
-
 ];
 
 //Una vez ingresado el componente, este queda por defecto en estado "esperando por inspeccion"
