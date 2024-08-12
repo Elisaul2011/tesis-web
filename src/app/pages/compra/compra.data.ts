@@ -66,6 +66,13 @@ export const dataFormCompra: IDataForm[] = [
     typeInput: 'text'
   },
   {
+    label: 'Proveedor',
+    formControl: 'proveedor',
+    value: '',
+    required: true,
+    typeInput: 'text'
+  },
+  {
     label: 'Fecha',
     formControl: 'Fecha',
     value: '',
@@ -97,6 +104,6 @@ export const dataFormCompra: IDataForm[] = [
 
 
 export const formularioCompra: IFormulario = {
-  title: 'Orden de compra',
+  title: 'Registrar Orden de Compra',
   dataForm: dataFormCompra
 }

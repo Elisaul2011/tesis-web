@@ -64,7 +64,7 @@ export const columnsInventario: IColumns<IInventario>[] = [
     type: 'date'
   },
   {
-    title: '# Order',
+    title: '# Orden',
     name: 'order',
     valueColumn: (element) => element.order,
     type: 'string'
@@ -88,6 +88,15 @@ export const columnsInventario: IColumns<IInventario>[] = [
 ];
 
 export const dataFormAlmacen: IDataForm[] = [
+  {
+    label: 'Orden de Compra',
+    formControl: 'almacenesId',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [],
+    main: true
+  },
   {
     label: 'Ubicación',
     formControl: 'almacenesId',
@@ -175,7 +184,7 @@ export const dataFormAlmacen: IDataForm[] = [
 
 export const dataFormAsignar: IDataForm[] = [
   {
-    label: 'Asignar Order',
+    label: 'Asignar Orden',
     formControl: '',
     value: '',
     required: true,
@@ -184,7 +193,16 @@ export const dataFormAsignar: IDataForm[] = [
     main: true
   },
   {
-    label: '#Order',
+    label: 'Tipo de Orden',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'select',
+    option: [],
+    main: true
+  },
+  {
+    label: '#Orden',
     formControl: '',
     value: '',
     required: true,
@@ -197,7 +215,7 @@ export const dataFormAsignar: IDataForm[] = [
 
 
 export const formularioInventario: IFormulario = {
-  title: 'Registrar nuevo componente',
+  title: 'Registrar Nuevo Componente',
   dataForm: dataFormAlmacen
 }
 

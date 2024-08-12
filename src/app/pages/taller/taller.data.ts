@@ -75,7 +75,13 @@ export const dataFormTaller: IDataForm[] = [
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'select',
+    option: [
+      {
+        label: 'Técnico',
+        value: 3
+      }
+    ]
   },
   {
     label: 'Realizado por',
@@ -85,8 +91,8 @@ export const dataFormTaller: IDataForm[] = [
     typeInput: 'select',
     option: [
       {
-        label: 'Almacenista',
-        value: 1
+        label: 'Técnico',
+        value: 3
       }
     ]
   },

@@ -40,7 +40,7 @@ export const columnsAeronave: IColumns<IAeronave>[] = [
     type: 'string'
   },
   {
-    title: 'Work Order',
+    title: 'Orden de Trabajo',
     name: 'inventario.order',
     valueColumn: (element) => element.inventario.order,
     type: 'string'
@@ -123,11 +123,17 @@ export const dataFormAeronave: IDataForm[] = [
     typeInput: 'text'
   },
   {
-    label: 'Work Order',
+    label: 'Orden de trabajo',
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'select',
+    option: [
+      {
+        label: 'Técnico',
+        value: 3
+      }
+    ]
   },
   {
     label: 'Realizado por',
@@ -137,8 +143,8 @@ export const dataFormAeronave: IDataForm[] = [
     typeInput: 'select',
     option: [
       {
-        label: 'Almacenista',
-        value: 1
+        label: 'Técnico',
+        value: 3
       }
     ]
   },

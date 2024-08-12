@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { columnsTaller, dataFormTaller, formularioTaller } from './taller.data';
+import { columnsTaller, dataFormTaller, formularioTaller, } from './taller.data';
 import { TableComponent } from '../../components/table/table.component';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
@@ -31,7 +31,7 @@ export class TallerComponent {
   constructor(){
     effect(() => {
       this.dataTaller = this.tallerService.getTallerData();
-    })  
+    })
   }
 
   ngOnInit(): void {

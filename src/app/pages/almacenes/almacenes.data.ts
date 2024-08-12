@@ -98,7 +98,7 @@ export const dataFormAlmacenes: IDataForm[] = [
 
 
 export const formularioAlmacenes: IFormulario = {
-  title: 'Formulario de Almacenes',
+  title: 'Registrar Almacen',
   dataForm: dataFormAlmacenes
 }
 
