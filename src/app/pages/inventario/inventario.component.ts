@@ -3,6 +3,7 @@ import { Component, effect, inject } from '@angular/core';
 import {
   columnsInventario,
   dataFormAlmacen,
+  formularioAsignar,
   formularioInventario,
 } from './inventario.data';
 import { TableComponent } from '../../components/table/table.component';
@@ -12,7 +13,7 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatButtonModule } from '@angular/material/button';
-import { IAtas, IInventario, ITipocomponente } from '../../interfaces/inventario';
+import { BodyInventario, IAtas, IInventario, ITipocomponente } from '../../interfaces/inventario';
 import { InventarioService } from '../../services/inventario.service';
 import { almacenService } from '../../services/almacen.service';
 import { ZonasService } from '../../services/zonas.service';
@@ -20,6 +21,10 @@ import { IAlmacenes } from '../../interfaces/almacenes';
 import { AtasService } from '../../services/atas.service';
 import { TiposComponentesService } from '../../services/tiposComponentes.service';
 import Swal from 'sweetalert2';
+import { UsersService } from '../../services/users.service';
+import { IUsers } from '../../interfaces/users';
+import { CompraService } from '../../services/compra.service';
+import { ICompra } from '../../interfaces/compra';
 
 @Component({
   selector: 'app-almacen',
@@ -35,7 +40,9 @@ export class InventarioComponent {
 
   almacenService = inject(almacenService);
   zonaService = inject(ZonasService);
+  userService = inject(UsersService);
   inventarioService = inject(InventarioService);
+  compraService = inject(CompraService);
   atasService = inject(AtasService);
   tiposComponentesService = inject(TiposComponentesService);
   dialog = inject(MatDialog);
@@ -44,6 +51,37 @@ export class InventarioComponent {
   constructor() {
     effect(() => {
       this.inventarioData = this.inventarioService.getInventarioData();
+      const ordenCompraForm = formularioInventario.dataForm.find(form => form.formControl == 'orderCompraId');
+      if (ordenCompraForm) {
+        ordenCompraForm.option = this.compraService.getCompraData().map((com: ICompra) => {
+          return {
+            label: com.ordenCompra,
+            value: com.idOrdenCompra,
+            data: com
+          }
+        });
+      }
+
+      const userTecnicForm = formularioAsignar.dataForm.find(form => form.formControl == 'userTecnic');
+      if (userTecnicForm) {
+        userTecnicForm.option = this.userService.getUserData().map((user: IUsers) => {
+          return {
+            label: `${user.nameUser} ${user.lastnameUser}`,
+            value: user.idUser
+          }
+        });
+      }
+
+      const inventoriesForm = formularioAsignar.dataForm.find(form => form.formControl == 'inventories');
+      if (inventoriesForm) {
+        inventoriesForm.option = this.inventarioService.getInventarioServiblesData().map((inv: IInventario) => {
+          return {
+            label: inv.descripcion,
+            value: inv.idInventario
+          }
+        });
+      }
+
       const findAlmacen = formularioInventario.dataForm.find(form => form.formControl == 'almacenesId');
       if (findAlmacen) {
         findAlmacen.option = this.almacenService.getAlmacenesData().map((almacen: IAlmacenes) => {
@@ -54,7 +92,7 @@ export class InventarioComponent {
         });
       }
 
-      const findAtas = formularioInventario.dataForm.find(form => form.formControl == 'atas');
+      const findAtas = formularioInventario.dataForm.find(form => form.formControl == 'ataId');
       if (findAtas) {
         findAtas.option = this.atasService.getAtaData().map((atas: IAtas) => {
           return {
@@ -77,8 +115,11 @@ export class InventarioComponent {
   }
 
   ngOnInit(): void {
+    this.compraService.getCompra();
     this.almacenService.getAlmacenes();
     this.inventarioService.getInventario();
+    this.userService.getUsersByRol('3');
+    this.inventarioService.getInventarioServibles();
     this.atasService.getAtas();
     this.tiposComponentesService.getTiposComponentes();
   }
@@ -90,9 +131,18 @@ export class InventarioComponent {
     if (dataComponent.action == 'edit') {
       this.editDataDialog(dataComponent.data);
     }
-    if (dataComponent.action == 'delete') {
-      this.deleteData(dataComponent.data);
-    }
+  }
+
+  openDialogAsign(): void {
+    formularioInventario.dataForm.map((form) => (form.value = ''));
+    const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
+      data: formularioAsignar,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
+      this.inventarioService.postInventario(result)
+    });
   }
 
   openDialog(): void {
@@ -102,6 +152,8 @@ export class InventarioComponent {
       data: formularioInventario,
     });
     dialogRef.afterClosed().subscribe((result) => {
+      result.fabricante = result.proveedor;
+      this.inventarioService.postInventario(result);
     });
   }
 
@@ -112,20 +164,9 @@ export class InventarioComponent {
       panelClass: 'stylesDialog',
     });
     dialogRef.afterClosed().subscribe(result => {
+      result.fabricante = result.proveedor;
+      console.log(result);
+      
     })
-  }
-
-  deleteData(data: IInventario): void {
-    Swal.fire({
-      title: "Seguro que quieres eliminar el componente del inventario?",
-      showDenyButton: true,
-      confirmButtonColor: "#3085d6",
-      denyButtonText: `Cancelar`,
-      confirmButtonText: "Confirmar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.inventarioService.deleteInventario(data.idInventario);
-      }
-    });
   }
 }

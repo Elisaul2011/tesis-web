@@ -1,55 +1,81 @@
 export interface IInventario {
-  idInventario:          number;
-  almacenesId:           number;
-  zonaId:                number;
-  pn:                    string;
-  descripcion:           string;
-  tipoComponenteId:      number;
-  sn:                    string;
-  cantidad:              number;
-  lote:                  string;
-  fabricante:            string;
-  estadoId:              number;
-  shelfLife:             Date;
-  order:                 string;
-  ataId:                 number;
-  horasManualesId:       number;
+  idInventario: number;
+  almacenesId: number;
+  zonaId: number;
+  pn: string;
+  descripcion: string;
+  tipoComponenteId: number;
+  sn: string;
+  cantidad: number;
+  lote: string;
+  fabricante: string;
+  estadoId: number;
+  shelfLife: Date;
+  order: string;
+  ataId: number;
+  horasManualesId: number;
   necesidadesTecnicasId: number;
-  rolId:                 number;
-  estado:                IEstado;
-  tipocomponente:        ITipocomponente;
-  almacenes:             Almacenes;
-  zona:                  IZona;
+  rolId: number;
+  estado: IEstado;
+  tipocomponente: ITipocomponente;
+  almacenes: Almacenes;
+  zona: IZona;
 }
 
 export interface Almacenes {
   idAlmacenes: number;
-  nombre:      string;
+  nombre: string;
   descripcion: string;
-  pais:        string;
-  ciudad:      string;
-  estado:      number;
+  pais: string;
+  ciudad: string;
+  estado: number;
 }
 
 export interface IEstado {
   idEstado: number;
-  estado:   string;
+  estado: string;
 }
 
 export interface ITipocomponente {
   idTipoComponente: number;
-  tipoComponente:   string;
+  tipoComponente: string;
 }
 
 export interface IZona {
-  idZona:          number;
-  zona:            string;
+  idZona: number;
+  zona: string;
   descripcionZona: string;
-  almacenId:       number;
+  almacenId: number;
+  almacenes: Almacenes
 }
 
 export interface IAtas {
-  IdAta:     number;
+  IdAta: number;
   CodigoAta: string;
   NombreATA: string;
+}
+
+
+export interface BodyInventario {
+  almacenesId: number;
+  zonaId: number;
+  pn: string;
+  descripcion: string;
+  tipoComponenteId: number;
+  sn: string;
+  cantidad: number;
+  lote: string;
+  fabricante: string;
+  shelfLife: Date;
+  ataId: number;
+}
+
+
+export interface BodyCreateZona {
+  zona: string;
+  descripcionZona: string;
+  almacenId: number;
+}
+export interface BodyUpdateZona extends BodyCreateZona {
+  idZona: number;
 }

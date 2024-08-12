@@ -1,5 +1,5 @@
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
-import { IColumns } from "../../interfaces/table.interface";
+import { IColumns, IConfigTable } from "../../interfaces/table.interface";
 import { ITaller } from "../../interfaces/taller";
 
 export const columnsTaller: IColumns<ITaller>[] = [
@@ -46,29 +46,23 @@ export const columnsTaller: IColumns<ITaller>[] = [
     type: 'string'
   },
   {
-    title: 'Editar',
+    title: 'Cofirmar',
     name: 'edit',
     valueColumn: () => '',
     type: 'icon',
-    icon: 'edit',
+    icon: 'check_circle',
     color: 'primary'
   }
 ];
 
 export const dataFormTaller: IDataForm[] = [
   {
-    label: 'Fecha',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
     label: 'Taller',
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Orden de Taller',
@@ -76,6 +70,7 @@ export const dataFormTaller: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       {
         label: 'Técnico',
@@ -89,12 +84,21 @@ export const dataFormTaller: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       {
         label: 'Técnico',
         value: 3
       }
     ]
+  },
+  {
+    label: 'Fecha',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'date',
+    disabled: false,
   },
   //falta tabla de los componente seleccionados
 ];
@@ -103,4 +107,9 @@ export const dataFormTaller: IDataForm[] = [
 export const formularioTaller: IFormulario = {
   title: 'Reparar Componente',
   dataForm: dataFormTaller
+}
+
+
+export const configTableTaller: IConfigTable = {
+  btnAdd: false
 }

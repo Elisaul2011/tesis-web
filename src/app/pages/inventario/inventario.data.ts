@@ -90,12 +90,13 @@ export const columnsInventario: IColumns<IInventario>[] = [
 export const dataFormAlmacen: IDataForm[] = [
   {
     label: 'Orden de Compra',
-    formControl: 'almacenesId',
+    formControl: 'orderCompraId',
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [],
-    main: true
+    autocomplete: true
   },
   {
     label: 'Ubicación',
@@ -103,6 +104,7 @@ export const dataFormAlmacen: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [],
     main: true
   },
@@ -112,6 +114,7 @@ export const dataFormAlmacen: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [],
     detectChange: true
   },
@@ -120,43 +123,53 @@ export const dataFormAlmacen: IDataForm[] = [
     formControl: 'pn',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'Descripción',
     formControl: 'descripcion',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'ATA',
-    formControl: 'atas',
+    formControl: 'ataId',
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: []
   },
   {
     label: 'Fabricante',
-    formControl: 'fabricante',
+    formControl: 'proveedor',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
-    label: 'Costo Unitario',
+    label: 'Cantidad',
     formControl: 'cantidad',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'Lote',
     formControl: 'lote',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Tipo de componente',
@@ -164,6 +177,7 @@ export const dataFormAlmacen: IDataForm[] = [
     value: 0,
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: []
   },
   {
@@ -171,26 +185,38 @@ export const dataFormAlmacen: IDataForm[] = [
     formControl: 'sn',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'Fecha de Shelf Life',
-    formControl: '',
+    formControl: 'shelfLife',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'date',
+    disabled: false,
   },
 ];
 
 export const dataFormAsignar: IDataForm[] = [
   {
+    label: 'Seleccionar componente',
+    formControl: 'inventories',
+    value: '',
+    required: true,
+    typeInput: 'selectMulti',
+    disabled: false,
+    option: [],
+  },
+  {
     label: 'Asignar Orden',
-    formControl: '',
+    formControl: 'userTecnic',
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [],
-    main: true
   },
   {
     label: 'Tipo de Orden',
@@ -198,8 +224,17 @@ export const dataFormAsignar: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
-    option: [],
-    main: true
+    disabled: false,
+    option: [
+      {
+        label: 'Orden de trabajo',
+        value: 1
+      },
+      {
+        label: 'Orden de taller',
+        value: 2
+      }
+    ]
   },
   {
     label: '#Orden',
@@ -207,6 +242,7 @@ export const dataFormAsignar: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'text',
+    disabled: false,
   },
 ];
 
@@ -220,147 +256,5 @@ export const formularioInventario: IFormulario = {
 
 export const formularioAsignar: IFormulario = {
   title: 'Asignar Orden',
-  dataForm: dataFormAlmacen
+  dataForm: dataFormAsignar
 }
-// export const inventario: IInventario[] = [
-//   {
-//     id: 1,
-//     ubicacion: 'Almacén A',
-//     zona: 'Estante 1',
-//     pn: 'ABC123',
-//     descripción: 'Tornillo de fijación',
-//     tipo: 'equipo',
-//     sn: 'SN12345',
-//     cantidad: 20,
-//     lote: 'Lote-001',
-//     estado: 'serviceable',
-//     sl: '2024-12-31',
-//     order: 'WO-123',
-//   },
-//   {
-//     id: 2,
-//     ubicacion: 'Almacén B',
-//     zona: 'Estante 2',
-//     pn: 'XYZ789',
-//     descripción: 'Resorte de compresión',
-//     tipo: 'rotable',
-//     sn: 'SN67890',
-//     cantidad: 10,
-//     lote: 'Lote-002',
-//     estado: 'en espera de inspección',
-//     sl: '2025-01-15',
-//     order: 'OT-456',
-//   },
-//   {
-//     id: 3,
-//     ubicacion: 'Almacén C',
-//     zona: 'Estante 3',
-//     pn: 'DEF456',
-//     descripción: 'Válvula de escape',
-//     tipo: 'Motor',
-//     sn: 'SN98765',
-//     cantidad: 30,
-//     lote: 'Lote-003',
-//     estado: 'en cuarentena',
-//     sl: '2024-11-30',
-//     order: 'INSP-789',
-//   },
-//   {
-//     id: 4,
-//     ubicacion: 'Almacén D',
-//     zona: 'Estante 4',
-//     pn: 'GHI987',
-//     descripción: 'Sensor de temperatura',
-//     tipo: 'rotable',
-//     sn: 'SN54321',
-//     cantidad: 5,
-//     lote: 'Lote-004',
-//     estado: 'en espera de inspección',
-//     sl: '2024-12-15',
-//     order: 'OT-789',
-//   },
-//   {
-//     id: 5,
-//     ubicacion: 'Almacén E',
-//     zona: 'Estante 5',
-//     pn: 'JKL321',
-//     descripción: 'Cable eléctrico',
-//     tipo: 'equipo',
-//     sn: 'SN24680',
-//     cantidad: 40,
-//     lote: 'Lote-005',
-//     estado: 'serviceable',
-//     sl: '2025-02-28',
-//     order: 'WO-456',
-//   },
-//   {
-//     id: 6,
-//     ubicacion: 'Almacén F',
-//     zona: 'Estante 6',
-//     pn: 'MNO654',
-//     descripción: 'Filtro de aire',
-//     tipo: 'Motor',
-//     sn: 'SN13579',
-//     cantidad: 25,
-//     lote: 'Lote-006',
-//     estado: 'en cuarentena',
-//     sl: '2024-11-20',
-//     order: 'INSP-012',
-//   },
-//   {
-//     id: 7,
-//     ubicacion: 'Almacén G',
-//     zona: 'Estante 7',
-//     pn: 'PQR987',
-//     descripción: 'Bombilla LED',
-//     tipo: 'rotable',
-//     sn: 'SN11223',
-//     cantidad: 15,
-//     lote: 'Lote-007',
-//     estado: 'serviceable',
-//     sl: '2024-12-10',
-//     order: 'WO-789',
-//   },
-//   {
-//     id: 8,
-//     ubicacion: 'Almacén H',
-//     zona: 'Estante 8',
-//     pn: 'STU246',
-//     descripción: 'Engranaje de transmisión',
-//     tipo: 'equipo',
-//     sn: 'SN99887',
-//     cantidad: 35,
-//     lote: 'Lote-008',
-//     estado: 'serviceable',
-//     sl: '2025-03-15',
-//     order: 'WO-012',
-//   },
-//   {
-//     id: 9,
-//     ubicacion: 'Almacén I',
-//     zona: 'Estante 9',
-//     pn: 'VWX543',
-//     descripción: 'Tubo flexible',
-//     tipo: 'rotable',
-//     sn: 'SN76543',
-//     cantidad: 10,
-//     lote: 'Lote-009',
-//     estado: 'en espera de inspección',
-//     sl: '2024-12-05',
-//     order: 'OT-012',
-//   },
-//   {
-//     id: 10,
-//     ubicacion: 'Almacén J',
-//     zona: 'Estante 10',
-//     pn: 'YZA789',
-//     descripción: 'Motor eléctrico',
-//     tipo: 'Motor',
-//     sn: 'SN43210',
-//     cantidad: 30,
-//     lote: 'Lote-010',
-//     estado: 'serviceable',
-//     sl: '2025-01-31',
-//     order: 'INSP-345',
-//   },
-// ];

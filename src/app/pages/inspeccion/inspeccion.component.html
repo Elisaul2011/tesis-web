@@ -3,9 +3,6 @@
 <app-table
 [columns]="columnsInspeccion"
 [dataTable]="dataInspeccion"
+[configTable]="configTableInspeccion"
 (sendData)="defectColumnAction($event)"
 ></app-table>
-
-<div class="example-button-row">
-  <button mat-raised-button>Reporte de Inspección</button>
-</div>

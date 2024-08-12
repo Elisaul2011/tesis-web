@@ -10,10 +10,10 @@ export const columnsCompra: IColumns<ICompra>[] = [
     type: 'string'
   },
   {
-    title: 'Fecha',
-    name: 'Fecha',
-    valueColumn: (element: ICompra) => element.Fecha,
-    type: 'date'
+    title: 'Descripción',
+    name: 'descripcion',
+    valueColumn: (element: ICompra) => element.descripcion,
+    type: 'string'
   },
   {
     title: 'P/N',
@@ -22,9 +22,9 @@ export const columnsCompra: IColumns<ICompra>[] = [
     type: 'string'
   },
   {
-    title: 'Descripción',
-    name: 'descripcion',
-    valueColumn: (element: ICompra) => element.descripcion,
+    title: 'SN',
+    name: 'sn',
+    valueColumn: (element: ICompra) => element.sn,
     type: 'string'
   },
   {
@@ -38,6 +38,12 @@ export const columnsCompra: IColumns<ICompra>[] = [
     name: 'proveedor',
     valueColumn: (element: ICompra) => element.proveedor,
     type: 'string'
+  },
+  {
+    title: 'Fecha',
+    name: 'Fecha',
+    valueColumn: (element: ICompra) => element.Fecha,
+    type: 'date'
   },
   {
     title: 'Editar',
@@ -57,51 +63,65 @@ export const columnsCompra: IColumns<ICompra>[] = [
   }
 ];
 
+
 export const dataFormCompra: IDataForm[] = [
   {
     label: 'Orden de compra',
-    formControl: 'orden',
+    formControl: 'ordenCompra',
     value: '',
     required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Proveedor',
-    formControl: 'proveedor',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Fecha',
-    formControl: 'Fecha',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'P/N',
-    formControl: 'pn',
-    value: '',
-    required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Descripción',
     formControl: 'descripcion',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
+  },
+  {
+    label: 'P/N',
+    formControl: 'pn',
+    value: '',
+    required: true,
+    typeInput: 'text',
+    disabled: false
+  },
+  {
+    label: 'SN',
+    formControl: 'sn',
+    value: '',
+    required: true,
+    typeInput: 'text',
+    disabled: false
+  },
+  {
+    label: 'Proveedor',
+    formControl: 'proveedor',
+    value: '',
+    required: true,
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Cantidad',
     formControl: 'cantidad',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'number',
+    disabled: false
+  },
+  {
+    label: 'Fecha',
+    formControl: 'fecha',
+    value: '',
+    required: true,
+    typeInput: 'date',
+    disabled: false
   },
 ];
-
 
 export const formularioCompra: IFormulario = {
   title: 'Registrar Orden de Compra',

@@ -14,6 +14,7 @@ import { HistorialComponent } from './pages/historial/historial.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { NecesidadesComponent } from './pages/necesidades/necesidades.component';
 import { ShelfLifeComponent } from './pages/shelfLife/shelfLife.component';
+import { ZonasComponent } from './pages/zonas/zonas.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,10 @@ export const routes: Routes = [
       {
         path:'almacen',
         component: InventarioComponent
+      },
+      {
+        path:'zonas',
+        component: ZonasComponent
       },
       {
         path:'aeronave',

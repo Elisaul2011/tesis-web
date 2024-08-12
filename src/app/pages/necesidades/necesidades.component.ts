@@ -8,7 +8,7 @@ import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 
 import { TableComponent } from '../../components/table/table.component';
 import { NecesidadesService } from '../../services/necesidades.service';
-import { INecesidades } from '../../interfaces/necesidades';
+import { BodyNecesidades, BodyUpdateNecesidades, INecesidades } from '../../interfaces/necesidades';
 
 @Component({
   selector: 'app-necesidades',
@@ -54,7 +54,7 @@ export class NecesidadesComponent {
       data: formularioNecesidades,
     });
 
-    dialogRef.afterClosed().subscribe((result: INecesidades) => {
+    dialogRef.afterClosed().subscribe((result: BodyNecesidades) => {
       this.necesidadesService.postNecesidades(result)
     })
   }
@@ -71,7 +71,7 @@ export class NecesidadesComponent {
       data: formularioNecesidades,
     });
 
-    dialogRef.afterClosed().subscribe((result: INecesidades) => {
+    dialogRef.afterClosed().subscribe((result: BodyUpdateNecesidades) => {
       if (result) {
         result.idNecesidadesTecnicas = data.idNecesidadesTecnicas;
         this.necesidadesService.putNecesidades(result)

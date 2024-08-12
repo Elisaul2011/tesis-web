@@ -51,14 +51,16 @@ export const dataFormUser: IDataForm[] = [
     formControl: 'nameUser',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Apellido de usuario',
     formControl: 'lastnameUser',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Rol de usuario',
@@ -66,6 +68,7 @@ export const dataFormUser: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: []
   },
   {
@@ -73,7 +76,8 @@ export const dataFormUser: IDataForm[] = [
     formControl: 'password',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Activo',
@@ -81,6 +85,7 @@ export const dataFormUser: IDataForm[] = [
     value: false,
     required: true,
     typeInput: 'boolean',
+    disabled: false,
   },
 ];
 

@@ -1,8 +1,9 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { IZona } from '../interfaces/inventario';
+import { BodyCreateZona, BodyUpdateZona, IZona } from '../interfaces/inventario';
 import { HttpClient } from '@angular/common/http';
 import { base_route } from '../../../enviroment';
 import { BaseService } from './base.service';
+import { BaseResponse } from '../interfaces/base.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,27 @@ export class ZonasService extends BaseService  {
     })
   }
 
+  postZonas(bodyAlmacenes: BodyCreateZona): void {
+    this.httpClient.post<BaseResponse>(this.base_router, bodyAlmacenes).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getZonas();
+      }
+    })
+  }
+
+  putZonas(putAlmacen: BodyUpdateZona): void {
+    this.httpClient.put<BaseResponse>(this.base_router, putAlmacen).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getZonas();
+      }
+    })
+  }
+
+  deleteZonas(idAlmacen: number): void {
+    this.httpClient.delete<BaseResponse>(`${this.base_router}/${idAlmacen}`).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getZonas();
+      }
+    })
+  }
 }

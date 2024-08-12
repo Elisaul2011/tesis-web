@@ -1,7 +1,7 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { BaseService } from './base.service';
 import { base_route } from '../../../enviroment';
-import { INecesidades } from '../interfaces/necesidades';
+import { BodyNecesidades, BodyUpdateNecesidades, INecesidades } from '../interfaces/necesidades';
 // import { INecesidades } from '../interfaces/Necesidades';
 
 @Injectable({
@@ -18,7 +18,7 @@ export class NecesidadesService extends BaseService{
     })
   }
 
-  postNecesidades(bodyReport: any): void {
+  postNecesidades(bodyReport: BodyNecesidades): void {
     this.httpClient.post(this.router_necesidades, bodyReport).subscribe(result => {
       if (result) {
         this.getNecesidades();
@@ -26,7 +26,7 @@ export class NecesidadesService extends BaseService{
     })
   }
 
-  putNecesidades(bodyReport: any): void {
+  putNecesidades(bodyReport: BodyUpdateNecesidades): void {
     this.httpClient.put(this.router_necesidades, bodyReport).subscribe(result => {
       if (result) {
         this.getNecesidades();

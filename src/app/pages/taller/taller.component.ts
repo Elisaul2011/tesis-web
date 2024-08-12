@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { columnsTaller, dataFormTaller, formularioTaller, } from './taller.data';
+import { columnsTaller, configTableTaller, dataFormTaller, formularioTaller, } from './taller.data';
 import { TableComponent } from '../../components/table/table.component';
-import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
+import { IColumns, IConfigTable, ISendDataTable } from '../../interfaces/table.interface';
 
 import { BodyCreateTaller, BodyUpdateTaller, ITaller } from '../../interfaces/taller';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
@@ -23,6 +23,7 @@ import { TallerService } from '../../services/taller.service';
 })
 export class TallerComponent {
   columnsTaller: IColumns<ITaller>[] = columnsTaller;
+  configTableTaller: IConfigTable = configTableTaller;
   dataTaller: ITaller[] = [];
 
   tallerService = inject(TallerService);

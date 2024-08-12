@@ -3,7 +3,7 @@ import { base_route } from '../../../enviroment';
 import { IInventario } from '../interfaces/inventario';
 import { BaseService } from './base.service';
 import { BaseResponse } from '../interfaces/base.interface';
-import { IInspeccion } from '../interfaces/inspeccion';
+import { BodyUpdateInspeccion, IInspeccion } from '../interfaces/inspeccion';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class inspeccionService extends BaseService {
     })
   }
 
-  putInspeccion(putAlmacen: any): void {
+  putInspeccion(putAlmacen: BodyUpdateInspeccion): void {
     this.httpClient.put<BaseResponse>(this.base_router, putAlmacen).subscribe((result: BaseResponse) => {
       if (result) {
         this.getInspeccion();

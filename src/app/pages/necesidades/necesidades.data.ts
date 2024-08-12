@@ -33,24 +33,27 @@ export const columnsNecesidades: IColumns<INecesidades>[] = [
 export const dataFormNecesidades: IDataForm[] = [
     {
         label: 'P/N',
-        formControl: '',
+        formControl: 'pn',
         value: '',
         required: true,
-        typeInput: 'text'
+        typeInput: 'text',
+        disabled: false,
     },
     {
         label: 'Descripción',
-        formControl: '',
+        formControl: 'descripcion',
         value: '',
         required: true,
-        typeInput: 'text'
+        typeInput: 'text',
+        disabled: false,
     },
     {
-        label: 'cantidad',
-        formControl: '',
+        label: 'Cantidad',
+        formControl: 'cantidad',
         value: '',
         required: true,
-        typeInput: 'text'
+        typeInput: 'number',
+        disabled: false,
     },
 ];
 
