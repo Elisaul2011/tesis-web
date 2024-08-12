@@ -14,7 +14,6 @@ export class almacenService extends BaseService {
   private setAlmacenesData = signal<IAlmacenes[]>([]);
   public getAlmacenesData = computed<IAlmacenes[]>(() => this.setAlmacenesData());
 
-
   // constructor(private httpClient: HttpClient) { }
 
   getAlmacenes(): void {

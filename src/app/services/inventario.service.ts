@@ -13,9 +13,18 @@ export class InventarioService extends BaseService {
   private setInventarioData = signal<IInventario[]>([]);
   public getInventarioData = computed<IInventario[]>(() => this.setInventarioData());
 
+  private setInventarioServiblesData = signal<IInventario[]>([]);
+  public getInventarioServiblesData = computed<IInventario[]>(() => this.setInventarioServiblesData());
+
   getInventario(): void {
     this.httpClient.get<IInventario[]>(this.base_router).subscribe((result: IInventario[]) => {
       this.setInventarioData.set(result);
+    })
+  }
+
+  getInventarioServibles(): void {
+    this.httpClient.get<IInventario[]>(`${this.base_router}/serviciables`).subscribe((result: IInventario[]) => {
+      this.setInventarioServiblesData.set(result);
     })
   }
 

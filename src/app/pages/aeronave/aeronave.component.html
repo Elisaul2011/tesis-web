@@ -3,9 +3,6 @@
 <app-table
 [columns]="columnsAeronave"
 [dataTable]="dataAeronave"
+[configTable]="configTableAeronave"
 (sendData)="defectColumnAction($event)"
 ></app-table>
-
-<div class="example-button-row">
-  <button mat-raised-button>Reporte de Ordenes de Trabajo</button>
-</div>

@@ -11,7 +11,7 @@ export interface ICompra {
 
 export interface BodyCreateCompra {
   ordenCompra:   string;
-  Fecha:         Date;
+  fecha:         Date;
   descripcion:   string;
   cantidad:      number;
   pn:            string;

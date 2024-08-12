@@ -3,6 +3,7 @@ import { Component, effect, inject } from '@angular/core';
 import {
   columnsInventario,
   dataFormAlmacen,
+  formularioAsignar,
   formularioInventario,
 } from './inventario.data';
 import { TableComponent } from '../../components/table/table.component';
@@ -20,6 +21,8 @@ import { IAlmacenes } from '../../interfaces/almacenes';
 import { AtasService } from '../../services/atas.service';
 import { TiposComponentesService } from '../../services/tiposComponentes.service';
 import Swal from 'sweetalert2';
+import { UsersService } from '../../services/users.service';
+import { IUsers } from '../../interfaces/users';
 
 @Component({
   selector: 'app-almacen',
@@ -35,6 +38,7 @@ export class InventarioComponent {
 
   almacenService = inject(almacenService);
   zonaService = inject(ZonasService);
+  userService = inject(UsersService);
   inventarioService = inject(InventarioService);
   atasService = inject(AtasService);
   tiposComponentesService = inject(TiposComponentesService);
@@ -44,6 +48,26 @@ export class InventarioComponent {
   constructor() {
     effect(() => {
       this.inventarioData = this.inventarioService.getInventarioData();
+      const userTecnicForm = formularioAsignar.dataForm.find(form => form.formControl == 'userTecnic');
+      if (userTecnicForm) {
+        userTecnicForm.option = this.userService.getUserData().map((user: IUsers) => {
+          return {
+            label: `${user.nameUser} ${user.lastnameUser}`,
+            value: user.idUser
+          }
+        });
+      }
+
+      const inventoriesForm = formularioAsignar.dataForm.find(form => form.formControl == 'inventories');
+      if (inventoriesForm) {
+        inventoriesForm.option = this.inventarioService.getInventarioServiblesData().map((inv: IInventario) => {
+          return {
+            label: inv.descripcion,
+            value: inv.idInventario
+          }
+        });
+      }
+
       const findAlmacen = formularioInventario.dataForm.find(form => form.formControl == 'almacenesId');
       if (findAlmacen) {
         findAlmacen.option = this.almacenService.getAlmacenesData().map((almacen: IAlmacenes) => {
@@ -79,6 +103,8 @@ export class InventarioComponent {
   ngOnInit(): void {
     this.almacenService.getAlmacenes();
     this.inventarioService.getInventario();
+    this.userService.getUsersByRol('3');
+    this.inventarioService.getInventarioServibles();
     this.atasService.getAtas();
     this.tiposComponentesService.getTiposComponentes();
   }
@@ -93,6 +119,16 @@ export class InventarioComponent {
     if (dataComponent.action == 'delete') {
       this.deleteData(dataComponent.data);
     }
+  }
+
+  openDialogAsign(): void {
+    formularioInventario.dataForm.map((form) => (form.value = ''));
+    const dialogRef = this.dialog.open(FormularioComponent, {
+      panelClass: 'stylesDialog',
+      data: formularioAsignar,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+    });
   }
 
   openDialog(): void {

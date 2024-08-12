@@ -61,20 +61,6 @@ export const columnsInspeccion: IColumns<IInspeccion>[] = [
 
 export const dataFormInspeccion: IDataForm[] = [
   {
-    label: 'Fecha',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text'
-  },
-  {
-    label: 'Aprobado',
-    formControl: 'active',
-    value: false,
-    required: true,
-    typeInput: 'boolean',
-  },
-  {
     label: 'Orden de Inspeccion',
     formControl: '',
     value: '',
@@ -83,11 +69,18 @@ export const dataFormInspeccion: IDataForm[] = [
   },
   {
     label: 'Inspeccionado por',
-    formControl: '',
+    formControl: 'inspectecBy',
     value: '',
     required: true,
     typeInput: 'select',
     option: []
+  },
+  {
+    label: 'Aprobado',
+    formControl: 'active',
+    value: false,
+    required: true,
+    typeInput: 'boolean',
   },
   //falta la tabla de los componentes selecionados
 ];

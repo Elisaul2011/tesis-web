@@ -5,10 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { columnsCompra,formularioCompra } from './compra.data';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
-
 import { TableComponent } from '../../components/table/table.component';
 import { MatButtonModule } from '@angular/material/button';
-import { ICompra } from '../../interfaces/compra';
+import { BodyCreateCompra, BodyUpdateCompra, ICompra } from '../../interfaces/compra';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -32,15 +31,6 @@ export class CompraComponent {
   constructor(){
     effect(() => {
       this.compraData = this.compraService.getCompraData();
-      // const findRolesForm = formularioUser.dataForm.find(form => form.formControl == 'rolId');
-      // if(findRolesForm){
-      //   findRolesForm.option = this.userService.getUserRolsData().map((roles: IRoles) => {
-      //     return {
-      //       label: roles.rol,
-      //       value: roles.idRol
-      //     }
-      //   });
-      // }
     })
   }
 
@@ -66,23 +56,34 @@ export class CompraComponent {
       panelClass: 'stylesDialog',
       data: formularioCompra,
     });
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: BodyCreateCompra) => {
+      this.compraService.postCompra(result);
     });
   }
 
   editDataDialog(data: ICompra): void {
     console.log(data);
+    
+    formularioCompra.dataForm.map(form => {
+      const findByName = formularioCompra.dataForm.find(loquesea => loquesea.formControl == form.formControl);
+      if (findByName) {
+        findByName.value = data[form.formControl as keyof ICompra]
+      }
+    })
+
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioCompra,
       panelClass: 'stylesDialog',
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result: BodyUpdateCompra) => {
+      result.idOrdenCompra = data.idOrdenCompra;
+      this.compraService.putCompra(result);
     })
   }
 
   deleteData(data: ICompra): void {
     Swal.fire({
-      title: "Seguro que quieres eliminar el componente del inventario?",
+      title: "Seguro que quieres eliminar la orden de compra?",
       showDenyButton: true,
       confirmButtonColor: "#3085d6",
       denyButtonText: `Cancelar`,

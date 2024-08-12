@@ -31,6 +31,12 @@ export class UsersService extends BaseService {
     })
   }
 
+  getUsersByRol(rolId: string): void {
+    this.httpClient.get<IUsers[]>(`${this.route_users}/byRol/${rolId}`).subscribe((result:IUsers[])  => {
+      this.setUserData.set(result);
+    })
+  }
+
   getUsersRoles(): void {
     this.httpClient.get<IRoles[]>(this.route_users_roles).subscribe((result:IRoles[])  => {
       this.setUserRolesData.set(result);

@@ -1,5 +1,5 @@
 import { IDataForm, IFormulario } from "../../interfaces/fromulario.interface";
-import { IColumns } from "../../interfaces/table.interface";
+import { IColumns, IConfigTable } from "../../interfaces/table.interface";
 import { ITaller } from "../../interfaces/taller";
 
 export const columnsTaller: IColumns<ITaller>[] = [
@@ -46,11 +46,11 @@ export const columnsTaller: IColumns<ITaller>[] = [
     type: 'string'
   },
   {
-    title: 'Editar',
-    name: 'edit',
+    title: 'Cofirmar',
+    name: 'confirm',
     valueColumn: () => '',
     type: 'icon',
-    icon: 'edit',
+    icon: 'check_circle',
     color: 'primary'
   }
 ];
@@ -103,4 +103,9 @@ export const dataFormTaller: IDataForm[] = [
 export const formularioTaller: IFormulario = {
   title: 'Reparar Componente',
   dataForm: dataFormTaller
+}
+
+
+export const configTableTaller: IConfigTable = {
+  btnAdd: false
 }

@@ -4,6 +4,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import {
   IDataForm,
@@ -28,7 +29,7 @@ import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { IZona } from '../../interfaces/inventario';
 import { MatDatepickerIntl, MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS, MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-formulario',
@@ -44,7 +45,12 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
     MatSelectModule,
     MatSlideToggleModule,
     MatDatepickerModule,
+    MatNativeDateModule
   ],
+  providers: [
+    { provide: DateAdapter, useClass: NativeDateAdapter },
+  { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS }
+],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css',
 })
@@ -63,13 +69,13 @@ export class FormularioComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      if(this.selectEmpy){
+      if (this.selectEmpy) {
         this.selectEmpy.option = this.zonasService.getZonaData().map((zona: IZona) => {
-            return {
-              label: zona.zona,
-              value: zona.idZona,
-            };
-          });
+          return {
+            label: zona.zona,
+            value: zona.idZona,
+          };
+        });
       }
     });
   }
@@ -77,15 +83,19 @@ export class FormularioComponent implements OnInit {
   ngOnInit(): void {
     // this._locale.set('es');
     // this._adapter.setLocale(this._locale());
-    
+
     this.data.dataForm.map((form: IDataForm) => {
-      this.globalForm.addControl(form.formControl, new FormControl(form.value));
+      if (form.typeInput == 'date') {
+        this.globalForm.addControl(form.formControl, new FormControl(new Date(), [Validators.required]));
+      } else {
+        this.globalForm.addControl(form.formControl, new FormControl(form.value, [Validators.required]));
+      }
     });
 
     this.selectEmpy = this.data.dataForm.find((form) => form.typeInput == 'select' && form.option?.length == 0);
-    const detectChangeForm = this.data.dataForm.find((form) => form.main == true );
+    const detectChangeForm = this.data.dataForm.find((form) => form.main == true);
 
-    if(detectChangeForm){
+    if (detectChangeForm) {
       this.globalForm.get(detectChangeForm?.formControl)?.valueChanges.subscribe(result => {
         this.zonasService.getZonasByAlmacen(result);
       })

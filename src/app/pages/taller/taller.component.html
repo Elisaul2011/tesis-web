@@ -3,9 +3,6 @@
 <app-table
 [columns]="columnsTaller"
 [dataTable]="dataTaller"
+[configTable]="configTableTaller"
 (sendData)="defectColumnAction($event)"
 ></app-table>
-
-<div class="example-button-row">
-  <button mat-raised-button>Reporte de Ordenes de Taller</button>
-</div>

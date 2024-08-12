@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { IInspeccion } from '../../interfaces/inspeccion';
 import { inspeccionService } from '../../services/inspeccion.service';
 import Swal from 'sweetalert2';
+import { UsersService } from '../../services/users.service';
+import { IOptions } from '../../interfaces/fromulario.interface';
 
 
 
@@ -28,16 +30,28 @@ export class InspeccionComponent {
   dataInspeccion: IInspeccion[] = [];
 
   inspeccionService = inject(inspeccionService);
+  userService = inject(UsersService);
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
       this.dataInspeccion = this.inspeccionService.getInspeccionData();
+
+      const findInspect = formularioInspeccion.dataForm.find(form => form.formControl == 'inspectecBy');
+      if(findInspect){
+        findInspect.option = this.userService.getUserData().map(user => {
+          return {
+            label: `${user.nameUser} ${user.lastnameUser}`,
+            value: user.idUser
+          }
+        })
+      }
     })
   }
 
   ngOnInit(): void {
     this.inspeccionService.getInspeccion();
+    this.userService.getUsersByRol('2');
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
@@ -53,6 +67,12 @@ export class InspeccionComponent {
   }
 
   openDialog(): void {
+
+    //APROBADO
+    //Servicial
+
+    //Denegago
+    //En cuarentena
     formularioInspeccion.dataForm.map((form) => (form.value = ''));
     const dialogRef = this.dialog.open(FormularioComponent, {
       panelClass: 'stylesDialog',
