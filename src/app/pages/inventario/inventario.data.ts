@@ -202,7 +202,7 @@ export const dataFormAlmacen: IDataForm[] = [
 export const dataFormAsignar: IDataForm[] = [
   {
     label: 'Seleccionar componente',
-    formControl: 'inventories',
+    formControl: 'idInventario',
     value: '',
     required: true,
     typeInput: 'selectMulti',
@@ -211,7 +211,7 @@ export const dataFormAsignar: IDataForm[] = [
   },
   {
     label: 'Asignar Orden',
-    formControl: 'userTecnic',
+    formControl: 'asignTo',
     value: '',
     required: true,
     typeInput: 'select',
@@ -220,7 +220,7 @@ export const dataFormAsignar: IDataForm[] = [
   },
   {
     label: 'Tipo de Orden',
-    formControl: '',
+    formControl: 'typeOrder',
     value: '',
     required: true,
     typeInput: 'select',
@@ -237,8 +237,16 @@ export const dataFormAsignar: IDataForm[] = [
     ]
   },
   {
+    label: 'Taller o Aeronave',
+    formControl: 'text',
+    value: '',
+    required: true,
+    typeInput: 'text',
+    disabled: false,
+  },
+  {
     label: '#Orden',
-    formControl: '',
+    formControl: 'order',
     value: '',
     required: true,
     typeInput: 'text',

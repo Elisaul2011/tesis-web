@@ -1,6 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-import { BodyInventario, IInventario } from '../interfaces/inventario';
+import { BodyInventario, BodyInventarioAsign, IInventario } from '../interfaces/inventario';
 import { BaseService } from './base.service';
 import { BaseResponse } from '../interfaces/base.interface';
 
@@ -25,6 +25,14 @@ export class InventarioService extends BaseService {
   getInventarioServibles(): void {
     this.httpClient.get<IInventario[]>(`${this.base_router}/serviciables`).subscribe((result: IInventario[]) => {
       this.setInventarioServiblesData.set(result);
+    })
+  }
+
+  postInventarioAsign(bodyAlmacenes: BodyInventarioAsign): void {
+    this.httpClient.post<BaseResponse>(`${this.base_router}/asign`, bodyAlmacenes).subscribe((result: BaseResponse) => {
+      if (result) {
+        this.getInventario();
+      }
     })
   }
 

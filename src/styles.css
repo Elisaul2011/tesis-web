@@ -16,6 +16,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .stylesDialog{
   max-height: 98%;
   max-width: 100vw;
+  width: 70vw;
   margin: auto;
   padding: 1rem !important;
   overflow: auto;

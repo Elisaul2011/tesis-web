@@ -62,7 +62,7 @@ export class InventarioComponent {
         });
       }
 
-      const userTecnicForm = formularioAsignar.dataForm.find(form => form.formControl == 'userTecnic');
+      const userTecnicForm = formularioAsignar.dataForm.find(form => form.formControl == 'asignTo');
       if (userTecnicForm) {
         userTecnicForm.option = this.userService.getUserData().map((user: IUsers) => {
           return {
@@ -72,7 +72,7 @@ export class InventarioComponent {
         });
       }
 
-      const inventoriesForm = formularioAsignar.dataForm.find(form => form.formControl == 'inventories');
+      const inventoriesForm = formularioAsignar.dataForm.find(form => form.formControl == 'idInventario');
       if (inventoriesForm) {
         inventoriesForm.option = this.inventarioService.getInventarioServiblesData().map((inv: IInventario) => {
           return {
@@ -141,7 +141,7 @@ export class InventarioComponent {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
-      this.inventarioService.postInventario(result)
+      this.inventarioService.postInventarioAsign(result)
     });
   }
 

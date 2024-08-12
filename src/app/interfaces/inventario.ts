@@ -56,6 +56,14 @@ export interface IAtas {
 }
 
 
+export interface BodyInventarioAsign {
+  idInventario: number[];
+  typeOrder: number;
+  asignTo: number;
+  text: string;
+  order: string;
+}
+
 export interface BodyInventario {
   almacenesId: number;
   zonaId: number;
