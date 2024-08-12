@@ -47,7 +47,7 @@ export const columnsAeronave: IColumns<IAeronave>[] = [
   },
   {
     title: 'Confirmar',
-    name: 'confirm',
+    name: 'edit',
     valueColumn: () => '',
     type: 'icon',
     icon: 'check_circle',
@@ -56,14 +56,6 @@ export const columnsAeronave: IColumns<IAeronave>[] = [
 ];
 
 export const dataFormAeronave: IDataForm[] = [
-  {
-    label: 'Fecha',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text',
-    disabled: false
-  },
   {
     label: 'Aeronave',
     formControl: '',
@@ -99,6 +91,14 @@ export const dataFormAeronave: IDataForm[] = [
         value: 3
       }
     ]
+  },
+  {
+    label: 'Fecha',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'date',
+    disabled: false
   },
   //falta la tabla de componentes seleccionadas
 ];

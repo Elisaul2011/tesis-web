@@ -53,7 +53,7 @@ export const menuLayout: IMenu[] = [
   {
     title: 'Zonas',
     redirect: 'zonas',
-    icon: 'view_list',
+    icon: 'explore',
     userRol: ['Administrador', 'Jefe de almacén']
   },
   {

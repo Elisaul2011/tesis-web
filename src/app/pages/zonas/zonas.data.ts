@@ -17,8 +17,8 @@ export const columnsZonas: IColumns<IZona>[] = [
   },
   {
     title: 'Almacen',
-    name: 'almacenId',
-    valueColumn: (element: IZona) => element.almacenId,
+    name: 'almacenes.nombre',
+    valueColumn: (element: IZona) => element.almacenes.nombre,
     type: 'string'
   },
   {

@@ -47,7 +47,7 @@ export const columnsTaller: IColumns<ITaller>[] = [
   },
   {
     title: 'Cofirmar',
-    name: 'confirm',
+    name: 'edit',
     valueColumn: () => '',
     type: 'icon',
     icon: 'check_circle',
@@ -56,14 +56,6 @@ export const columnsTaller: IColumns<ITaller>[] = [
 ];
 
 export const dataFormTaller: IDataForm[] = [
-  {
-    label: 'Fecha',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text',
-    disabled: false,
-  },
   {
     label: 'Taller',
     formControl: '',
@@ -99,6 +91,14 @@ export const dataFormTaller: IDataForm[] = [
         value: 3
       }
     ]
+  },
+  {
+    label: 'Fecha',
+    formControl: '',
+    value: '',
+    required: true,
+    typeInput: 'date',
+    disabled: false,
   },
   //falta tabla de los componente seleccionados
 ];
