@@ -1,0 +1,7 @@
+<h2 class="ml-2">Zonas</h2>
+
+<app-table
+[columns]="columnsZonas"
+[dataTable]="dataZonas"
+(sendData)="defectColumnAction($event)"
+></app-table>

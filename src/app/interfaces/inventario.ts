@@ -68,3 +68,13 @@ export interface BodyInventario {
   shelfLife: Date;
   ataId: number;
 }
+
+
+export interface BodyCreateZona {
+  zona: string;
+  descripcionZona: string;
+  almacenId: number;
+}
+export interface BodyUpdateZona extends BodyCreateZona {
+  idZona: number;
+}

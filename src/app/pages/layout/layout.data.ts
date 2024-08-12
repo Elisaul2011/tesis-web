@@ -51,6 +51,12 @@ export const menuLayout: IMenu[] = [
     userRol: ['Administrador', 'Jefe de almacén']
   },
   {
+    title: 'Zonas',
+    redirect: 'zonas',
+    icon: 'view_list',
+    userRol: ['Administrador', 'Jefe de almacén']
+  },
+  {
     title: 'Reporte de ShelfLife',
     redirect: 'reporte-shelf-life',
     icon: 'receipt_long',

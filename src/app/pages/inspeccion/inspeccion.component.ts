@@ -8,11 +8,8 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { MatButtonModule } from '@angular/material/button';
 import { IInspeccion } from '../../interfaces/inspeccion';
 import { inspeccionService } from '../../services/inspeccion.service';
-import Swal from 'sweetalert2';
 import { UsersService } from '../../services/users.service';
-import { IOptions } from '../../interfaces/fromulario.interface';
 import { IInventario } from '../../interfaces/inventario';
-
 
 
 @Component({
