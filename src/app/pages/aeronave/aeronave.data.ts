@@ -61,14 +61,16 @@ export const dataFormAeronave: IDataForm[] = [
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Aeronave',
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Orden de trabajo',
@@ -76,6 +78,7 @@ export const dataFormAeronave: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       {
         label: 'Técnico',
@@ -89,6 +92,7 @@ export const dataFormAeronave: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       {
         label: 'Técnico',

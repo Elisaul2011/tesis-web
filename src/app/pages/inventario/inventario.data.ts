@@ -90,17 +90,13 @@ export const columnsInventario: IColumns<IInventario>[] = [
 export const dataFormAlmacen: IDataForm[] = [
   {
     label: 'Orden de Compra',
-    formControl: 'orderId',
+    formControl: 'orderCompraId',
     value: '',
     required: true,
     typeInput: 'select',
-    option: [
-      {
-        label: 'Orden 1',
-        value: 1
-      }
-    ],
-    main: false
+    disabled: false,
+    option: [],
+    autocomplete: true
   },
   {
     label: 'Ubicación',
@@ -108,6 +104,7 @@ export const dataFormAlmacen: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [],
     main: true
   },
@@ -117,6 +114,7 @@ export const dataFormAlmacen: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [],
     detectChange: true
   },
@@ -125,43 +123,53 @@ export const dataFormAlmacen: IDataForm[] = [
     formControl: 'pn',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'Descripción',
     formControl: 'descripcion',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'ATA',
-    formControl: 'atas',
+    formControl: 'ataId',
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: []
   },
   {
     label: 'Fabricante',
-    formControl: 'fabricante',
+    formControl: 'proveedor',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'Cantidad',
     formControl: 'cantidad',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'Lote',
     formControl: 'lote',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Tipo de componente',
@@ -169,6 +177,7 @@ export const dataFormAlmacen: IDataForm[] = [
     value: 0,
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: []
   },
   {
@@ -176,14 +185,17 @@ export const dataFormAlmacen: IDataForm[] = [
     formControl: 'sn',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: true,
+    autoFill: true
   },
   {
     label: 'Fecha de Shelf Life',
-    formControl: 'shelf',
+    formControl: 'shelfLife',
     value: '',
     required: true,
-    typeInput: 'date'
+    typeInput: 'date',
+    disabled: false,
   },
 ];
 
@@ -194,6 +206,7 @@ export const dataFormAsignar: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'selectMulti',
+    disabled: false,
     option: [],
   },
   {
@@ -202,6 +215,7 @@ export const dataFormAsignar: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [],
   },
   {
@@ -210,6 +224,7 @@ export const dataFormAsignar: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       {
         label: 'Orden de trabajo',
@@ -227,6 +242,7 @@ export const dataFormAsignar: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'text',
+    disabled: false,
   },
 ];
 

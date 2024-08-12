@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, effect, inject } from '@angular/core';
 import { IColumns, IConfigTable, ISendDataTable } from '../../interfaces/table.interface';
-import { columnsHistorial, dataFormUser, formularioUser } from './historial.data';
+import { columnsHistorial } from './historial.data';
 import { TableComponent } from '../../components/table/table.component';
 import { UsersService } from '../../services/users.service';
 import { IRoles, IUsers } from '../../interfaces/users';

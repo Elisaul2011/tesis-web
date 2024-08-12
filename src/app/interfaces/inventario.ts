@@ -53,3 +53,18 @@ export interface IAtas {
   CodigoAta: string;
   NombreATA: string;
 }
+
+
+export interface BodyInventario {
+  almacenesId: number;
+  zonaId: number;
+  pn: string;
+  descripcion: string;
+  tipoComponenteId: number;
+  sn: string;
+  cantidad: number;
+  lote: string;
+  fabricante: string;
+  shelfLife: Date;
+  ataId: number;
+}

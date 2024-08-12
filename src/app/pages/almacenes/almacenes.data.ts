@@ -59,28 +59,32 @@ export const dataFormAlmacenes: IDataForm[] = [
     formControl: 'nombre',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Descripción',
     formControl: 'descripcion',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Pais',
     formControl: 'pais',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Ciudad',
     formControl: 'ciudad',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Estado',
@@ -88,6 +92,7 @@ export const dataFormAlmacenes: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       { value: 1, label: 'Activo' },
       { value: 0, label: 'Inactivo' }

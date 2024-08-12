@@ -1,6 +1,6 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-import { IInventario } from '../interfaces/inventario';
+import { BodyInventario, IInventario } from '../interfaces/inventario';
 import { BaseService } from './base.service';
 import { BaseResponse } from '../interfaces/base.interface';
 
@@ -28,7 +28,7 @@ export class InventarioService extends BaseService {
     })
   }
 
-  postInventario(bodyAlmacenes: any): void {
+  postInventario(bodyAlmacenes: BodyInventario): void {
     this.httpClient.post<BaseResponse>(this.base_router, bodyAlmacenes).subscribe((result: BaseResponse) => {
       if (result) {
         this.getInventario();
@@ -36,7 +36,7 @@ export class InventarioService extends BaseService {
     })
   }
 
-  putInventario(putAlmacen: any): void {
+  putInventario(putAlmacen: BodyInventario): void {
     this.httpClient.put<BaseResponse>(this.base_router, putAlmacen).subscribe((result: BaseResponse) => {
       if (result) {
         this.getInventario();

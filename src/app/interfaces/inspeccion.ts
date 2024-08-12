@@ -5,3 +5,10 @@ export interface IInspeccion {
   inventarioId: number;
   inventario: IInventario
 }
+
+export interface BodyUpdateInspeccion {
+  idInventario: number;
+  orderInspect: string;
+  inspectecBy: number;
+  active: boolean;
+}

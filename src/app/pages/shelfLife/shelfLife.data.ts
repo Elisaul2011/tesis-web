@@ -78,28 +78,32 @@ export const dataFormShelfLife: IDataForm[] = [
     formControl: 'ubicacion',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Zona',
     formControl: 'Zona',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'P/N',
     formControl: 'pn',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Descripción',
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'ATA',
@@ -107,6 +111,7 @@ export const dataFormShelfLife: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       {
         label: 'Almacenista',
@@ -119,14 +124,16 @@ export const dataFormShelfLife: IDataForm[] = [
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Costo Unitario',
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Tipo de componente',
@@ -134,6 +141,7 @@ export const dataFormShelfLife: IDataForm[] = [
     value: '',
     required: true,
     typeInput: 'select',
+    disabled: false,
     option: [
       {
         label: 'Almacenista',
@@ -146,14 +154,16 @@ export const dataFormShelfLife: IDataForm[] = [
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     label: 'Fecha de Shelf Life',
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
   {
     //este depende de shelf life
@@ -161,7 +171,8 @@ export const dataFormShelfLife: IDataForm[] = [
     formControl: '',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false,
   },
 ];
 

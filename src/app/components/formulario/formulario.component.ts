@@ -64,8 +64,9 @@ export class FormularioComponent implements OnInit {
 
   zonasService = inject(ZonasService);
   selectEmpy: IDataForm | any = {} as IDataForm;
+  selectAutoCompleted: IDataForm | any = {} as IDataForm;
 
-  globalForm = new FormGroup({});
+  globalForm: FormGroup = new FormGroup({});
 
   constructor() {
     effect(() => {
@@ -100,7 +101,32 @@ export class FormularioComponent implements OnInit {
         this.zonasService.getZonasByAlmacen(result);
       })
     }
+
+    const detectAutoCompleteMainSelect = this.data.dataForm.find((form) => form.autocomplete == true);
+    const findAutoCompleteFill = this.data.dataForm.filter(form => form.autoFill == true);
+    const dataOptions = detectAutoCompleteMainSelect?.option?.map(opt =>opt.data);
+    console.log(dataOptions);
+
+    if (detectAutoCompleteMainSelect && findAutoCompleteFill) {
+
+      this.globalForm.get(detectAutoCompleteMainSelect?.formControl)?.valueChanges.subscribe(result => {
+        this.zonasService.getZonasByAlmacen(result);
+        const findData = dataOptions?.find(idOrder => idOrder.idOrdenCompra == result);
+
+        findAutoCompleteFill.map((form: IDataForm) => {
+          this.globalForm.controls[form.formControl].setValue(findData[form.formControl])
+        })
+      })
+
+      // findAutoCompleteFill.map((form: IDataForm) => {
+      //   this.globalForm.controls[form.formControl].setValue('agregado')
+      // })
+    }
   }
+
+  
+
+  
 
   onSubmitFormulario(): void {
     this.dialogRef.close(this.globalForm.value);

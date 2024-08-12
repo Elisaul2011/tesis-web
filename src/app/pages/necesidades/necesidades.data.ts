@@ -36,21 +36,24 @@ export const dataFormNecesidades: IDataForm[] = [
         formControl: '',
         value: '',
         required: true,
-        typeInput: 'text'
+        typeInput: 'text',
+        disabled: false,
     },
     {
         label: 'Descripción',
         formControl: '',
         value: '',
         required: true,
-        typeInput: 'text'
+        typeInput: 'text',
+        disabled: false,
     },
     {
         label: 'cantidad',
         formControl: '',
         value: '',
         required: true,
-        typeInput: 'text'
+        typeInput: 'text',
+        disabled: false,
     },
 ];
 

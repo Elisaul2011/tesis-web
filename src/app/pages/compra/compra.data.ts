@@ -9,7 +9,7 @@ export const columnsCompra: IColumns<ICompra>[] = [
     valueColumn: (element: ICompra) => element.ordenCompra,
     type: 'string'
   },
-    {
+  {
     title: 'Descripción',
     name: 'descripcion',
     valueColumn: (element: ICompra) => element.descripcion,
@@ -70,49 +70,56 @@ export const dataFormCompra: IDataForm[] = [
     formControl: 'ordenCompra',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Descripción',
     formControl: 'descripcion',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'P/N',
     formControl: 'pn',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'SN',
     formControl: 'sn',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Proveedor',
     formControl: 'proveedor',
     value: '',
     required: true,
-    typeInput: 'text'
+    typeInput: 'text',
+    disabled: false
   },
   {
     label: 'Cantidad',
     formControl: 'cantidad',
     value: '',
     required: true,
-    typeInput: 'number'
+    typeInput: 'number',
+    disabled: false
   },
   {
     label: 'Fecha',
     formControl: 'fecha',
     value: '',
     required: true,
-    typeInput: 'date'
+    typeInput: 'date',
+    disabled: false
   },
 ];
 
