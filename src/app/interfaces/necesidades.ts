@@ -7,3 +7,12 @@ export interface INecesidades {
     inventario: IInventario;
     pn: string;
 }
+
+export interface BodyNecesidades {
+    descripcion: number;
+    cantidad: IInventario;
+    pn: string;
+}
+export interface BodyUpdateNecesidades extends BodyNecesidades {
+    idNecesidadesTecnicas: number;
+}
