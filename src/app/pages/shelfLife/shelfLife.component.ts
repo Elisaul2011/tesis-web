@@ -40,4 +40,8 @@ export class ShelfLifeComponent {
   ngOnInit(): void {
     this.reportSLService.getReportSL();
   }
+
+  downloadReportFile(): void {
+    this.reportSLService.getReportSLExcelFile();
+  }
 }
