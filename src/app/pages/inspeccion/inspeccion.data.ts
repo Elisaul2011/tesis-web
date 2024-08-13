@@ -58,11 +58,11 @@ export const columnsInspeccion: IColumns<IInventario>[] = [
     type: 'string',
   },
   {
-    title: 'Editar',
+    title: 'Aprobar',
     name: 'edit',
     valueColumn: () => 'edit',
     type: 'icon',
-    icon: 'edit',
+    icon: 'check_circle',
     color: 'primary'
   }
 ];
