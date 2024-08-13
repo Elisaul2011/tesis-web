@@ -124,6 +124,10 @@ export class InventarioComponent {
     this.tiposComponentesService.getTiposComponentes();
   }
 
+  downloadFileExcel():void {
+    this.inventarioService.getInventarioExcelFile();
+  }
+
   defectColumnAction(dataComponent: ISendDataTable): void {
     if (dataComponent.action == 'add') {
       this.openDialog();

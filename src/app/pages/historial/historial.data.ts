@@ -4,22 +4,16 @@ import { IColumns } from "../../interfaces/table.interface";
 
 export const columnsHistorial: IColumns<IHistorial>[] = [
   {
-    title: 'Fecha del Movimiento',
-    name: 'fechaMovimiento',
-    valueColumn: (element) => element.fechaMovimiento,
-    type: 'date'
+    title: 'Descripción',
+    name: 'inventario.descripcion',
+    valueColumn: (element) => element.inventario.descripcion,
+    type: 'string',
   },
   {
     title: 'P/N',
     name: 'inventario.pn',
     valueColumn: (element) => element.inventario.pn,
     type: 'string'
-  },
-  {
-    title: 'Descripción',
-    name: 'inventario.descripcion',
-    valueColumn: (element) => element.inventario.descripcion,
-    type: 'string',
   },
   {
     title: 'S/N',
@@ -56,5 +50,11 @@ export const columnsHistorial: IColumns<IHistorial>[] = [
     name: 'inventario.order',
     valueColumn: (element) => element.inventario.order,
     type: 'string'
+  },
+  {
+    title: 'Fecha del Movimiento',
+    name: 'fechaMovimiento',
+    valueColumn: (element) => element.fechaMovimiento,
+    type: 'date'
   },
 ];

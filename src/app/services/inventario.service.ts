@@ -21,6 +21,18 @@ export class InventarioService extends BaseService {
       this.setInventarioData.set(result);
     })
   }
+  getInventarioExcelFile(): void {
+    this.httpClient.get(`${this.base_router}/imprimir`, { responseType: 'blob' }).subscribe((result) => {
+
+      if(result.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+        const url = window.URL.createObjectURL(result);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `nombre-inventario.xlsx`;
+        link.click();
+      }
+    })
+  }
 
   getInventarioServibles(): void {
     this.httpClient.get<IInventario[]>(`${this.base_router}/serviciables`).subscribe((result: IInventario[]) => {

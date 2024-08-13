@@ -42,6 +42,10 @@ export class HistorialComponent {
     this.historialService.getHistorial();
   }
 
+  downloadHistoryFile(): void {
+    this.historialService.getHistoryExcelFile();
+  }
+
   defectColumnAction(dataComponent: ISendDataTable): void {
     if (dataComponent.action == 'add') {
       this.openDialog();
