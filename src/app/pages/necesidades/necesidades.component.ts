@@ -9,6 +9,8 @@ import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 import { TableComponent } from '../../components/table/table.component';
 import { NecesidadesService } from '../../services/necesidades.service';
 import { BodyNecesidades, BodyUpdateNecesidades, INecesidades } from '../../interfaces/necesidades';
+import { UsersService } from '../../services/users.service';
+import { InventarioService } from '../../services/inventario.service';
 
 @Component({
   selector: 'app-necesidades',
@@ -24,17 +26,30 @@ export class NecesidadesComponent {
   columnsNecesidades: IColumns<INecesidades>[] = columnsNecesidades;
   dataNecesidades: INecesidades[] = [];
 
+  inventarioServices = inject(InventarioService);
   necesidadesService = inject(NecesidadesService);
   dialog = inject(MatDialog);
 
   constructor() {
     effect(() => {
       this.dataNecesidades = this.necesidadesService.getNecesidadesData();
+
+      const findInspect = formularioNecesidades.dataForm.find(form => form.formControl == 'inventarioId');
+      if(findInspect){
+        findInspect.option = this.inventarioServices.getInventarioServiblesData().map(inv => {
+          return {
+            label: `${inv.descripcion} - ${inv.order}`,
+            value: inv.idInventario,
+            data: inv
+          }
+        })
+      }
     })
   }
 
   ngOnInit(): void {
     this.necesidadesService.getNecesidades();
+    this.inventarioServices.getInventarioServibles();
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {

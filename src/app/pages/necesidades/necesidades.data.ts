@@ -21,16 +21,26 @@ export const columnsNecesidades: IColumns<INecesidades>[] = [
         valueColumn: (element) => element.cantidad,
         type: 'string'
     },
-    {
-        title: 'Editar',
-        name: 'edit',
-        valueColumn: () => '',
-        type: 'icon',
-        icon: 'edit'
-    }
+    // {
+    //     title: 'Editar',
+    //     name: 'edit',
+    //     valueColumn: () => '',
+    //     type: 'icon',
+    //     icon: 'edit'
+    // }
 ];
 
 export const dataFormNecesidades: IDataForm[] = [
+    {
+        label: 'Orden',
+        formControl: 'inventarioId',
+        value: '',
+        required: true,
+        typeInput: 'select',
+        option: [],
+        disabled: false,
+        autocomplete: true
+    },
     {
         label: 'P/N',
         formControl: 'pn',
@@ -38,6 +48,7 @@ export const dataFormNecesidades: IDataForm[] = [
         required: true,
         typeInput: 'text',
         disabled: false,
+        autoFill: true
     },
     {
         label: 'Descripción',
@@ -46,6 +57,7 @@ export const dataFormNecesidades: IDataForm[] = [
         required: true,
         typeInput: 'text',
         disabled: false,
+        autoFill: true
     },
     {
         label: 'Cantidad',

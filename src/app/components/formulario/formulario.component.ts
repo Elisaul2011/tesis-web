@@ -105,28 +105,30 @@ export class FormularioComponent implements OnInit {
     const detectAutoCompleteMainSelect = this.data.dataForm.find((form) => form.autocomplete == true);
     const findAutoCompleteFill = this.data.dataForm.filter(form => form.autoFill == true);
     const dataOptions = detectAutoCompleteMainSelect?.option?.map(opt =>opt.data);
-    console.log(dataOptions);
 
     if (detectAutoCompleteMainSelect && findAutoCompleteFill) {
 
       this.globalForm.get(detectAutoCompleteMainSelect?.formControl)?.valueChanges.subscribe(result => {
         this.zonasService.getZonasByAlmacen(result);
         const findData = dataOptions?.find(idOrder => idOrder.idOrdenCompra == result);
+        const findDataInv = dataOptions?.find(inv => inv.idInventario == result);
 
-        findAutoCompleteFill.map((form: IDataForm) => {
-          this.globalForm.controls[form.formControl].setValue(findData[form.formControl])
-        })
+        if(findData){
+          findAutoCompleteFill.map((form: IDataForm) => {
+            this.globalForm.controls[form.formControl].setValue(findData[form.formControl])
+          })
+        }
+
+        if(findDataInv){
+          this.globalForm.get('cantidad')?.clearValidators();
+          this.globalForm.get('cantidad')?.setValidators(Validators.max(findDataInv.cantidad));
+          findAutoCompleteFill.map((form: IDataForm) => {
+            this.globalForm.controls[form.formControl].setValue(findDataInv[form.formControl])
+          })
+        }
       })
-
-      // findAutoCompleteFill.map((form: IDataForm) => {
-      //   this.globalForm.controls[form.formControl].setValue('agregado')
-      // })
     }
   }
-
-  
-
-  
 
   onSubmitFormulario(): void {
     this.dialogRef.close(this.globalForm.value);

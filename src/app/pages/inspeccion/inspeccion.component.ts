@@ -50,7 +50,7 @@ export class InspeccionComponent {
 
   ngOnInit(): void {
     this.inspeccionService.getInspeccion();
-    this.userService.getUsersByRol('2');
+    this.userService.getUsersByRol('3');
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {

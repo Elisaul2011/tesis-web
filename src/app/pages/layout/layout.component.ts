@@ -5,6 +5,7 @@ import { IMenu, Roles, menuLayout } from './layout.data';
 import { MatIconModule } from '@angular/material/icon';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { UsersService } from '../../services/users.service';
+import { IUsers } from '../../interfaces/users';
 
 @Component({
   selector: 'app-layout',
@@ -17,6 +18,7 @@ export class LayoutComponent implements OnInit {
   menuLayout: IMenu[] = menuLayout;
   close: boolean = false;
   userService = inject(UsersService);
+  userToken: IUsers = {} as IUsers;
   styleMenu: string =
     'flex hidden bg-blue-700 z-20 h-full top-0 left-0 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75';
 
@@ -26,12 +28,19 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const user = this.userService.getUserToken();
-    if (user) {
-      this.menuLayout = menuLayout.filter(menu => menu.userRol?.includes(user.roles.rol as Roles));
+    this.userToken = this.userService.getUserToken();
+    if (this.userToken) {
+      this.menuLayout = menuLayout.filter(menu => menu.userRol?.includes(this.userToken.roles.rol as Roles));
     } else {
       this.router.navigate(['/login']);
     }
+  }
+
+  activeOption(menu: IMenu): void {
+    this.menuLayout.map(me => {
+      me.active = false;
+    });
+    menu.active = true;
   }
 
   mediaQuery() {

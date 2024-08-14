@@ -29,7 +29,7 @@ export class CompraService extends BaseService {
         const url = window.URL.createObjectURL(result);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `nombre-compra.xlsx`;
+        link.download = `reporte_compra.xlsx`;
         link.click();
       }
     })
