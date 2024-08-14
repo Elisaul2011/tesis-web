@@ -162,7 +162,6 @@ export class InventarioComponent {
   }
 
   editDataDialog(data: IInventario): void {
-
     formularioInventario.dataForm.map(form => {
       const findByName = formularioInventario.dataForm.find(loquesea => loquesea.formControl == form.formControl);
       if(findByName){
