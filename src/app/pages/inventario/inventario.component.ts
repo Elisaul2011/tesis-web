@@ -156,7 +156,6 @@ export class InventarioComponent {
       data: formularioInventario,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      result.fabricante = result.proveedor;
       this.inventarioService.postInventario(result);
     });
   }
