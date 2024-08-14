@@ -23,15 +23,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
-
 ::-webkit-scrollbar {
   background-color: #e4e4e7;
   border-radius: 1rem;
-
 }
 
 ::-webkit-scrollbar:vertical {
   width:.65rem;
+}
+::-webkit-scrollbar:horizontal {
+  height:.65rem;
 }
 
 ::-webkit-scrollbar-button:increment,::-webkit-scrollbar-button {

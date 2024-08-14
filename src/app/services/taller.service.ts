@@ -13,15 +13,14 @@ export class TallerService extends BaseService {
   public getTallerData = computed<ITaller[]>(() => this.setTallerData());
 
   getTaller(): void {
-    this.httpClient.get<ITaller[]>(this.route_taller).subscribe((result:ITaller[])  => {
+    this.httpClient.get<ITaller[]>(this.route_taller).subscribe((result: ITaller[]) => {
       this.setTallerData.set(result);
     })
   }
 
   postTaller(bodyTaller: BodyCreateTaller): void {
     this.httpClient.post(this.route_taller, bodyTaller).subscribe(result => {
-       
-      if(result){
+      if (result) {
         this.getTaller();
       }
     })
@@ -29,8 +28,7 @@ export class TallerService extends BaseService {
 
   putTaller(bodyTaller: BodyUpdateTaller): void {
     this.httpClient.put(this.route_taller, bodyTaller).subscribe(result => {
-       
-      if(result){
+      if (result) {
         this.getTaller();
       }
     })

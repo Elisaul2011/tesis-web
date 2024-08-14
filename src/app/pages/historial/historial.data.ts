@@ -27,12 +27,12 @@ export const columnsHistorial: IColumns<IHistorial>[] = [
     valueColumn: (element) => element.inventario.cantidad,
     type: 'string'
   },
-  // {
-  //   title: 'Realizado Por',
-  //   name: '',
-  //   valueColumn: (element) => element.inventario.pn,
-  //   type: 'string'
-  // },
+  {
+    title: 'Realizado Por',
+    name: 'madeBy',
+    valueColumn: (element) => 'admin',
+    type: 'string'
+  },
   {
     title: 'Tipo de Movimiento',
     name: 'tipomovimiento.tipoMovimiento',

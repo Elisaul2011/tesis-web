@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
 import { base_route } from '../../../enviroment';
-import { IRoles, IUsers } from '../interfaces/users';
+import { IBodyCreateUser, IBodyUpdateUser, IRoles, IUsers } from '../interfaces/users';
 import { BaseService } from './base.service';
 
 @Injectable({
@@ -26,36 +26,34 @@ export class UsersService extends BaseService {
   }
 
   getUsers(): void {
-    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result:IUsers[])  => {
+    this.httpClient.get<IUsers[]>(this.route_users).subscribe((result: IUsers[]) => {
       this.setUserData.set(result);
     })
   }
 
   getUsersByRol(rolId: string): void {
-    this.httpClient.get<IUsers[]>(`${this.route_users}/byRol/${rolId}`).subscribe((result:IUsers[])  => {
+    this.httpClient.get<IUsers[]>(`${this.route_users}/byRol/${rolId}`).subscribe((result: IUsers[]) => {
       this.setUserData.set(result);
     })
   }
 
   getUsersRoles(): void {
-    this.httpClient.get<IRoles[]>(this.route_users_roles).subscribe((result:IRoles[])  => {
+    this.httpClient.get<IRoles[]>(this.route_users_roles).subscribe((result: IRoles[]) => {
       this.setUserRolesData.set(result);
     })
   }
 
-  postUsers(bodyUser: any): void {
+  postUsers(bodyUser: IBodyCreateUser): void {
     this.httpClient.post(this.route_users, bodyUser).subscribe(result => {
-       
-      if(result){
+      if (result) {
         this.getUsers();
       }
     })
   }
 
-  putUsers(bodyUser: any): void {
+  putUsers(bodyUser: IBodyUpdateUser): void {
     this.httpClient.put(this.route_users, bodyUser).subscribe(result => {
-       
-      if(result){
+      if (result) {
         this.getUsers();
       }
     })
@@ -63,8 +61,8 @@ export class UsersService extends BaseService {
 
   deleteUsers(id: string): void {
     this.httpClient.delete(`${this.route_users}/${id}`).subscribe(result => {
-       
-      if(result){
+
+      if (result) {
         this.getUsers();
       }
     })

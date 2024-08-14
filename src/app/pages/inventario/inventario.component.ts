@@ -162,15 +162,22 @@ export class InventarioComponent {
   }
 
   editDataDialog(data: IInventario): void {
-    console.log(data);
+
+    formularioInventario.dataForm.map(form => {
+      const findByName = formularioInventario.dataForm.find(loquesea => loquesea.formControl == form.formControl);
+      if(findByName){
+        findByName.value = data[form.formControl as keyof IInventario]
+      }
+    })
+
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioInventario,
       panelClass: 'stylesDialog',
     });
     dialogRef.afterClosed().subscribe(result => {
-      result.fabricante = result.proveedor;
       console.log(result);
-      
+      result.idInventario  = data.idInventario;
+      this.inventarioService.putInventario(result);
     })
   }
 }

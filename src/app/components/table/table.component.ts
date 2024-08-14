@@ -85,6 +85,7 @@ export class TableComponent implements OnInit, AfterViewInit {
         return (
           this.dataTable.filter((fil) => {
             const splitWord = col.split('.');
+            
             // console.log(splitWord);
             if(splitWord.length == 1){
               // console.log(fil[splitWord[0]]);
