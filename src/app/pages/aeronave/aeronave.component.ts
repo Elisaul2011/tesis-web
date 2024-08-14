@@ -10,6 +10,7 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { BodyCreateAeronave, BodyUpdateAeronave, IAeronave } from '../../interfaces/aeronave';
 import { MatButtonModule } from '@angular/material/button';
 import { aeronaveService } from '../../services/aeronave.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-aeronave',
@@ -28,16 +29,27 @@ export class AeronaveComponent {
   configTableAeronave: IConfigTable = configTableAeronave;
 
   aeronaveService = inject(aeronaveService);
+  userService = inject(UsersService);
   dialog = inject(MatDialog);
 
   constructor() {
     effect(() => {
       this.dataAeronave = this.aeronaveService.getAeronaveData();
+      const findMadeBy = formularioAeronave.dataForm.find(form => form.formControl == 'madeBy');
+      if(findMadeBy){
+        findMadeBy.option = this.userService.getUserData().map(user => {
+          return {
+            label: `${user.nameUser} ${user.lastnameUser}`,
+            value: user.idUser
+          }
+        })
+      }
     })
   }
 
   ngOnInit(): void {
     this.aeronaveService.getAeronaves();
+    this.userService.getUsersByRol('4');
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {

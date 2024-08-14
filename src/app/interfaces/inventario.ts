@@ -17,6 +17,7 @@ export interface IInventario {
   necesidadesTecnicasId: number;
   rolId: number;
   estado: IEstado;
+  atas: IAtas;
   tipocomponente: ITipocomponente;
   almacenes: Almacenes;
   zona: IZona;

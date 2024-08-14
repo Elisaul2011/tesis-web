@@ -28,6 +28,18 @@ export const columnsInventario: IColumns<IInventario>[] = [
     type: 'string'
   },
   {
+    title: 'Ata',
+    name: 'atas.NombreATA',
+    valueColumn: (element) => element.atas.NombreATA,
+    type: 'string'
+  },
+  {
+    title: 'Fabricante',
+    name: 'fabricante',
+    valueColumn: (element) => element.fabricante,
+    type: 'string'
+  },
+  {
     title: 'Tipo',
     name: 'tipocomponente.tipoComponente',
     valueColumn: (element) => element.tipocomponente.tipoComponente,
@@ -147,7 +159,7 @@ export const dataFormAlmacen: IDataForm[] = [
   },
   {
     label: 'Fabricante',
-    formControl: 'proveedor',
+    formControl: 'fabricante',
     value: '',
     required: true,
     typeInput: 'text',

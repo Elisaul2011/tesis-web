@@ -23,3 +23,16 @@ export interface ILogin{
 export interface IResponseLogin extends BaseResponse {
   userToken: IUsers
 }
+
+
+export interface IBodyCreateUser {
+  nameUser: string;
+  lastnameUser: string;
+  password: string;
+  rolId: number;
+  active: boolean;
+}
+
+export interface IBodyUpdateUser extends IBodyCreateUser{
+  idUser: number
+}

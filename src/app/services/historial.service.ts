@@ -24,7 +24,7 @@ export class HistorialService extends BaseService{
         const url = window.URL.createObjectURL(result);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `nombre-historial.xlsx`;
+        link.download = `reporte_historial.xlsx`;
         link.click();
       }
     })

@@ -25,7 +25,7 @@ export class ReportSlService extends BaseService{
         const url = window.URL.createObjectURL(result);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `nombre-reporte.xlsx`;
+        link.download = `reporte_reporte.xlsx`;
         link.click();
       }
     })

@@ -40,7 +40,7 @@ export const columnsTaller: IColumns<ITaller>[] = [
     type: 'string'
   },
   {
-    title: 'Workshop Order',
+    title: 'Orden de taller',
     name: 'inventario.order',
     valueColumn: (element) => element.inventario.order,
     type: 'string'
@@ -57,30 +57,8 @@ export const columnsTaller: IColumns<ITaller>[] = [
 
 export const dataFormTaller: IDataForm[] = [
   {
-    label: 'Taller',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text',
-    disabled: false,
-  },
-  {
-    label: 'Orden de Taller',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    disabled: false,
-    option: [
-      {
-        label: 'Técnico',
-        value: 3
-      }
-    ]
-  },
-  {
     label: 'Realizado por',
-    formControl: '',
+    formControl: 'madeBy',
     value: '',
     required: true,
     typeInput: 'select',
@@ -94,7 +72,7 @@ export const dataFormTaller: IDataForm[] = [
   },
   {
     label: 'Fecha',
-    formControl: '',
+    formControl: 'date',
     value: '',
     required: true,
     typeInput: 'date',

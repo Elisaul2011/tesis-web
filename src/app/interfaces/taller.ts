@@ -9,8 +9,9 @@ export interface ITaller {
 
 export interface BodyCreateTaller {
   taller: string;
-  inventarioId: number
+  inventarioId: number;
   workshopOrder: string;
+  madeBy: number;
 }
 
 export interface BodyUpdateTaller extends BodyCreateTaller {

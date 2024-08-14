@@ -106,9 +106,10 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      result.idUser = data.idUser
-      result.password = '12345678';
-      this.userService.putUsers(result)
+      if(result){
+        result.idUser = data.idUser;
+        this.userService.putUsers(result);
+      }
     })
   }
 

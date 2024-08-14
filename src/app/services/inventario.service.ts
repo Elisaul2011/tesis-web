@@ -28,7 +28,7 @@ export class InventarioService extends BaseService {
         const url = window.URL.createObjectURL(result);
         const link = document.createElement('a');
         link.href = url;
-        link.download = `nombre-inventario.xlsx`;
+        link.download = `reporte_inventario.xlsx`;
         link.click();
       }
     })
