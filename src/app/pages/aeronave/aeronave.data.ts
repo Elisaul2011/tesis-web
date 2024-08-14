@@ -57,44 +57,18 @@ export const columnsAeronave: IColumns<IAeronave>[] = [
 
 export const dataFormAeronave: IDataForm[] = [
   {
-    label: 'Aeronave',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'text',
-    disabled: false
-  },
-  {
-    label: 'Orden de trabajo',
-    formControl: '',
-    value: '',
-    required: true,
-    typeInput: 'select',
-    disabled: false,
-    option: [
-      {
-        label: 'Técnico',
-        value: 3
-      }
-    ]
-  },
-  {
     label: 'Realizado por',
-    formControl: '',
+    formControl: 'madeBy',
     value: '',
     required: true,
     typeInput: 'select',
     disabled: false,
     option: [
-      {
-        label: 'Técnico',
-        value: 3
-      }
     ]
   },
   {
     label: 'Fecha',
-    formControl: '',
+    formControl: 'date',
     value: '',
     required: true,
     typeInput: 'date',

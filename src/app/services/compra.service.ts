@@ -22,6 +22,19 @@ export class CompraService extends BaseService {
     })
   }
 
+  getCompraExcelFile(): void {
+    this.httpClient.get(`${this.route_compra}/imprimir`, { responseType: 'blob' }).subscribe((result) => {
+
+      if(result.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+        const url = window.URL.createObjectURL(result);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `reporte_compra.xlsx`;
+        link.click();
+      }
+    })
+  }
+
   postCompra(bodyCompra: BodyCreateCompra): void {
     this.httpClient.post<BaseResponse>(this.route_compra, bodyCompra).subscribe((result: BaseResponse) => {
       if (result) {

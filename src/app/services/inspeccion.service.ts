@@ -33,6 +33,7 @@ export class inspeccionService extends BaseService {
         this.getInspeccion();
       }
     })
+    
   }
 
   deleteInspeccion(idAlmacen: number): void {

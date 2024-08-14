@@ -9,8 +9,9 @@ export interface INecesidades {
 }
 
 export interface BodyNecesidades {
-    descripcion: number;
-    cantidad: IInventario;
+    descripcion: string;
+    cantidad: number;
+    inventarioId: number;
     pn: string;
 }
 export interface BodyUpdateNecesidades extends BodyNecesidades {

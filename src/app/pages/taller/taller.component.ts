@@ -9,6 +9,7 @@ import { FormularioComponent } from '../../components/formulario/formulario.comp
 import { MatDialog } from '@angular/material/dialog';
 import { MatButton } from '@angular/material/button';
 import { TallerService } from '../../services/taller.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-taller',
@@ -27,16 +28,28 @@ export class TallerComponent {
   dataTaller: ITaller[] = [];
 
   tallerService = inject(TallerService);
+  userService = inject(UsersService);
   dialog = inject(MatDialog);
 
   constructor(){
     effect(() => {
       this.dataTaller = this.tallerService.getTallerData();
+
+      const findMadeBy = formularioTaller.dataForm.find(form => form.formControl == 'madeBy');
+      if(findMadeBy){
+        findMadeBy.option = this.userService.getUserData().map(user => {
+          return {
+            label: `${user.nameUser} ${user.lastnameUser}`,
+            value: user.idUser
+          }
+        })
+      }
     })
   }
 
   ngOnInit(): void {
     this.tallerService.getTaller();
+    this.userService.getUsersByRol('4');
   }
 
   defectColumnAction(dataComponent: ISendDataTable): void {

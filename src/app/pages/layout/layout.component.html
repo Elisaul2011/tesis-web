@@ -7,13 +7,16 @@
             class="lg:hidden mr-2 text-gray-600 hover:text-gray-900 cursor-pointer p-2 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 rounded">
             <mat-icon class="mat-18">menu</mat-icon>
           </button>
-          <a class="text-xl font-bold flex items-center lg:ml-2.5">
-            <!-- <img
-              src="/assets/logo/Default_A_stylized_dynamic_icon_featuring_a_sleek_silver_aircr_2_9b2ae59f-39af-4f15-8519-22312725645c_0.png"
-              class="h-6 mr-2"
-            /> -->
+          <span class="text-xl font-bold flex items-center lg:ml-2.5">
             <span class="self-center whitespace-nowrap text-white">Sistema de Inventario Aeronáutico</span>
-          </a>
+          </span>
+
+
+        </div>
+
+        <div class="flex text-white gap-5">
+          <span class="text-white">{{userToken.nameUser}} {{userToken.lastnameUser}} - {{userToken.roles.rol}}</span>
+          <mat-icon>account_circle</mat-icon>
         </div>
       </div>
     </div>
@@ -21,21 +24,19 @@
 
   <div class="flex h-[calc(100vh-3rem)] overflow-hidden bg-white">
     <aside [class]="styleMenu">
-      <ul class="flex flex-col items-center justify-between h-full w-full px-4 py-4 ">
-        <div class="flex flex-col items-center justify-start w-full gap-2">
-          @for (menu of menuLayout; track $index) {
-          <li class="w-full">
-            <a [routerLink]="menu.redirect"
-              class="text-base text-white font-normal bg-blue-600 rounded-lg flex items-center p-2 hover:bg-gray-100 hover:text-black w-full group">
-              <mat-icon class="mat-18">{{menu.icon}}</mat-icon>
-              <span class="ml-3">{{menu.title}}</span>
-            </a>
-          </li>
-          }
-        </div>
+      <ul class="flex flex-col items-center justify-start h-full overflow-y-auto w-full px-4 py-4 gap-2">
+        @for (menu of menuLayout; track $index) {
+        <li class="w-full" (click)="activeOption(menu)">
+          <a [routerLink]="menu.redirect"
+            class="{{menu.active ? 'bg-gray-100 text-black' : 'bg-blue-600 text-white'}} text-base  font-normal  rounded-lg flex items-center p-2 hover:bg-gray-100 hover:text-black w-full group">
+            <mat-icon class="mat-18">{{menu.icon}}</mat-icon>
+            <span class="ml-3">{{menu.title}}</span>
+          </a>
+        </li>
+        }
 
         <button (click)="logout()"
-          class="text-base text-white font-normal w-full bg-blue-600 rounded-lg flex items-center p-2 hover:bg-gray-100 hover:text-black group mx-2">
+          class="text-base text-white font-normal w-full bg-blue-600 rounded-lg flex items-center p-2 hover:bg-gray-100 hover:text-black group">
           <mat-icon class="mat-18">logout</mat-icon>
           <span class="ml-3">Cerrar sesión</span>
         </button>

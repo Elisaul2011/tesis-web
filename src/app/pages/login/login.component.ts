@@ -36,7 +36,7 @@ export class LoginComponent {
   typePassword: string = 'password';
 
   loginForm = new FormGroup({
-    nameUser: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    nameUser: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
 

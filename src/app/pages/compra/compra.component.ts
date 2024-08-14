@@ -37,6 +37,9 @@ export class CompraComponent {
   ngOnInit(): void {
     this.compraService.getCompra();
   }
+  downloadFileCompra():void {
+    this.compraService.getCompraExcelFile();
+  }
 
   defectColumnAction(dataComponent: ISendDataTable): void {
     if (dataComponent.action == 'add') {

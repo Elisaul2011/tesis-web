@@ -17,6 +17,19 @@ export class HistorialService extends BaseService{
     })
   }
 
+  getHistoryExcelFile(): void {
+    this.httpClient.get(`${this.router_historial}/imprimir`, { responseType: 'blob' }).subscribe((result) => {
+
+      if(result.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+        const url = window.URL.createObjectURL(result);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `reporte_historial.xlsx`;
+        link.click();
+      }
+    })
+  }
+
   postReport(bodyReport: any): void {
     this.httpClient.post(this.router_historial, bodyReport).subscribe(result => {
       if (result) {
