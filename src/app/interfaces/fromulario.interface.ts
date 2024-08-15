@@ -29,4 +29,4 @@ export interface ReturnSelect {
   value: string | number | boolean | any;
 }
 
-export type InputsTypes = 'text' | 'number' | 'date' | 'select' |'boolean' | 'selectMulti' | '';
+export type InputsTypes = 'text' | 'number' | 'date' | 'select' |'boolean' | 'selectMulti' | 'password' | '';

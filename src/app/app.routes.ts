@@ -15,6 +15,7 @@ import { CompraComponent } from './pages/compra/compra.component';
 import { NecesidadesComponent } from './pages/necesidades/necesidades.component';
 import { ShelfLifeComponent } from './pages/shelfLife/shelfLife.component';
 import { ZonasComponent } from './pages/zonas/zonas.component';
+import { NotificacionesComponent } from './pages/notificaciones/notificaciones.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,10 @@ export const routes: Routes = [
       {
         path:'aeronave',
         component: AeronaveComponent
+      },
+      {
+        path:'notificaciones',
+        component: NotificacionesComponent
       },
       {
         path:'OT',

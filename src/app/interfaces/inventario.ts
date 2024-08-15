@@ -8,7 +8,7 @@ export interface IInventario {
   sn: string;
   cantidad: number;
   lote: string;
-  fabricante: string;
+  proveedor: string;
   estadoId: number;
   shelfLife: Date;
   order: string;
@@ -74,7 +74,7 @@ export interface BodyInventario {
   sn: string;
   cantidad: number;
   lote: string;
-  fabricante: string;
+  proveedor: string;
   shelfLife: Date;
   ataId: number;
 }

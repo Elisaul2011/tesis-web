@@ -90,6 +90,7 @@ export class AeronaveComponent {
     dialogRef.afterClosed().subscribe((result: BodyUpdateAeronave) => {
       if (result) {
         result.idAeronave = data.idAeronave;
+        result.inventarioId = data.inventarioId;
         this.aeronaveService.putAeronaves(result)
       }
     })

@@ -16,6 +16,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import {
+  AfterViewChecked,
   Component,
   EventEmitter,
   OnInit,
@@ -49,12 +50,12 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MAT_NATIVE_DATE_FORMATS
   ],
   providers: [
     { provide: DateAdapter, useClass: NativeDateAdapter },
-  { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS }
-],
+    { provide: MAT_DATE_FORMATS, useValue: MAT_NATIVE_DATE_FORMATS }
+  ],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css',
 })
-export class FormularioComponent implements OnInit {
+export class FormularioComponent implements OnInit, AfterViewChecked {
   readonly data = inject<IFormulario>(MAT_DIALOG_DATA);
   readonly dialogRef = inject(MatDialogRef<FormularioComponent>);
 
@@ -82,9 +83,6 @@ export class FormularioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this._locale.set('es');
-    // this._adapter.setLocale(this._locale());
-
     this.data.dataForm.map((form: IDataForm) => {
       if (form.typeInput == 'date') {
         this.globalForm.addControl(form.formControl, new FormControl(new Date(), [Validators.required]));
@@ -92,6 +90,11 @@ export class FormularioComponent implements OnInit {
         this.globalForm.addControl(form.formControl, new FormControl(form.value, [Validators.required]));
       }
     });
+
+    setTimeout(() => {
+      console.log(this.globalForm.value);
+
+    }, 1500);
 
     this.selectEmpy = this.data.dataForm.find((form) => form.typeInput == 'select' && form.option?.length == 0);
     const detectChangeForm = this.data.dataForm.find((form) => form.main == true);
@@ -101,36 +104,49 @@ export class FormularioComponent implements OnInit {
         this.zonasService.getZonasByAlmacen(result);
       })
     }
+  }
 
+
+  ngAfterViewChecked(): void {
     const detectAutoCompleteMainSelect = this.data.dataForm.find((form) => form.autocomplete == true);
     const findAutoCompleteFill = this.data.dataForm.filter(form => form.autoFill == true);
-    const dataOptions = detectAutoCompleteMainSelect?.option?.map(opt =>opt.data);
+    const dataOptions = detectAutoCompleteMainSelect?.option?.map(opt => opt.data);
 
     if (detectAutoCompleteMainSelect && findAutoCompleteFill) {
-
       this.globalForm.get(detectAutoCompleteMainSelect?.formControl)?.valueChanges.subscribe(result => {
         this.zonasService.getZonasByAlmacen(result);
         const findData = dataOptions?.find(idOrder => idOrder.idOrdenCompra == result);
         const findDataInv = dataOptions?.find(inv => inv.idInventario == result);
 
-        if(findData){
+        if (findData) {
           findAutoCompleteFill.map((form: IDataForm) => {
             this.globalForm.controls[form.formControl].setValue(findData[form.formControl])
           })
         }
 
-        if(findDataInv){
+        if (findDataInv) {
           this.globalForm.get('cantidad')?.clearValidators();
           this.globalForm.get('cantidad')?.setValidators(Validators.max(findDataInv.cantidad));
           findAutoCompleteFill.map((form: IDataForm) => {
             this.globalForm.controls[form.formControl].setValue(findDataInv[form.formControl])
           })
         }
-      })
+      });
     }
+    this.data.dataForm.map((form: IDataForm) => {
+      if (form.disabled) {
+        this.globalForm.get(form.formControl)?.disable();
+      }
+    });
   }
 
+
   onSubmitFormulario(): void {
-    this.dialogRef.close(this.globalForm.value);
+    const formParse: any = {};
+    this.data.dataForm.map(pro => {
+      formParse[pro.formControl as any] = this.globalForm.get(pro.formControl)?.value
+    }).flat();
+
+    this.dialogRef.close(formParse);
   }
 }

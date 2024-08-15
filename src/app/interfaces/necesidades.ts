@@ -14,6 +14,7 @@ export interface BodyNecesidades {
     inventarioId: number;
     pn: string;
 }
-export interface BodyUpdateNecesidades extends BodyNecesidades {
-    idNecesidadesTecnicas: number;
+export interface BodyUpdateNecesidades {
+    sendTo: number;
+    sendBy: number;
 }

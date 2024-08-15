@@ -82,18 +82,6 @@ export class UsersComponent implements OnInit {
   }
 
   editDataDialog(data: IUsers): void {
-    // const findNameUser = formularioUser.dataForm.find(form => form.formControl == 'nameUser');
-    // const findLastnameUser = formularioUser.dataForm.find(form => form.formControl == 'lastnameUser');
-    // const findRoles = formularioUser.dataForm.find(form => form.formControl == 'rolId');
-    // const findActive = formularioUser.dataForm.find(form => form.formControl == 'active');
-
-    // if(findRoles && findNameUser && findLastnameUser && findActive){
-    //   findRoles.value = data.rolId;
-    //   findNameUser.value = data.nameUser;
-    //   findLastnameUser.value = data.lastnameUser;
-    //   findActive.value = data.active;
-    // }
-
     formularioUser.dataForm.map(form => {
       const findByName = formularioUser.dataForm.find(loquesea => loquesea.formControl == form.formControl);
       if(findByName){

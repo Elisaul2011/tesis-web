@@ -9,5 +9,6 @@
         "angular-page": {
             "skipChangeDetectionOnPush": true
         }
-    }
+    },
+    "cSpell.language": "en,es-ES"
 }

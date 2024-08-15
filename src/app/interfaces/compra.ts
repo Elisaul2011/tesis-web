@@ -14,6 +14,7 @@ export interface BodyCreateCompra {
   fecha:         Date;
   descripcion:   string;
   cantidad:      number;
+  userId :      number;
   pn:            string;
   sn:            string;
 }
