@@ -32,7 +32,7 @@ export const columnsNecesidades: IColumns<INecesidades>[] = [
 
 export const dataFormNecesidades: IDataForm[] = [
     {
-        label: 'Orden',
+        label: 'Material',
         formControl: 'inventarioId',
         value: '',
         required: true,
@@ -47,7 +47,7 @@ export const dataFormNecesidades: IDataForm[] = [
         value: '',
         required: true,
         typeInput: 'text',
-        disabled: false,
+        disabled: true,
         autoFill: true
     },
     {
@@ -56,7 +56,7 @@ export const dataFormNecesidades: IDataForm[] = [
         value: '',
         required: true,
         typeInput: 'text',
-        disabled: false,
+        disabled: true,
         autoFill: true
     },
     {
@@ -73,5 +73,22 @@ export const dataFormNecesidades: IDataForm[] = [
 export const formularioNecesidades: IFormulario = {
     title: 'Solicitud de Materiales',
     dataForm: dataFormNecesidades
+}
+
+export const dataFormAsignar: IDataForm[] = [
+    {
+        label: 'Enviar a',
+        formControl: 'sendTo',
+        value: '',
+        required: true,
+        typeInput: 'select',
+        disabled: false,
+        option: [],
+    }
+];
+
+export const formularioAsignar: IFormulario = {
+    title: 'Enviar Solicitud',
+    dataForm: dataFormAsignar
 }
 

@@ -3,12 +3,13 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { CompraService } from '../../services/compra.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioComponent } from '../../components/formulario/formulario.component';
-import { columnsCompra,formularioCompra } from './compra.data';
+import { columnsCompra, formularioCompra } from './compra.data';
 import { IColumns, ISendDataTable } from '../../interfaces/table.interface';
 import { TableComponent } from '../../components/table/table.component';
 import { MatButtonModule } from '@angular/material/button';
 import { BodyCreateCompra, BodyUpdateCompra, ICompra } from '../../interfaces/compra';
 import Swal from 'sweetalert2';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-compra',
@@ -21,23 +22,23 @@ import Swal from 'sweetalert2';
   templateUrl: './compra.component.html',
   styleUrl: './compra.component.css',
 })
-export class CompraComponent {
+export class CompraComponent extends BaseComponent {
   columnsCompra: IColumns<ICompra>[] = columnsCompra;
-
   compraData: ICompra[] = [];
   compraService = inject(CompraService);
-  dialog = inject(MatDialog);
 
-  constructor(){
+
+  constructor() {
     effect(() => {
       this.compraData = this.compraService.getCompraData();
     })
+    super();
   }
 
   ngOnInit(): void {
     this.compraService.getCompra();
   }
-  downloadFileCompra():void {
+  downloadFileCompra(): void {
     this.compraService.getCompraExcelFile();
   }
 
@@ -60,13 +61,12 @@ export class CompraComponent {
       data: formularioCompra,
     });
     dialogRef.afterClosed().subscribe((result: BodyCreateCompra) => {
+      result.userId = this.userToken.idUser;
       this.compraService.postCompra(result);
     });
   }
 
   editDataDialog(data: ICompra): void {
-    console.log(data);
-    
     formularioCompra.dataForm.map(form => {
       const findByName = formularioCompra.dataForm.find(loquesea => loquesea.formControl == form.formControl);
       if (findByName) {
@@ -80,6 +80,7 @@ export class CompraComponent {
     });
     dialogRef.afterClosed().subscribe((result: BodyUpdateCompra) => {
       result.idOrdenCompra = data.idOrdenCompra;
+      result.userId = this.userToken.idUser;
       this.compraService.putCompra(result);
     })
   }

@@ -90,6 +90,7 @@ export class TallerComponent {
     dialogRef.afterClosed().subscribe((result: BodyUpdateTaller) => {
       if(result){
         result.idTaller = data.idTaller;
+        result.inventarioId = data.inventarioId;
         this.tallerService.putTaller(result)
       }
     })

@@ -25,6 +25,7 @@ import { UsersService } from '../../services/users.service';
 import { IUsers } from '../../interfaces/users';
 import { CompraService } from '../../services/compra.service';
 import { ICompra } from '../../interfaces/compra';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-almacen',
@@ -33,19 +34,17 @@ import { ICompra } from '../../interfaces/compra';
   templateUrl: './inventario.component.html',
   styleUrl: './inventario.component.css',
 })
-export class InventarioComponent {
+export class InventarioComponent extends BaseComponent{
   columnsInventario: IColumns<IInventario>[] = columnsInventario;
   dataInvenario: IInventario[] = [];
   inventarioData: IInventario[] = [];
 
   almacenService = inject(almacenService);
   zonaService = inject(ZonasService);
-  userService = inject(UsersService);
   inventarioService = inject(InventarioService);
   compraService = inject(CompraService);
   atasService = inject(AtasService);
   tiposComponentesService = inject(TiposComponentesService);
-  dialog = inject(MatDialog);
   compraData: any;
 
   constructor() {
@@ -112,13 +111,15 @@ export class InventarioComponent {
         });
       }
     });
+
+    super();
   }
 
   ngOnInit(): void {
     this.compraService.getCompra();
     this.almacenService.getAlmacenes();
     this.inventarioService.getInventario();
-    this.userService.getUsersByRol('3');
+    this.userService.getUsersByRol('4');
     this.inventarioService.getInventarioServibles();
     this.atasService.getAtas();
     this.tiposComponentesService.getTiposComponentes();
@@ -144,7 +145,7 @@ export class InventarioComponent {
       data: formularioAsignar,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      result.userId = this.userToken.idUser;
       this.inventarioService.postInventarioAsign(result)
     });
   }
@@ -156,6 +157,8 @@ export class InventarioComponent {
       data: formularioInventario,
     });
     dialogRef.afterClosed().subscribe((result) => {
+      result.proveedor = result.proveedor;
+      result.userId = this.userToken.idUser;
       this.inventarioService.postInventario(result);
     });
   }
@@ -173,7 +176,6 @@ export class InventarioComponent {
       panelClass: 'stylesDialog',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       result.idInventario  = data.idInventario;
       this.inventarioService.putInventario(result);
     })

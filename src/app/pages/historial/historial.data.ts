@@ -5,32 +5,32 @@ import { IColumns } from "../../interfaces/table.interface";
 export const columnsHistorial: IColumns<IHistorial>[] = [
   {
     title: 'Descripción',
-    name: 'inventario.descripcion',
-    valueColumn: (element) => element.inventario.descripcion,
+    name: '.descripcion',
+    valueColumn: (element) => element.description,
     type: 'string',
   },
   {
     title: 'P/N',
-    name: 'inventario.pn',
-    valueColumn: (element) => element.inventario.pn,
+    name: '.pn',
+    valueColumn: (element) => element.pn,
     type: 'string'
   },
   {
     title: 'S/N',
-    name: 'inventario.sn',
-    valueColumn: (element) => element.inventario.sn,
+    name: '.sn',
+    valueColumn: (element) => element.sn,
     type: 'string'
   },
   {
     title: 'Cantidad',
-    name: 'inventario.cantidad',
-    valueColumn: (element) => element.inventario.cantidad,
+    name: 'cantidad',
+    valueColumn: (element) => element.cantidad,
     type: 'string'
   },
   {
     title: 'Realizado Por',
     name: 'madeBy',
-    valueColumn: (element) => 'admin',
+    valueColumn: (element) => `${element.user.nameUser} ${element.user.lastnameUser}`,
     type: 'string'
   },
   {
@@ -41,14 +41,14 @@ export const columnsHistorial: IColumns<IHistorial>[] = [
   },
   {
     title: 'Estado del Componente',
-    name: 'inventario.estado.estado',
-    valueColumn: (element) => element.inventario.estado.estado,
+    name: 'estado.estado',
+    valueColumn: (element) => element.estado.estado,
     type: 'string'
   },
   {
     title: '# Order',
-    name: 'inventario.order',
-    valueColumn: (element) => element.inventario.order,
+    name: 'orderHistorial',
+    valueColumn: (element) => element.orderHistorial,
     type: 'string'
   },
   {

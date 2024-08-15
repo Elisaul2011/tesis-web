@@ -34,9 +34,9 @@ export const columnsInventario: IColumns<IInventario>[] = [
     type: 'string'
   },
   {
-    title: 'Fabricante',
-    name: 'fabricante',
-    valueColumn: (element) => element.fabricante,
+    title: 'proveedor',
+    name: 'proveedor',
+    valueColumn: (element) => element.proveedor,
     type: 'string'
   },
   {
@@ -158,8 +158,8 @@ export const dataFormAlmacen: IDataForm[] = [
     option: []
   },
   {
-    label: 'Fabricante',
-    formControl: 'fabricante',
+    label: 'Proveedor',
+    formControl: 'proveedor',
     value: '',
     required: true,
     typeInput: 'text',
@@ -266,6 +266,10 @@ export const dataFormAsignar: IDataForm[] = [
   },
 ];
 
+export const formularioAsignar: IFormulario = {
+  title: 'Asignar Orden',
+  dataForm: dataFormAsignar
+}
 //Una vez ingresado el componente, este queda por defecto en estado "esperando por inspeccion"
 
 
@@ -274,7 +278,3 @@ export const formularioInventario: IFormulario = {
   dataForm: dataFormAlmacen
 }
 
-export const formularioAsignar: IFormulario = {
-  title: 'Asignar Orden',
-  dataForm: dataFormAsignar
-}

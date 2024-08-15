@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, effect, inject } from '@angular/core';
-import { IColumns, IConfigTable, ISendDataTable } from '../../interfaces/table.interface';
-import { columnsShelfLife, formularioShelfLife } from './shelfLife.data';
+import { IColumns, IConfigTable } from '../../interfaces/table.interface';
+import { columnsShelfLife } from './shelfLife.data';
 import { MatDialog } from '@angular/material/dialog';
-import { FormularioComponent } from '../../components/formulario/formulario.component';
 import { TableComponent } from "../../components/table/table.component";
 import { MatButtonModule } from '@angular/material/button';
 import { ReportSlService } from '../../services/report-sl.service';

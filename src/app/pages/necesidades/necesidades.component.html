@@ -1,7 +1,8 @@
 <h2 class="ml-2">Necesidades técnicas</h2>
 
-<app-table
-[columns]="columnsNecesidades"
-[dataTable]="dataNecesidades"
-(sendData)="defectColumnAction($event)"
-></app-table>
+<app-table [columns]="columnsNecesidades" [dataTable]="dataNecesidades"
+    (sendData)="defectColumnAction($event)"></app-table>
+
+<div class="example-button-row">
+    <button mat-raised-button (click)="openDialogAsign()">Enviar solicitud</button>
+</div>

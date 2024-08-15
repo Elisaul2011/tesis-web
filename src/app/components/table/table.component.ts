@@ -85,10 +85,7 @@ export class TableComponent implements OnInit, AfterViewInit {
         return (
           this.dataTable.filter((fil) => {
             const splitWord = col.split('.');
-            
-            // console.log(splitWord);
             if(splitWord.length == 1){
-              // console.log(fil[splitWord[0]]);
               return (fil[splitWord[0]].toString().toLowerCase().includes(filterValue.toLowerCase()))
             }
             if(splitWord.length == 2){
@@ -116,8 +113,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   redirectLink(rowLink: any): void {
-    console.log(rowLink.link);
-
     this.router.navigate([rowLink.link]);
   }
 

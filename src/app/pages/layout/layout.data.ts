@@ -52,6 +52,13 @@ export const menuLayout: IMenu[] = [
     userRol: ['Administrador','Técnico', 'Jefe de almacén']
   },
   {
+    title: 'Notificaciones',
+    redirect: 'notificaciones',
+    icon: 'notifications',
+    active: false,
+    userRol: ['Almacenista']
+  },
+  {
     title: 'Almacenes',
     redirect: 'almacenes',
     icon: 'view_list',

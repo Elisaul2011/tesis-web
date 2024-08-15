@@ -76,7 +76,7 @@ export const dataFormUser: IDataForm[] = [
     formControl: 'password',
     value: '',
     required: true,
-    typeInput: 'text',
+    typeInput: 'password',
     disabled: false,
   },
   {

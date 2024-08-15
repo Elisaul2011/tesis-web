@@ -8,9 +8,7 @@ export interface ITaller {
 }
 
 export interface BodyCreateTaller {
-  taller: string;
   inventarioId: number;
-  workshopOrder: string;
   madeBy: number;
 }
 
