@@ -146,7 +146,6 @@ export class InventarioComponent extends BaseComponent{
     });
     dialogRef.afterClosed().subscribe((result) => {
       result.userId = this.userToken.idUser;
-      console.log(result);
       this.inventarioService.postInventarioAsign(result)
     });
   }
@@ -160,7 +159,6 @@ export class InventarioComponent extends BaseComponent{
     dialogRef.afterClosed().subscribe((result) => {
       result.proveedor = result.proveedor;
       result.userId = this.userToken.idUser;
-      console.log(result);
       this.inventarioService.postInventario(result);
     });
   }
@@ -178,7 +176,6 @@ export class InventarioComponent extends BaseComponent{
       panelClass: 'stylesDialog',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       result.idInventario  = data.idInventario;
       this.inventarioService.putInventario(result);
     })

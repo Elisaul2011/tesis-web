@@ -69,7 +69,6 @@ export class HistorialComponent {
   }
 
   editDataDialog(data: IInventario): void {
-    console.log(data);
     const dialogRef = this.dialog.open(FormularioComponent, {
       data: formularioInventario,
       panelClass: 'stylesDialog',

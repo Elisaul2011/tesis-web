@@ -27,8 +27,6 @@ export class NecesidadesService extends BaseService{
   }
 
   putNecesidades(bodyReport: BodyUpdateNecesidades): void {
-    console.log(bodyReport);
-    
     this.httpClient.put(this.router_necesidades, bodyReport).subscribe(result => {
       if (result) {
         this.getNecesidades();

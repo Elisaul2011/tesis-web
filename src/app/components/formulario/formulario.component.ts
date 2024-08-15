@@ -91,11 +91,6 @@ export class FormularioComponent implements OnInit, AfterViewChecked {
       }
     });
 
-    setTimeout(() => {
-      console.log(this.globalForm.value);
-
-    }, 1500);
-
     this.selectEmpy = this.data.dataForm.find((form) => form.typeInput == 'select' && form.option?.length == 0);
     const detectChangeForm = this.data.dataForm.find((form) => form.main == true);
 

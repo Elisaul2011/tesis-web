@@ -73,8 +73,6 @@ export class NecesidadesComponent extends BaseComponent {
       data: formularioAsignar,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      // result.userId = this.userToken.idUser;
-      console.log(result);
       result.sendBy = this.userToken.idUser;
       this.necesidadesService.putNecesidades(result)
     });
